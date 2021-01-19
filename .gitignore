@@ -2,3 +2,4 @@
 GmailCredentials.json
 startDockerScraper.ps1
 stopDockerScraper.ps1
+pushToGit.sh

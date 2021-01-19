@@ -58,6 +58,7 @@ errorEmailorGitPush <- function(cnd) {
     # https://stackoverflow.com/questions/5343068/is-there-a-way-to-cache-github-credentials-for-pushing-commits#:~:text=To%20cache%20your%20GitHub%20password,time%20it%20talks%20to%20GitHub.
     # https://docs.github.com/en/github/using-git/caching-your-github-credentials-in-git
     # https://docs.github.com/en/free-pro-team@latest/github/using-git/caching-your-github-credentials-in-git
+    shell("bash ./pushToGit.sh", shell = "bash")
   } 
 }
 
@@ -70,7 +71,7 @@ finalResult <- tryCatch(
       html_node(css = "#vaccinations-table") %>% 
       html_table(header = NA, fill = T) %>% 
       mutate(across(.cols = contains("Doses"), as.numeric)) %>% 
-      mutate(Date = Sys.Date())
+      mutate(date = Sys.Date())
     Sys.sleep(15)
     shell(cmd = ".\\stopDockerScraper.ps1", shell = "powershell", wait = F)
     Sys.sleep(15)
