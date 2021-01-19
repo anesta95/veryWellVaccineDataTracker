@@ -11,15 +11,11 @@ library(janitor)
 library(gmailr)
 library(tidyverse)
 
+setwd("C:\\Users\\anesta\\Documents\\Verywell_Vaccine_Data_Tracker")
 
 statePops <- read_csv("populationEstimates.csv", col_types = "cii")
 
-# system("powershell -command \".\\startDockerScraper.ps1\"")
-shell(cmd = ".\\startDockerScraper.ps1", shell = "powershell", wait = F)
-
-# system("powershell -command \"docker pull scrapinghub/splash:latest --disable-browser-caches\"")
-# dockerContainerID <- system("powershell -command \"docker run -p 5023:5023 -p 8050:8050 -p 8051:8051 scrapinghub/splash:latest --disable-browser-caches\"")
-Sys.sleep(120)
+Sys.sleep(90)
 
 errorEmailorGitPush <- function(cnd) {
   if (!is.na(class(cnd)[2])) {
@@ -51,6 +47,9 @@ errorEmailorGitPush <- function(cnd) {
     
     Sys.sleep(5)
     
+    # Error logging
+    # http://www.seancarney.ca/2020/10/09/error-catching-logging-and-reporting-in-r-with-trycatchlog/
+    
     gm_send_message(email)
   } else {
     # pushToGithub
@@ -73,11 +72,11 @@ finalResult <- tryCatch(
     cdcTable <- cdcPage %>% 
       html_node(css = "#vaccinations-table") %>% 
       html_table(header = NA, fill = T) %>% 
+      clean_names() %>% 
       mutate(across(.cols = contains("Doses"), as.numeric)) %>% 
       mutate(date = Sys.Date())
     Sys.sleep(15)
-    shell(cmd = ".\\stopDockerScraper.ps1", shell = "powershell", wait = F)
-    Sys.sleep(15)
+    
     # system(paste0("powershell -command \"docker stop ", dockerContainerID, "\""))
     # Sys.sleep(10)
     # system(paste0("powershell -command \"docker rm ", dockerContainerID, "\""))
@@ -92,7 +91,6 @@ finalResult <- tryCatch(
     Sys.sleep(5)
     
     cdcWWW <- cdcTable %>% 
-      clean_names() %>% 
       filter(state_territory_federal_entity %in% c(state.name, "District of Columbia")) %>% 
       select(state_territory_federal_entity, 
              total_doses_distributed, 
@@ -123,7 +121,6 @@ finalResult <- tryCatch(
     Sys.sleep(5)
     
     statePercVacc <- cdcTable %>% 
-      clean_names() %>%
       inner_join(statePops, by = c("state_territory_federal_entity" = "Geographic_Area_Name")) %>% 
       mutate(`% of Currently Eligable Vaccinated` = total_doses_administered / Total_18plus_Pop_Estimate) %>% 
       select(state_territory_federal_entity, 
@@ -143,7 +140,6 @@ finalResult <- tryCatch(
     Sys.sleep(5)
     
     cdcMap <- cdcTable %>% 
-      clean_names() %>%
       inner_join(statePops, by = c("state_territory_federal_entity" = "Geographic_Area_Name")) %>% 
       mutate(`% of Currently Eligable Vaccinated` = total_doses_administered / Total_18plus_Pop_Estimate,
              `Percent Administered of Distributed` = total_doses_administered / total_doses_distributed,
@@ -181,7 +177,7 @@ finalResult <- tryCatch(
   }
 )
 
-
+shell(cmd = ".\\stopDockerScraper.ps1", shell = "powershell", wait = F)
 Sys.sleep(20)
 errorEmailorGitPush(finalResult)
 
