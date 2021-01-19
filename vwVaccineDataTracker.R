@@ -22,7 +22,7 @@ shell(cmd = ".\\startDockerScraper.ps1", shell = "powershell", wait = F)
 Sys.sleep(120)
 
 errorEmailorGitPush <- function(cnd) {
-  if (class(cnd)[2] == "rlang_error") {
+  if (!is.na(class(cnd)[2])) {
     # https://blog.mailtrap.io/send-emails-with-gmail-api/
     # https://github.com/r-lib/gmailr#setup
     # https://github.com/jennybc/send-email-with-r#create-a-project-in-google-developers-console
@@ -181,7 +181,7 @@ finalResult <- tryCatch(
   }
 )
 
-shell(cmd = ".\\startDockerScraper.ps1", shell = "powershell", wait = F)
+
 Sys.sleep(20)
 errorEmailorGitPush(finalResult)
 
