@@ -176,7 +176,6 @@ finalResult <- tryCatch(
     return(condFull)
   }
 )
-
 shell(cmd = ".\\stopDockerScraper.ps1", shell = "powershell", wait = F)
 Sys.sleep(20)
 errorEmailorGitPush(finalResult)
