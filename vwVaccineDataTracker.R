@@ -104,19 +104,18 @@ finalResult <- tryCatch(
       select(state_territory_federal_entity, 
              total_doses_distributed, 
              total_doses_administered,
-             doses_distributed_per_100k,
-             doses_administered_per_100k
-      )
+             people_with_2_doses_per_100k
+      ) %>% 
+      arrange(desc(people_with_2_doses_per_100k))
     
     # %>% 
     # adorn_totals(where = "row", name = "U.S. Total")
     
     cdcWWWTotal <- tibble_row(
       state_territory_federal_entity = "U.S. Total",
-      total_doses_distributed = sum(cdcWWWNontotal$total_doses_distributed, na.rm = T),
-      total_doses_administered = sum(cdcWWWNontotal$total_doses_administered, na.rm = T),
-      doses_distributed_per_100k = mean(cdcWWWNontotal$doses_distributed_per_100k, na.rm = T),
-      doses_administered_per_100k = mean(cdcWWWNontotal$doses_administered_per_100k, na.rm = T)
+      total_doses_distributed = sum(cdcTable$total_doses_distributed, na.rm = T),
+      total_doses_administered = sum(cdcTable$total_doses_administered, na.rm = T),
+      people_with_2_doses_per_100k = (sum(cdcTable$people_with_2_doses, na.rm = T) / 328580394L) * 100000
     )
     
     # cdcWWW[which(cdcWWW$state_territory_federal_entity == "U.S. Total"), 
@@ -140,105 +139,164 @@ finalResult <- tryCatch(
     
     Sys.sleep(5)
     
-    statePercVacc <- cdcTable %>% 
-      inner_join(statePops, by = c("state_territory_federal_entity" = "Geographic_Area_Name")) %>% 
-      mutate(`% of Currently Eligable Vaccinated` = total_doses_administered / Total_18plus_Pop_Estimate) %>% 
-      select(state_territory_federal_entity, 
-             `% of Currently Eligable Vaccinated`, 
-             Total_18plus_Pop_Estimate,
-             doses_administered_per_100k
-      ) %>% 
-      rename(
-        `Total Currently Eligible` = Total_18plus_Pop_Estimate,
-        `Administered per 100K` = doses_administered_per_100k
-      ) %>% 
-      rename_with(~paste("As of", strftime(as.character(Sys.Date()), format = "%m/%d")), contains("state")) %>% 
-      arrange(desc(`% of Currently Eligable Vaccinated`))
-    
-    statePercVacc %>% write_csv("statePercVacc.csv")
+    # statePercVacc <- cdcTable %>% 
+    #   inner_join(statePops, by = c("state_territory_federal_entity" = "Geographic_Area_Name")) %>% 
+    #   mutate(`% of Currently Eligable Vaccinated` = total_doses_administered / Total_18plus_Pop_Estimate) %>% 
+    #   select(state_territory_federal_entity, 
+    #          `% of Currently Eligable Vaccinated`, 
+    #          Total_18plus_Pop_Estimate,
+    #          doses_administered_per_100k
+    #   ) %>% 
+    #   rename(
+    #     `Total Currently Eligible` = Total_18plus_Pop_Estimate,
+    #     `Administered per 100K` = doses_administered_per_100k
+    #   ) %>% 
+    #   rename_with(~paste("As of", strftime(as.character(Sys.Date()), format = "%m/%d")), contains("state")) %>% 
+    #   arrange(desc(`% of Currently Eligable Vaccinated`))
+    # 
+    # statePercVacc %>% write_csv("statePercVacc.csv")
     
     Sys.sleep(5)
     
     cdcMap <- cdcTable %>% 
-      inner_join(statePops, by = c("state_territory_federal_entity" = "Geographic_Area_Name")) %>% 
-      mutate(`% of Currently Eligable Vaccinated` = total_doses_administered / Total_18plus_Pop_Estimate,
-             `Percent Administered of Distributed` = total_doses_administered / total_doses_distributed,
-             `Remaining Supply` = 1 - `Percent Administered of Distributed`
-      ) %>% 
-      select(
-        state_territory_federal_entity, 
-        `% of Currently Eligable Vaccinated`,
-        Total_18plus_Pop_Estimate,
-        total_doses_distributed, 
-        total_doses_administered,
-        doses_distributed_per_100k,
-        doses_administered_per_100k,
-        `Percent Administered of Distributed`,
-        `Remaining Supply`
-      ) %>% 
+      inner_join(vaccineEligibility, by = "fips_code") %>% 
+      mutate(`% of Currently Eligible Vaccinated` = people_with_2_doses / Total_people_to_vaccinate) %>% 
+      select(state_territory_federal_entity, `% of Currently Eligible Vaccinated`, 
+             Total_people_to_vaccinate) %>% 
+      # mutate(`% of Currently Eligable Vaccinated` = total_doses_administered / Total_18plus_Pop_Estimate,
+      #        `Percent Administered of Distributed` = total_doses_administered / total_doses_distributed,
+      #        `Remaining Supply` = 1 - `Percent Administered of Distributed`) %>% 
+      # select(
+      #   state_territory_federal_entity, 
+      #   `% of Currently Eligable Vaccinated`,
+      #   Total_18plus_Pop_Estimate,
+      #   total_doses_distributed, 
+      #   total_doses_administered,
+      #   doses_distributed_per_100k,
+      #   doses_administered_per_100k,
+      #   `Percent Administered of Distributed`,
+      #   `Remaining Supply`) %>% 
       rename(
         ID = state_territory_federal_entity,
-        `Total Currently Eligible` = Total_18plus_Pop_Estimate,
-        `Total Distributed` = total_doses_distributed,
-        `Total Administered` = total_doses_administered,
-        `Distributed per 100K` = doses_distributed_per_100k,
-        `Administered per 100K` = doses_administered_per_100k
+        `Total Currently Eligible` = Total_people_to_vaccinate
+        # `Total Distributed` = total_doses_distributed,
+        # `Total Administered` = total_doses_administered,
+        # `Distributed per 100K` = doses_distributed_per_100k,
+        # `Administered per 100K` = doses_administered_per_100k
       ) 
     
     cdcMap %>% write_csv("cdcMap.csv")
     
     Sys.sleep(5)
     
+    
     areWeThereYetNontotal <- cdcFullTableUpdated %>% 
       filter(date %in% c(max(date), max(date) - 7)) %>% 
-      mutate(`Adults Vaccinated in Last Week` = total_doses_administered - lead(
-        total_doses_administered, n = 63)) %>% 
-      filter(!is.na(`Adults Vaccinated in Last Week`)) %>% 
+      mutate(`% Population with 2 Vaccines` = (people_with_2_doses_per_100k / 1000),
+             `Doses administered in the last week` = total_doses_administered - lead(
+               total_doses_administered, n = 63),
+             `1+ Doses adminstered in the last week` = people_with_1_doses - lead(
+               people_with_1_doses, n = 63)) %>% 
+      filter(!is.na(`Doses administered in the last week`)) %>% 
       inner_join(statePops, by = "fips_code") %>% 
-      mutate(`Percent Adults Vaccinated` = (
-        total_doses_administered / Total_18plus_Pop_Estimate) * 100,
-        `70% of pop` = .7 * Total_Pop_Estimate,
-        `Weeks left to achieve 70% of state at current rate` = (
-          `70% of pop` - total_doses_administered) / `Adults Vaccinated in Last Week`,
-        `months left to 70% of adults with first doses` = `Weeks left to achieve 70% of state at current rate` / 4,
-        `Estimated 70% of the population 1st Dose` = strftime(base::as.Date(
-          as.integer(Sys.Date()) + (round(`Weeks left to achieve 70% of state at current rate` * 7)), origin = "1970-01-01"),
-          format = "%B %Y"
-        )) %>% 
-      rename(State = state_territory_federal_entity, 
-             `Population size` = Total_Pop_Estimate,
-             `ADULT Population Size` = Total_18plus_Pop_Estimate) %>% 
-      select(State, `Percent Adults Vaccinated`, `Adults Vaccinated in Last Week`,
-             `Estimated 70% of the population 1st Dose`, total_doses_administered,
-             `Population size`, `ADULT Population Size`, `70% of pop`, 
-             `months left to 70% of adults with first doses`, 
-             `Weeks left to achieve 70% of state at current rate`)
+      mutate(`70% of population` = .7 * Total_Pop_Estimate,
+             `Estimated to 70% Pop 2 Doses` = strftime(base::as.Date(
+               round(
+                 (
+                   (
+                     (
+                       (`70% of population` - people_with_1_doses) / 
+               `1+ Doses adminstered in the last week`)) * 7) + 28), 
+               origin = "1970-01-01") + as.integer(Sys.Date()), format = "%B %Y"),
+             testSort = round(((((`70% of population` - people_with_1_doses) / 
+                                   `1+ Doses adminstered in the last week`)) * 7) + 28)) %>%
+      arrange(testSort) %>% 
+      select(state_territory_federal_entity, `% Population with 2 Vaccines`,
+             `Doses administered in the last week`, `Estimated to 70% Pop 2 Doses`) 
+      
+
+      
+      # strftime(base::as.Date(
+      #       as.integer(Sys.Date()) + (round(`Weeks left to achieve 70% of state at current rate` * 7)), origin = "1970-01-01"),
+      #       format = "%B %Y"
+      #     )
+      
+      
+        
+      # select(state_territory_federal_entity, `% Population with 2 Vaccines`)
+      # select(state_territory_federal_entity, 
+      #        )
+      # mutate(`Adults Vaccinated in Last Week` = total_doses_administered - lead(
+      #   total_doses_administered, n = 63)) %>% 
+      # filter(!is.na(`Adults Vaccinated in Last Week`)) %>% 
+      # inner_join(statePops, by = "fips_code") %>% 
+      # mutate(`Percent Adults Vaccinated` = (
+      #   total_doses_administered / Total_18plus_Pop_Estimate) * 100,
+      #   `70% of pop` = .7 * Total_Pop_Estimate,
+      #   `Weeks left to achieve 70% of state at current rate` = (
+      #     `70% of pop` - total_doses_administered) / `Adults Vaccinated in Last Week`,
+      #   `months left to 70% of adults with first doses` = `Weeks left to achieve 70% of state at current rate` / 4,
+      #   `Estimated 70% of the population 1st Dose` = strftime(base::as.Date(
+      #     as.integer(Sys.Date()) + (round(`Weeks left to achieve 70% of state at current rate` * 7)), origin = "1970-01-01"),
+      #     format = "%B %Y"
+      #   )) %>% 
+      # rename(State = state_territory_federal_entity, 
+      #        `Population size` = Total_Pop_Estimate,
+      #        `ADULT Population Size` = Total_18plus_Pop_Estimate) %>% 
+      # select(State, `Percent Adults Vaccinated`, `Adults Vaccinated in Last Week`,
+      #        `Estimated 70% of the population 1st Dose`, total_doses_administered,
+      #        `Population size`, `ADULT Population Size`, `70% of pop`, 
+      #        `months left to 70% of adults with first doses`, 
+      #        `Weeks left to achieve 70% of state at current rate`)
+    
+      onePlusVaxLastWeek <- cdcFullTableUpdated %>% 
+        filter(date %in% c(max(date), max(date) - 7)) %>%
+        mutate(`1+ Doses adminstered in the last week` = people_with_1_doses - lead(
+          people_with_1_doses, n = 63)) %>% 
+        filter(!is.na(`1+ Doses adminstered in the last week`)) %>% 
+        pull(`1+ Doses adminstered in the last week`) %>% 
+        sum()
+      
+      areWeThereYetTotal <- tibble_row(
+        state_territory_federal_entity = "U.S. Total", 
+        `% Population with 2 Vaccines` = (sum(cdcTable$people_with_2_doses, na.rm = T) / 328580394L) * 100,
+        `Doses administered in the last week` = sum(areWeThereYetNontotal$`Doses administered in the last week`, na.rm = T),
+        `Estimated to 70% Pop 2 Doses` = strftime(
+          base::as.Date(
+            (round(
+              (
+                (
+                  (
+                    (328580394L * .7) - sum(cdcTable$people_with_1_doses, na.rm = T)) / 
+                       onePlusVaxLastWeek) * 7) + 28) + as.integer(Sys.Date())), origin = "1970-01-01"
+            ), format = "%B %Y")
+      )
     
     
-    areWeThereYetTotal <- tibble_row(
-      State = "U.S. Total",
-      `Percent Adults Vaccinated` = mean(areWeThereYetNontotal$`Percent Adults Vaccinated`, na.rm = T),
-      `Adults Vaccinated in Last Week` = sum(areWeThereYetNontotal$`Adults Vaccinated in Last Week`, na.rm = T),
-      `Estimated 70% of the population 1st Dose` = NA,
-      total_doses_administered = sum(areWeThereYetNontotal$total_doses_administered, na.rm = T),
-      `Population size` = sum(areWeThereYetNontotal$`Population size`, na.rm = T),
-      `ADULT Population Size` = sum(areWeThereYetNontotal$`ADULT Population Size`, na.rm = T),
-      `70% of pop` = (.7 * sum(areWeThereYetNontotal$`Population size`, na.rm = T)),
-      `months left to 70% of adults with first doses` = ((
-        sum(areWeThereYetNontotal$`70% of pop`, 
-            na.rm = T) - sum(
-              areWeThereYetNontotal$total_doses_administered, 
-              na.rm = T)) / sum(
-                areWeThereYetNontotal$`Adults Vaccinated in Last Week`, 
-                na.rm = T) / 4),
-      `Weeks left to achieve 70% of state at current rate` = (
-        sum(areWeThereYetNontotal$`70% of pop`, 
-            na.rm = T) - sum(
-              areWeThereYetNontotal$total_doses_administered, 
-              na.rm = T)) / sum(
-                areWeThereYetNontotal$`Adults Vaccinated in Last Week`, 
-                na.rm = T)
-    )
+    # areWeThereYetTotal <- tibble_row(
+    #   State = "U.S. Total",
+    #   `Percent Adults Vaccinated` = mean(areWeThereYetNontotal$`Percent Adults Vaccinated`, na.rm = T),
+    #   `Adults Vaccinated in Last Week` = sum(areWeThereYetNontotal$`Adults Vaccinated in Last Week`, na.rm = T),
+    #   `Estimated 70% of the population 1st Dose` = NA,
+    #   total_doses_administered = sum(areWeThereYetNontotal$total_doses_administered, na.rm = T),
+    #   `Population size` = sum(areWeThereYetNontotal$`Population size`, na.rm = T),
+    #   `ADULT Population Size` = sum(areWeThereYetNontotal$`ADULT Population Size`, na.rm = T),
+    #   `70% of pop` = (.7 * sum(areWeThereYetNontotal$`Population size`, na.rm = T)),
+    #   `months left to 70% of adults with first doses` = ((
+    #     sum(areWeThereYetNontotal$`70% of pop`, 
+    #         na.rm = T) - sum(
+    #           areWeThereYetNontotal$total_doses_administered, 
+    #           na.rm = T)) / sum(
+    #             areWeThereYetNontotal$`Adults Vaccinated in Last Week`, 
+    #             na.rm = T) / 4),
+    #   `Weeks left to achieve 70% of state at current rate` = (
+    #     sum(areWeThereYetNontotal$`70% of pop`, 
+    #         na.rm = T) - sum(
+    #           areWeThereYetNontotal$total_doses_administered, 
+    #           na.rm = T)) / sum(
+    #             areWeThereYetNontotal$`Adults Vaccinated in Last Week`, 
+    #             na.rm = T)
+    # )
     
     # %>% 
     #   adorn_totals(where = "row", name = "U.S. Total")
@@ -259,14 +317,14 @@ finalResult <- tryCatch(
     # areWeThereYetRough[which(areWeThereYetRough$State == "U.S. Total"),
     #                    "Weeks left to achieve 70% of state at current rate"] <- round(mean(areWeThereYetRough$`Weeks left to achieve 70% of state at current rate`, na.rm = T), 1)
     
-    areWeThereYet2 <- bind_rows(areWeThereYetTotal,
+    areWeThereYet <- bind_rows(areWeThereYetTotal,
                                areWeThereYetNontotal)
     
-    areWeThereYet <- areWeThereYet2 %>% 
-      mutate(`Estimated 70% of the population 1st Dose` = strftime(base::as.Date(
-        as.integer(Sys.Date()) + (round(`Weeks left to achieve 70% of state at current rate` * 7)), origin = "1970-01-01"),
-        format = "%B %Y"
-      ))
+    # areWeThereYet <- areWeThereYet2 %>% 
+    #   mutate(`Estimated 70% of the population 1st Dose` = strftime(base::as.Date(
+    #     as.integer(Sys.Date()) + (round(`Weeks left to achieve 70% of state at current rate` * 7)), origin = "1970-01-01"),
+    #     format = "%B %Y"
+    #   ))
     
     # areWeThereYetRoughTotals <- areWeThereYetRough2 %>% filter(State == "U.S. Total")
     # 
