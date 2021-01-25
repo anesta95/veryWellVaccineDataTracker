@@ -106,16 +106,19 @@ finalResult <- tryCatch(
              total_doses_administered,
              people_with_2_doses_per_100k
       ) %>% 
-      arrange(desc(people_with_2_doses_per_100k))
+      arrange(desc(people_with_2_doses_per_100k)) %>% 
+      mutate(total_doses_distributed = as.character(total_doses_distributed),
+             total_doses_administered = as.character(total_doses_administered),
+             people_with_2_doses_per_100k = as.character(people_with_2_doses_per_100k))
     
     # %>% 
     # adorn_totals(where = "row", name = "U.S. Total")
     
     cdcWWWTotal <- tibble_row(
       state_territory_federal_entity = "U.S. Total",
-      total_doses_distributed = sum(cdcTable$total_doses_distributed, na.rm = T),
-      total_doses_administered = sum(cdcTable$total_doses_administered, na.rm = T),
-      people_with_2_doses_per_100k = (sum(cdcTable$people_with_2_doses, na.rm = T) / 328580394L) * 100000
+      total_doses_distributed = format(sum(cdcTable$total_doses_distributed, na.rm = T), big.mark = ",", scientific = F),
+      total_doses_administered = format(sum(cdcTable$total_doses_administered, na.rm = T), big.mark = ",", scientific = F),
+      people_with_2_doses_per_100k = format(round((sum(cdcTable$people_with_2_doses, na.rm = T) / 328580394L) * 100000), big.mark = ",", scientific = F)
     )
     
     # cdcWWW[which(cdcWWW$state_territory_federal_entity == "U.S. Total"), 
@@ -160,7 +163,7 @@ finalResult <- tryCatch(
     
     cdcMap <- cdcTable %>% 
       inner_join(vaccineEligibility, by = "fips_code") %>% 
-      mutate(`% of Currently Eligible Vaccinated` = people_with_2_doses / Total_people_to_vaccinate) %>% 
+      mutate(`% of Currently Eligible Vaccinated` = round((people_with_2_doses / Total_people_to_vaccinate) * 100, digits = 1))%>% 
       select(state_territory_federal_entity, `% of Currently Eligible Vaccinated`, 
              Total_people_to_vaccinate) %>% 
       # mutate(`% of Currently Eligable Vaccinated` = total_doses_administered / Total_18plus_Pop_Estimate,
@@ -212,7 +215,9 @@ finalResult <- tryCatch(
                                    `1+ Doses adminstered in the last week`)) * 7) + 28)) %>%
       arrange(testSort) %>% 
       select(state_territory_federal_entity, `% Population with 2 Vaccines`,
-             `Doses administered in the last week`, `Estimated to 70% Pop 2 Doses`) 
+             `Doses administered in the last week`, `Estimated to 70% Pop 2 Doses`) %>% 
+      mutate(`% Population with 2 Vaccines` = round(`% Population with 2 Vaccines`, 2),
+             `Doses administered in the last week` = format(`Doses administered in the last week`, big.mark = ",", scientific = F))
       
 
       
@@ -259,8 +264,8 @@ finalResult <- tryCatch(
       
       areWeThereYetTotal <- tibble_row(
         state_territory_federal_entity = "U.S. Total", 
-        `% Population with 2 Vaccines` = (sum(cdcTable$people_with_2_doses, na.rm = T) / 328580394L) * 100,
-        `Doses administered in the last week` = sum(areWeThereYetNontotal$`Doses administered in the last week`, na.rm = T),
+        `% Population with 2 Vaccines` = round((sum(cdcTable$people_with_2_doses, na.rm = T) / 328580394L) * 100, 2),
+        `Doses administered in the last week` = format(sum(areWeThereYetNontotal$`Doses administered in the last week`, na.rm = T), big.mark = ",", scientific = F),
         `Estimated to 70% Pop 2 Doses` = strftime(
           base::as.Date(
             (round(
