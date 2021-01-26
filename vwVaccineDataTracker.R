@@ -265,7 +265,12 @@ finalResult <- tryCatch(
       areWeThereYetTotal <- tibble_row(
         state_territory_federal_entity = "U.S. Total", 
         `% Population with 2 Vaccines` = round((sum(cdcTable$people_with_2_doses, na.rm = T) / 328580394L) * 100, 2),
-        `Doses administered in the last week` = format(sum(areWeThereYetNontotal$`Doses administered in the last week`, na.rm = T), big.mark = ",", scientific = F),
+        `Doses administered in the last week` = format(
+          sum(
+            as.integer(
+              str_remove_all(str_trim(areWeThereYetNontotal$`Doses administered in the last week`), ",")
+              ), na.rm = T
+            ), big.mark = ",", scientific = F),
         `Estimated to 70% Pop 2 Doses` = strftime(
           base::as.Date(
             (round(
