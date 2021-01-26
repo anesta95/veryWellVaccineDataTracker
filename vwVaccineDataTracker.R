@@ -16,7 +16,7 @@ setwd("C:\\Users\\anesta\\Documents\\Verywell_Vaccine_Data_Tracker")
 statePops <- read_csv("populationEstimates.csv", col_types = "ciici")
 
 vaccineEligibility <- read_csv("vaccineEligibilityData.csv", 
-                               col_types = "ciiiiiiici")
+                               col_types = "ciiiiiiiici")
 
 stateFIPS <- read_csv("stateFIPSCodes.csv", col_types = "cci")
 
@@ -93,6 +93,7 @@ finalResult <- tryCatch(
     
     cdcFullTable <- read_csv("cdcFullTable.csv", col_types = "ciiiiiiiiDci")
     
+    # cdcFullTableUpdated <- cdcFullTable
     cdcFullTableUpdated <- bind_rows(cdcTable, cdcFullTable)
     
     write_csv(cdcFullTableUpdated, "cdcFullTable.csv")
@@ -138,7 +139,7 @@ finalResult <- tryCatch(
     
     # cdcWWWFormatted[which(cdcWWWFormatted$state_territory_federal_entity == "Total"), "state_territory_federal_entity"] <- "U.S. Total"
     
-    cdcWWWFormatted %>% write_csv("cdcWWWFormatted.csv")
+    # cdcWWWFormatted %>% write_csv("cdcWWWFormatted.csv")
     
     Sys.sleep(5)
     
@@ -262,14 +263,18 @@ finalResult <- tryCatch(
         pull(`1+ Doses adminstered in the last week`) %>% 
         sum()
       
+      # as.integer(
+      #   str_remove_all(str_trim( , ",")
+      #   )
+      
       areWeThereYetTotal <- tibble_row(
         state_territory_federal_entity = "U.S. Total", 
         `% Population with 2 Vaccines` = round((sum(cdcTable$people_with_2_doses, na.rm = T) / 328580394L) * 100, 2),
         `Doses administered in the last week` = format(
           sum(
             as.integer(
-              str_remove_all(str_trim(areWeThereYetNontotal$`Doses administered in the last week`), ",")
-              ), na.rm = T
+            str_remove_all(
+              str_trim(areWeThereYetNontotal$`Doses administered in the last week`), ",")), na.rm = T
             ), big.mark = ",", scientific = F),
         `Estimated to 70% Pop 2 Doses` = strftime(
           base::as.Date(
