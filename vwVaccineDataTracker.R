@@ -139,9 +139,9 @@ finalResult <- tryCatch(
     
     # cdcWWWFormatted[which(cdcWWWFormatted$state_territory_federal_entity == "Total"), "state_territory_federal_entity"] <- "U.S. Total"
     
-    # cdcWWWFormatted %>% write_csv("cdcWWWFormatted.csv")
+    cdcWWWFormatted %>% write_csv("cdcWWWFormatted.csv")
     
-    Sys.sleep(5)
+    
     
     # statePercVacc <- cdcTable %>% 
     #   inner_join(statePops, by = c("state_territory_federal_entity" = "Geographic_Area_Name")) %>% 
