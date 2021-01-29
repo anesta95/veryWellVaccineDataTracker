@@ -93,7 +93,7 @@ finalResult <- tryCatch(
     
     cdcFullTable <- read_csv("cdcFullTable.csv", col_types = "ciiiiiiiiDci")
     
-    # cdcFullTableUpdated <- cdcFullTable
+    #cdcFullTableUpdated <- cdcFullTable
     cdcFullTableUpdated <- bind_rows(cdcTable, cdcFullTable)
     
     write_csv(cdcFullTableUpdated, "cdcFullTable.csv")
@@ -201,7 +201,7 @@ finalResult <- tryCatch(
                total_doses_administered, n = 63),
              `1+ Doses adminstered in the last week` = people_with_1_doses - lead(
                people_with_1_doses, n = 63)) %>% 
-      filter(!is.na(`Doses administered in the last week`)) %>% 
+      filter(`Doses administered in the last week` != 0) %>% 
       inner_join(statePops, by = "fips_code") %>% 
       mutate(`70% of population` = .7 * Total_Pop_Estimate,
              `Estimated to 70% Pop 2 Doses` = strftime(base::as.Date(
