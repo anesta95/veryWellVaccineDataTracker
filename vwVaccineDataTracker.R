@@ -9,6 +9,8 @@ library(rlang)
 library(lubridate)
 library(janitor)
 library(gmailr)
+library(googledrive)
+library(googlesheets4)
 library(tidyverse)
 
 setwd("C:\\Users\\anesta\\Documents\\Verywell_Vaccine_Data_Tracker")
@@ -350,6 +352,32 @@ finalResult <- tryCatch(
     # areWeThereYet[which(areWeThereYet$State == "Total"), "State"] <- "U.S. Total"
     
     write_csv(areWeThereYet, "areWeThereYet.csv")
+    
+    if (wday(Sys.Date(), label = F) == 2) {
+      drive_auth(email = "anesta@dotdash.com")
+      gs4_auth(token = drive_token())
+      
+      write_sheet(ss = "1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo",
+                  data = cdcWWWFormatted,
+                  sheet = as.character(Sys.Date()))
+      
+      Sys.sleep(5)
+      
+      range_write(ss = "1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo",
+                  data = cdcMap,
+                  sheet = as.character(Sys.Date()),
+                  range = "F1",
+                  col_names = T)
+      
+      Sys.sleep(5)
+      
+      range_write(ss = "1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo",
+                  data = areWeThereYet,
+                  sheet = as.character(Sys.Date()),
+                  range = "J1",
+                  col_names = T)
+      
+    }
     
   }, error = function(cond) {
     condFull <- error_cnd(paste("An error occured with the update:", 

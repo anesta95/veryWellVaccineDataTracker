@@ -8,6 +8,8 @@ library(splashr)
 library(rlang)
 library(lubridate)
 library(gmailr)
+library(googledrive)
+library(googlesheets4)
 library(tidyverse)
 
 setwd("C:\\Users\\anesta\\Documents\\Verywell_Vaccine_Data_Tracker")
