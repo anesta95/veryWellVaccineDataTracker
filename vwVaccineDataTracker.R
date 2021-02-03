@@ -22,7 +22,7 @@ vaccineEligibility <- read_csv("vaccineEligibilityData.csv",
 
 stateFIPS <- read_csv("stateFIPSCodes.csv", col_types = "cci")
 
-Sys.sleep(45)
+Sys.sleep(35)
 
 errorEmailorGitPush <- function(cnd) {
   if (class(cnd)[2] == "rlang_error") {
@@ -50,9 +50,11 @@ errorEmailorGitPush <- function(cnd) {
       gm_to(c("anesta@dotdash.com", "amorelli@dotdash.com")) %>% 
       gm_from("adriannesta@gmail.com") %>% 
       gm_subject("Error in updating Vaccine Data Tracker") %>% 
-      gm_text_body(paste("The error that occured in the update was:", class(cnd)[1], "on", Sys.Date()))
+      gm_text_body(paste("The error that occured in the update was:", class(cnd)[1]))
     
     Sys.sleep(5)
+    
+    
     
     # Error logging
     # http://www.seancarney.ca/2020/10/09/error-catching-logging-and-reporting-in-r-with-trycatchlog/
@@ -381,8 +383,10 @@ finalResult <- tryCatch(
     
   }, error = function(cond) {
     condFull <- error_cnd(paste("An error occured with the update:", 
-                                cond
+                                cond, "on", Sys.Date(), "\n"
     ))
+    
+    write(toString(condFull), "./errorLog.txt", append = T)
     
     return(condFull)
   }
