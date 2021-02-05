@@ -214,30 +214,46 @@ finalResult <- tryCatch(
 shell(cmd = ".\\stopDockerScraper.ps1", shell = "powershell", wait = F)
 Sys.sleep(5)
 if (wday(Sys.Date(), label = F) == 2) {
+  
   drive_auth(email = "anesta@dotdash.com")
   gs4_auth(token = drive_token())
   
-  write_sheet(ss = "1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo",
-              data = cdcWWWFormatted,
-              sheet = as.character(Sys.Date()))
+  
+  rate <- rate_delay(61, max_times = 3)
+  
+  writeFirst <- insistently(~write_sheet(ss = "1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo",
+                           data = cdcWWWFormatted,
+                           sheet = as.character(Sys.Date())),
+                           rate = rate,
+                           quiet = F)
+  
+  writeFirst()
   
   Sys.sleep(5)
   
-  range_write(ss = "1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo",
-              data = cdcMap,
-              sheet = as.character(Sys.Date()),
-              range = "F1",
-              col_names = T)
+  writeSecond <- insistently(~range_write(ss = "1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo",
+                                          data = cdcMap,
+                                          sheet = as.character(Sys.Date()),
+                                          range = "F1",
+                                          col_names = T),
+                             rate = rate,
+                             quiet = F)
+  
+  writeSecond()
   
   Sys.sleep(5)
   
-  range_write(ss = "1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo",
-              data = areWeThereYet,
-              sheet = as.character(Sys.Date()),
-              range = "J1",
-              col_names = T)
+  writeThird <- insistently(~range_write(ss = "1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo",
+                                         data = areWeThereYet,
+                                         sheet = as.character(Sys.Date()),
+                                         range = "J1",
+                                         col_names = T),
+                            rate = rate,
+                            quiet = F)
   
-}
+  writeThird()
+  
+}  
 
 Sys.sleep(10)
 errorEmailorGitPush(finalResult)

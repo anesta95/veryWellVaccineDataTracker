@@ -3,3 +3,4 @@ GmailCredentials.json
 startDockerScraper.ps1
 stopDockerScraper.ps1
 pushToGit.ps1
+errorLog.txt
