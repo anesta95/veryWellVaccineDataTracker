@@ -1,4 +1,5 @@
-Error: 
 
-Error: 
+An error occured with the update: Error: Can't subset columns that don't exist.
+[31mx[39m Column `total_doses_distributed` doesn't exist.
+ on 2021-02-08 
 

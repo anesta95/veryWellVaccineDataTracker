@@ -94,18 +94,18 @@ finalResult <- tryCatch(
     cdcWWWNontotal <- cdcTable %>% 
       filter(state_territory_federal_entity %in% c(state.name, "District of Columbia")) %>% 
       select(state_territory_federal_entity, 
-             total_doses_distributed, 
+             total_doses_delivered, 
              total_doses_administered,
              people_with_2_doses_per_100k
       ) %>% 
       arrange(desc(people_with_2_doses_per_100k)) %>% 
-      mutate(total_doses_distributed = as.character(total_doses_distributed),
+      mutate(total_doses_delivered = as.character(total_doses_delivered),
              total_doses_administered = as.character(total_doses_administered),
              people_with_2_doses_per_100k = as.character(people_with_2_doses_per_100k))
     
     cdcWWWTotal <- tibble_row(
       state_territory_federal_entity = "U.S. Total",
-      total_doses_distributed = format(sum(cdcTable$total_doses_distributed, na.rm = T), big.mark = ",", scientific = F),
+      total_doses_delivered = format(sum(cdcTable$total_doses_delivered, na.rm = T), big.mark = ",", scientific = F),
       total_doses_administered = format(sum(cdcTable$total_doses_administered, na.rm = T), big.mark = ",", scientific = F),
       people_with_2_doses_per_100k = format(round((sum(cdcTable$people_with_2_doses, na.rm = T) / 328580394L) * 100000), big.mark = ",", scientific = F)
     )
@@ -201,11 +201,11 @@ finalResult <- tryCatch(
     
     
   }, error = function(cond) {
-    condFull <- error_cnd(paste("An error occured with the update:", 
+    condFull <- error_cnd(class = "vwDataTrackerError", message = paste("An error occured with the update:", 
                                 cond, "on", Sys.Date(), "\n"
     ))
     
-    write(toString(condFull), "./errorLog.txt", append = T)
+    write(condFull[["message"]], "./errorLog.txt", append = T)
     
     return(condFull)
   }
