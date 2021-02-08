@@ -1,54 +1,54 @@
-state_territory_federal_entity,% Population with 2 Vaccines,Doses administered in the last week,Estimated to 70% Pop 2 Doses
-U.S. Total,2.78,"9,558,614",October 2021
-Wisconsin,2.63,"  251,469",July 2021
-Idaho,1.92,"   64,801",August 2021
-California,2.05,"1,199,815",September 2021
-Hawaii,2.86,"   57,781",September 2021
-Illinois,2.28,"  390,131",September 2021
-Minnesota,2.79,"  210,344",September 2021
-Virginia,2.32,"  270,149",September 2021
-Arizona,2.08,"  215,126",September 2021
-Missouri,2.3,"  180,768",September 2021
-Massachusetts,2.45,"  201,087",September 2021
-Nevada,2.03,"   92,995",September 2021
-Washington,2.41,"  220,774",September 2021
-Montana,3.39,"   33,240",September 2021
-Maine,3.31,"   38,096",October 2021
-New Mexico,3.96,"   67,646",October 2021
-North Dakota,4.94,"   28,907",October 2021
-Kentucky,2.75,"  143,637",October 2021
-Texas,2.69,"  837,759",October 2021
-Arkansas,2.99,"   89,652",October 2021
-Ohio,2.44,"  339,952",October 2021
-Utah,2.75,"  113,784",October 2021
-South Dakota,4.49,"   25,478",November 2021
-Mississippi,1.89,"   84,631",November 2021
-Oklahoma,3.68,"  135,761",November 2021
-South Carolina,2.2,"  129,376",November 2021
-North Carolina,2.5,"  290,884",November 2021
-District of Columbia,3.7,"   25,293",November 2021
-Pennsylvania,2.51,"  319,667",November 2021
-Alaska,5.4,"   26,492",November 2021
-Oregon,3.1,"  124,856",November 2021
-Vermont,4.19,"   20,000",November 2021
-Delaware,2.49,"   23,474",November 2021
-Kansas,2.25,"   74,815",November 2021
-New Jersey,2.37,"  279,365",November 2021
-Maryland,2.42,"  159,571",December 2021
-Nebraska,3.41,"   53,163",December 2021
-Colorado,3.43,"  160,661",December 2021
-New Hampshire,3.35,"   37,574",December 2021
-Alabama,1.76,"  108,358",December 2021
-Tennessee,3.58,"  181,810",December 2021
-Michigan,3.13,"  274,910",December 2021
-Connecticut,3.46,"   97,099",December 2021
-Florida,2.93,"  647,901",December 2021
-Wyoming,2.56,"   14,835",December 2021
-Indiana,2.32,"  142,586",December 2021
-Iowa,2.77,"   76,210",December 2021
-Rhode Island,3.18,"   25,890",December 2021
-West Virginia,5.8,"   62,272",December 2021
-Georgia,1.98,"  239,838",January 2022
-Louisiana,3.6,"  156,226",January 2022
-New York,2.67,"  461,405",February 2022
-Puerto Rico,2.17,"   50,300",April 2022
+State,% Population with 2 Vaccines,Doses administered in the last week,Estimated to 70% Pop 2 Doses
+U.S. Total,2.78,"9,558,614",Oct-21
+Wisconsin,2.63,"251,469",Jul-21
+Idaho,1.92,"64,801",Aug-21
+California,2.05,"1,199,815",Sep-21
+Hawaii,2.86,"57,781",Sep-21
+Illinois,2.28,"390,131",Sep-21
+Minnesota,2.79,"210,344",Sep-21
+Virginia,2.32,"270,149",Sep-21
+Arizona,2.08,"215,126",Sep-21
+Missouri,2.3,"180,768",Sep-21
+Massachusetts,2.45,"201,087",Sep-21
+Nevada,2.03,"92,995",Sep-21
+Washington,2.41,"220,774",Sep-21
+Montana,3.39,"33,240",Sep-21
+Maine,3.31,"38,096",Oct-21
+New Mexico,3.96,"67,646",Oct-21
+North Dakota,4.94,"28,907",Oct-21
+Kentucky,2.75,"143,637",Oct-21
+Texas,2.69,"837,759",Oct-21
+Arkansas,2.99,"89,652",Oct-21
+Ohio,2.44,"339,952",Oct-21
+Utah,2.75,"113,784",Oct-21
+South Dakota,4.49,"25,478",Nov-21
+Mississippi,1.89,"84,631",Nov-21
+Oklahoma,3.68,"135,761",Nov-21
+South Carolina,2.2,"129,376",Nov-21
+North Carolina,2.5,"290,884",Nov-21
+District of Columbia,3.7,"25,293",Nov-21
+Pennsylvania,2.51,"319,667",Nov-21
+Alaska,5.4,"26,492",Nov-21
+Oregon,3.1,"124,856",Nov-21
+Vermont,4.19,"20,000",Nov-21
+Delaware,2.49,"23,474",Nov-21
+Kansas,2.25,"74,815",Nov-21
+New Jersey,2.37,"279,365",Nov-21
+Maryland,2.42,"159,571",Dec-21
+Nebraska,3.41,"53,163",Dec-21
+Colorado,3.43,"160,661",Dec-21
+New Hampshire,3.35,"37,574",Dec-21
+Alabama,1.76,"108,358",Dec-21
+Tennessee,3.58,"181,810",Dec-21
+Michigan,3.13,"274,910",Dec-21
+Connecticut,3.46,"97,099",Dec-21
+Florida,2.93,"647,901",Dec-21
+Wyoming,2.56,"14,835",Dec-21
+Indiana,2.32,"142,586",Dec-21
+Iowa,2.77,"76,210",Dec-21
+Rhode Island,3.18,"25,890",Dec-21
+West Virginia,5.8,"62,272",Dec-21
+Georgia,1.98,"239,838",Jan-22
+Louisiana,3.6,"156,226",Jan-22
+New York,2.67,"461,405",Feb-22
+Puerto Rico,2.17,"50,300",Apr-22

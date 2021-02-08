@@ -112,7 +112,11 @@ finalResult <- tryCatch(
     
     
     
-    cdcWWWFormatted <- bind_rows(cdcWWWTotal, cdcWWWNontotal)
+    cdcWWWFormatted <- bind_rows(cdcWWWTotal, cdcWWWNontotal) %>% 
+      rename(State = state_territory_federal_entity,
+             `Total Doses Delivered` = total_doses_delivered,
+             `Total Doses Administered` = total_doses_administered,
+             `People with 2 Doses per 100k` = people_with_2_doses_per_100k)
     
     
     cdcWWWFormatted %>% write_csv("cdcWWWFormatted.csv")
@@ -194,7 +198,8 @@ finalResult <- tryCatch(
       )
     
     areWeThereYet <- bind_rows(areWeThereYetTotal,
-                               areWeThereYetNontotal)
+                               areWeThereYetNontotal) %>% 
+      rename(State = state_territory_federal_entity)
     
     
     write_csv(areWeThereYet, "areWeThereYet.csv")
