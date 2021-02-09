@@ -1,54 +1,54 @@
 State,% Population with 2 Vaccines,Doses administered in the last week,Estimated to 70% Pop 2 Doses
-U.S. Total,2.78,"9,558,614",Oct-21
-Wisconsin,2.63,"251,469",Jul-21
-Idaho,1.92,"64,801",Aug-21
-California,2.05,"1,199,815",Sep-21
-Hawaii,2.86,"57,781",Sep-21
-Illinois,2.28,"390,131",Sep-21
-Minnesota,2.79,"210,344",Sep-21
-Virginia,2.32,"270,149",Sep-21
-Arizona,2.08,"215,126",Sep-21
-Missouri,2.3,"180,768",Sep-21
-Massachusetts,2.45,"201,087",Sep-21
-Nevada,2.03,"92,995",Sep-21
-Washington,2.41,"220,774",Sep-21
-Montana,3.39,"33,240",Sep-21
-Maine,3.31,"38,096",Oct-21
-New Mexico,3.96,"67,646",Oct-21
-North Dakota,4.94,"28,907",Oct-21
-Kentucky,2.75,"143,637",Oct-21
-Texas,2.69,"837,759",Oct-21
-Arkansas,2.99,"89,652",Oct-21
-Ohio,2.44,"339,952",Oct-21
-Utah,2.75,"113,784",Oct-21
-South Dakota,4.49,"25,478",Nov-21
-Mississippi,1.89,"84,631",Nov-21
-Oklahoma,3.68,"135,761",Nov-21
-South Carolina,2.2,"129,376",Nov-21
-North Carolina,2.5,"290,884",Nov-21
-District of Columbia,3.7,"25,293",Nov-21
-Pennsylvania,2.51,"319,667",Nov-21
-Alaska,5.4,"26,492",Nov-21
-Oregon,3.1,"124,856",Nov-21
-Vermont,4.19,"20,000",Nov-21
-Delaware,2.49,"23,474",Nov-21
-Kansas,2.25,"74,815",Nov-21
-New Jersey,2.37,"279,365",Nov-21
-Maryland,2.42,"159,571",Dec-21
-Nebraska,3.41,"53,163",Dec-21
-Colorado,3.43,"160,661",Dec-21
-New Hampshire,3.35,"37,574",Dec-21
-Alabama,1.76,"108,358",Dec-21
-Tennessee,3.58,"181,810",Dec-21
-Michigan,3.13,"274,910",Dec-21
-Connecticut,3.46,"97,099",Dec-21
-Florida,2.93,"647,901",Dec-21
-Wyoming,2.56,"14,835",Dec-21
-Indiana,2.32,"142,586",Dec-21
-Iowa,2.77,"76,210",Dec-21
-Rhode Island,3.18,"25,890",Dec-21
-West Virginia,5.8,"62,272",Dec-21
-Georgia,1.98,"239,838",Jan-22
-Louisiana,3.6,"156,226",Jan-22
-New York,2.67,"461,405",Feb-22
-Puerto Rico,2.17,"50,300",Apr-22
+U.S. Total,2.9,"9,645,652",October 2021
+Wisconsin,2.73,"  249,867",August 2021
+Idaho,2.01,"   71,214",August 2021
+Illinois,2.36,"  402,879",August 2021
+California,2.15,"1,229,578",August 2021
+Hawaii,3,"   58,199",September 2021
+Nevada,2.17,"   97,931",September 2021
+Arizona,2.22,"  220,410",September 2021
+North Dakota,5.04,"   30,299",September 2021
+Missouri,2.38,"  181,237",September 2021
+Virginia,2.45,"  264,819",September 2021
+Massachusetts,2.53,"  197,429",September 2021
+Minnesota,2.85,"  198,960",September 2021
+Montana,3.42,"   33,128",September 2021
+Washington,2.54,"  217,323",October 2021
+Alaska,5.58,"   28,914",October 2021
+Kentucky,2.86,"  149,137",October 2021
+Utah,3.25,"  183,599",October 2021
+New Mexico,4.19,"   67,562",October 2021
+Oklahoma,3.82,"  142,473",October 2021
+Wyoming,2.89,"   17,736",October 2021
+Arkansas,3.12,"   90,434",October 2021
+South Dakota,4.56,"   25,383",October 2021
+Texas,2.78,"  825,830",October 2021
+Iowa,2.84,"   87,882",October 2021
+Ohio,2.62,"  341,696",October 2021
+Mississippi,1.99,"   88,570",October 2021
+District of Columbia,3.82,"   25,956",October 2021
+North Carolina,2.61,"  298,618",November 2021
+Delaware,2.59,"   23,953",November 2021
+Oregon,3.31,"  130,813",November 2021
+Maine,3.31,"   32,663",November 2021
+Kansas,2.35,"   76,199",November 2021
+South Carolina,2.32,"  122,941",November 2021
+Pennsylvania,2.57,"  307,173",November 2021
+Nebraska,3.5,"   53,144",December 2021
+New Jersey,2.49,"  284,593",December 2021
+Tennessee,3.64,"  177,809",December 2021
+Alabama,1.8,"  109,356",December 2021
+Colorado,3.61,"  162,173",December 2021
+Rhode Island,3.34,"   26,244",December 2021
+Maryland,2.5,"  155,004",December 2021
+Vermont,4.35,"   17,900",December 2021
+West Virginia,5.84,"   63,062",December 2021
+Indiana,2.32,"  142,586",December 2021
+New Hampshire,3.39,"   36,088",December 2021
+Michigan,3.29,"  276,831",December 2021
+Connecticut,3.57,"   93,161",January 2022
+Florida,2.93,"  602,149",January 2022
+Georgia,2.07,"  237,221",January 2022
+New York,2.85,"  490,409",January 2022
+Louisiana,3.8,"  150,862",February 2022
+Puerto Rico,2.17,"   46,255",June 2022
