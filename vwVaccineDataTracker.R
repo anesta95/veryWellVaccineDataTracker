@@ -81,6 +81,13 @@ finalResult <- tryCatch(
       left_join(stateFIPS, by = c("state_territory_federal_entity" = "name"))
     Sys.sleep(10)
     
+    names(cdcTable) <- c("state_territory_federal_entity", "total_doses_delivered",
+                         "total_doses_administered", "doses_delivered_per_100k", 
+                         "doses_administered_per_100k",	"people_with_1_doses", 
+                         "people_with_1_doses_per_100k", "people_with_2_doses", 
+                         "people_with_2_doses_per_100k", "date", "postal_code",	
+                         "fips_code")
+    
 
     cdcFullTable <- read_csv("cdcFullTable.csv", col_types = "ciiiiiiiiDci")
     
