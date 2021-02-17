@@ -276,18 +276,19 @@ errorEmailorGitPush(finalResult)
 # https://docs.github.com/en/github/using-git/caching-your-github-credentials-in-git
 
 
-# cdcFullTableUpdated %>% 
-#   filter(date %in% c(max(date), max(date) - 7)) %>% 
+# cdcFullTableUpdated %>%
+#   filter(date %in% c(max(date), max(date) - 7)) %>%
 #   mutate(`% Population with 2 Vaccines` = (people_with_2_doses_per_100k / 1000),
 #          `Pct Chg Doses administered` = (total_doses_administered - lead(
 #            total_doses_administered, n = 63)) / lead(total_doses_administered, n = 63),
 #          `Pct Chg Ppl w 1 Doses` = (people_with_1_doses - lead(
 #            people_with_1_doses, n = 63)) / lead(people_with_1_doses, n = 63),
 #          `Pct Chg Ppl w 2 Doses` = (people_with_2_doses - lead(
-#            people_with_2_doses, n = 63)) / lead(people_with_2_doses, n = 63)) %>% 
-#   filter(`Pct Chg Doses administered` != 0) %>% 
+#            people_with_2_doses, n = 63)) / lead(people_with_2_doses, n = 63)) %>%
+#   filter(`Pct Chg Doses administered` != 0) %>%
 #   select(state_territory_federal_entity, `Pct Chg Doses administered`,
-#          `Pct Chg Ppl w 1 Doses`, `Pct Chg Ppl w 2 Doses`) -> what
+#          `Pct Chg Ppl w 1 Doses`, `Pct Chg Ppl w 2 Doses`) %>% 
+#   write_csv("dosesAdminVsPplW1Dose.csv")
 
 
 
