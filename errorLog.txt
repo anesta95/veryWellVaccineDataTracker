@@ -3,3 +3,6 @@ An error occured with the update: Error: Can't subset columns that don't exist.
 [31mx[39m Column `total_doses_distributed` doesn't exist.
  on 2021-02-08 
 
+An error occured with the update: Error in curl::curl_fetch_memory(url, handle = handle): Failed to connect to localhost port 8050: Connection refused
+ on 2021-02-18 
+
