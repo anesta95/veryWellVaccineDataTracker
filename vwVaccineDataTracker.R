@@ -301,16 +301,20 @@ errorEmailorGitPush(finalResult)
 
 
 cdcFullTableUpdated %>%
-  filter(date %in% c(max(date), max(date) - 7)) %>%
-  mutate(`% Population with 2 Vaccines` = (people_with_2_doses_per_100k / 1000),
-         `Pct Chg Doses administered` = (total_doses_administered - lead(
-           total_doses_administered, n = 63)) / lead(total_doses_administered, n = 63),
-         `Pct Chg Ppl w 1 Doses` = (people_with_1_doses - lead(
-           people_with_1_doses, n = 63)) / lead(people_with_1_doses, n = 63),
-         `Pct Chg Ppl w 2 Doses` = (people_with_2_doses - lead(
-           people_with_2_doses, n = 63)) / lead(people_with_2_doses, n = 63)) %>%
+  filter(!(LongName %in% c("Bureau of Prisons", "Long Term Care",
+                           "Dept of Defense",
+                           "Indian Health Svc",
+                           "Veterans Health", "United States"))) %>%
+  filter(Date %in% c(max(Date), max(Date) - 7)) %>%
+  mutate(`% Population with 2 Vaccines` = (Administered_Dose2_Per_100K / 1000),
+         `Pct Chg Doses administered` = (Doses_Administered - lead(
+           Doses_Administered, n = 59)) / lead(Doses_Administered, n = 59),
+         `Pct Chg Ppl w 1 Doses` = (Administered_Dose1 - lead(
+           Administered_Dose1, n = 59)) / lead(Administered_Dose1, n = 59),
+         `Pct Chg Ppl w 2 Doses` = (Administered_Dose2 - lead(
+           Administered_Dose2, n = 59)) / lead(Administered_Dose2, n = 59)) %>%
   filter(`Pct Chg Doses administered` != 0) %>%
-  select(state_territory_federal_entity, `Pct Chg Doses administered`,
+  select(LongName, `Pct Chg Doses administered`,
          `Pct Chg Ppl w 1 Doses`, `Pct Chg Ppl w 2 Doses`) %>%
   arrange(desc(`Pct Chg Ppl w 1 Doses`)) %>% 
   write_csv(paste0("dosesAdminVsPplW1Dose", as.character(Sys.Date()), ".csv"))
