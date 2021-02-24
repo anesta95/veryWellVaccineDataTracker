@@ -102,7 +102,7 @@ finalResult <- tryCatch(
     #                      "fips_code")
     
 
-    cdcFullTable <- read_csv("cdcFullTable.csv", col_types = "Dccciiiiiiiiiiiciiiiiiiiiiiiii")
+    cdcFullTable <- read_csv("cdcFullTable.csv", col_types = "Dccciiiiiiiiiddciiiiiddiiiiiii")
     
     #cdcFullTableUpdated <- cdcFullTable
     cdcFullTableUpdated <- bind_rows(cdcTable, cdcFullTable)
@@ -247,7 +247,7 @@ finalResult <- tryCatch(
   }
 )
 
-shell(cmd = ".\\stopDockerScraper.ps1", shell = "powershell", wait = F)
+# shell(cmd = ".\\stopDockerScraper.ps1", shell = "powershell", wait = F)
 Sys.sleep(5)
 if (wday(Sys.Date(), label = F) == 2) {
   
