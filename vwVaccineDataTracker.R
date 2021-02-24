@@ -300,24 +300,24 @@ errorEmailorGitPush(finalResult)
 # https://docs.github.com/en/github/using-git/caching-your-github-credentials-in-git
 
 
-cdcFullTableUpdated %>%
-  filter(!(LongName %in% c("Bureau of Prisons", "Long Term Care",
-                           "Dept of Defense",
-                           "Indian Health Svc",
-                           "Veterans Health", "United States"))) %>%
-  filter(Date %in% c(max(Date), max(Date) - 7)) %>%
-  mutate(`% Population with 2 Vaccines` = (Administered_Dose2_Per_100K / 1000),
-         `Pct Chg Doses administered` = (Doses_Administered - lead(
-           Doses_Administered, n = 59)) / lead(Doses_Administered, n = 59),
-         `Pct Chg Ppl w 1 Doses` = (Administered_Dose1 - lead(
-           Administered_Dose1, n = 59)) / lead(Administered_Dose1, n = 59),
-         `Pct Chg Ppl w 2 Doses` = (Administered_Dose2 - lead(
-           Administered_Dose2, n = 59)) / lead(Administered_Dose2, n = 59)) %>%
-  filter(`Pct Chg Doses administered` != 0) %>%
-  select(LongName, `Pct Chg Doses administered`,
-         `Pct Chg Ppl w 1 Doses`, `Pct Chg Ppl w 2 Doses`) %>%
-  arrange(desc(`Pct Chg Ppl w 1 Doses`)) %>% 
-  write_csv(paste0("dosesAdminVsPplW1Dose", as.character(Sys.Date()), ".csv"))
+# cdcFullTableUpdated %>%
+#   filter(!(LongName %in% c("Bureau of Prisons", "Long Term Care",
+#                            "Dept of Defense",
+#                            "Indian Health Svc",
+#                            "Veterans Health", "United States"))) %>%
+#   filter(Date %in% c(max(Date), max(Date) - 7)) %>%
+#   mutate(`% Population with 2 Vaccines` = (Administered_Dose2_Per_100K / 1000),
+#          `Pct Chg Doses administered` = (Doses_Administered - lead(
+#            Doses_Administered, n = 59)) / lead(Doses_Administered, n = 59),
+#          `Pct Chg Ppl w 1 Doses` = (Administered_Dose1 - lead(
+#            Administered_Dose1, n = 59)) / lead(Administered_Dose1, n = 59),
+#          `Pct Chg Ppl w 2 Doses` = (Administered_Dose2 - lead(
+#            Administered_Dose2, n = 59)) / lead(Administered_Dose2, n = 59)) %>%
+#   filter(`Pct Chg Doses administered` != 0) %>%
+#   select(LongName, `Pct Chg Doses administered`,
+#          `Pct Chg Ppl w 1 Doses`, `Pct Chg Ppl w 2 Doses`) %>%
+#   arrange(desc(`Pct Chg Ppl w 1 Doses`)) %>% 
+#   write_csv(paste0("dosesAdminVsPplW1Dose", as.character(Sys.Date()), ".csv"))
 
 
 
