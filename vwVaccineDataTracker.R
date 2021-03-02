@@ -22,7 +22,7 @@ vaccineEligP1All <- read_csv("vaccineEligibilityData.csv", col_types = "ciiiiiii
 
 stateFIPS <- read_csv("stateFIPSCodes.csv", col_types = "cci")
 
-Sys.sleep(35)
+Sys.sleep(10)
 
 errorEmailorGitPush <- function(cnd) {
   if (class(cnd)[2] == "rlang_error") {
@@ -279,6 +279,7 @@ if (wday(Sys.Date(), label = F) == 2) {
   
   Sys.sleep(5)
   
+  
   writeThird <- insistently(~range_write(ss = "1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo",
                                          data = areWeThereYet,
                                          sheet = as.character(Sys.Date()),
@@ -288,6 +289,60 @@ if (wday(Sys.Date(), label = F) == 2) {
                             quiet = F)
   
   writeThird()
+  
+  Sys.sleep(5)
+  
+  aWTYNontotalAnalysis <- cdcFullTableUpdated %>% 
+    filter(Date %in% c(max(Date), max(Date) - 7)) %>%
+    filter(!(LongName %in% c("Bureau of Prisons", "Long Term Care", 
+                             "Dept of Defense",
+                             "Indian Health Svc",
+                             "Veterans Health", "United States"))) %>%
+    mutate(`1+ Doses adminstered in the last week` = Administered_Dose1 - lead(
+      Administered_Dose1, n = 59)) %>% 
+    filter(`1+ Doses adminstered in the last week` != 0) %>% 
+    mutate(`70% of population` = .7 * Census2019,
+           `Estimated to 70% Pop 2 Doses` = base::as.Date(
+             round(
+               (
+                 (
+                   (
+                     (`70% of population` - Administered_Dose1) / 
+                       `1+ Doses adminstered in the last week`)) * 7) + 28), 
+             origin = "1970-01-01") + as.integer(Sys.Date())) %>%
+    arrange(LongName) %>% 
+    select(LongName, `Estimated to 70% Pop 2 Doses`) %>% 
+    rename(State = LongName)
+  
+  aWTYTotalAnalysis <- tibble_row(
+    State = "U.S. Total", 
+    `Estimated to 70% Pop 2 Doses` = 
+      base::as.Date(
+        (round(
+          (
+            (
+              (
+                (331996199L * .7) - pull(cdcTable[which(cdcTable$Location == "US"), "Administered_Dose1"])) / 
+                onePlusVaxLastWeek) * 7) + 28) + as.integer(Sys.Date())), origin = "1970-01-01"
+      )
+  )
+  
+  aWTYFull <- bind_rows(aWTYTotalAnalysis, aWTYNontotalAnalysis) %>% 
+    pivot_wider(names_from = State, values_from = `Estimated to 70% Pop 2 Doses`)
+  
+  aWTYRow <- (((as.integer(max(cdcFullTableUpdated$Date)) + 7) - as.integer(base::as.Date("2021-01-25"))) / 7) + 3
+  
+  writeFourth <- insistently(~range_write(ss = "1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo",
+                                         data = aWTYFull,
+                                         sheet = "Comparisons",
+                                         range = paste0("K", aWTYRow),
+                                         col_names = F),
+                            rate = rate,
+                            quiet = F)
+  
+  writeFourth()
+  
+  
   
 }  
 
