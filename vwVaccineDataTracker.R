@@ -341,10 +341,9 @@ if (wday(Sys.Date(), label = F) == 2) {
                             quiet = F)
   
   writeFourth()
-  
-  
-  
+
 }  
+
 
 Sys.sleep(10)
 errorEmailorGitPush(finalResult)
