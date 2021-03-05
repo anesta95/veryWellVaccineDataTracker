@@ -1,61 +1,61 @@
 State,% Population with 2 Vaccines,Doses administered in the last week,Estimated to 70% Pop 2 Doses
-U.S. Total,8.4,"14,264,265",September 2021
-Rhode Island,7.8,"   64,269",June 2021
-Connecticut,8.8,"  161,367",July 2021
-North Dakota,10.9,"   42,378",July 2021
-American Samoa,14.8,"    1,886",July 2021
-New Hampshire,7.8,"   58,577",July 2021
-New Jersey,9,"  458,879",July 2021
-South Dakota,11.4,"   44,549",July 2021
-Minnesota,8.9,"  294,078",July 2021
-New Mexico,12.6,"  109,059",July 2021
-Massachusetts,8.4,"  364,361",July 2021
-District of Columbia,6.2,"   34,391",July 2021
-Iowa,6.5,"  142,154",August 2021
-Oklahoma,10.8,"  213,892",August 2021
-New York,8.1,"  851,506",August 2021
-Kentucky,8.6,"  209,533",August 2021
-Missouri,7.7,"  290,652",August 2021
-North Carolina,8.9,"  451,111",August 2021
-Maryland,9.1,"  298,395",August 2021
-Nebraska,9.1,"   91,078",August 2021
-Virginia,9.4,"  435,678",August 2021
-Mississippi,8.1,"  159,629",August 2021
-Vermont,9.6,"   27,939",August 2021
-California,7.7,"1,796,088",August 2021
-Louisiana,8.6,"  195,652",August 2021
-Northern Mariana Islands,14.3,"    2,107",September 2021
-Montana,9.5,"   48,712",September 2021
-Pennsylvania,7.4,"  546,479",September 2021
-Tennessee,7.4,"  282,417",September 2021
-Arizona,8.6,"  372,385",September 2021
-Illinois,7.4,"  588,252",September 2021
-Oregon,9.1,"  183,510",September 2021
-Washington,9,"  380,452",September 2021
-Wisconsin,9.6,"  282,102",September 2021
-Ohio,8.6,"  498,872",September 2021
-Texas,7.5,"1,271,837",September 2021
-Kansas,7.9,"  118,710",September 2021
-Marshall Islands,4.6,"    1,751",September 2021
-Michigan,9.1,"  373,682",September 2021
-Arkansas,8.3,"  131,815",September 2021
-Alaska,14.2,"   27,332",September 2021
-Virgin Islands,6.8,"    3,837",September 2021
-West Virginia,11.9,"   67,914",September 2021
-Delaware,8.7,"   50,660",October 2021
-Idaho,8.1,"   71,209",October 2021
-Colorado,8.9,"  200,674",October 2021
-Nevada,8.2,"  127,971",October 2021
-Florida,8.7,"  708,999",October 2021
-Hawaii,10.9,"   62,367",October 2021
-Wyoming,9.9,"   21,649",October 2021
-South Carolina,8,"  204,879",November 2021
-Indiana,9.3,"  238,240",November 2021
-Alabama,7.5,"  167,414",December 2021
-Utah,6.1,"   84,380",January 2022
-Maine,8.1,"   29,131",January 2022
-Puerto Rico,6.8,"   85,183",February 2022
-Guam,12.5,"    3,470",June 2022
-Georgia,7.6,"  225,440",July 2022
-Federated States of Micronesia,5.5,"    3,258",March 2023
-Republic of Palau,17.5,       74,August 2092
+U.S. Total,8.6,"14,516,589",August 2021
+Rhode Island,8.1,"   65,640",June 2021
+Connecticut,8.9,"  167,364",June 2021
+North Dakota,11.4,"   42,657",July 2021
+Maine,9.5,"   76,640",July 2021
+New Jersey,9.3,"  459,961",July 2021
+Minnesota,9.3,"  300,785",July 2021
+New Hampshire,8.1,"   58,623",July 2021
+Massachusetts,8.8,"  380,249",July 2021
+New Mexico,13,"  108,847",July 2021
+South Dakota,11.9,"   44,829",July 2021
+District of Columbia,6.4,"   35,692",July 2021
+New York,8.2,"  909,430",July 2021
+Kentucky,8.9,"  217,526",August 2021
+Oklahoma,11,"  206,976",August 2021
+Iowa,7,"  147,039",August 2021
+Maryland,9.4,"  308,736",August 2021
+Pennsylvania,7.7,"  607,064",August 2021
+Missouri,8,"  290,787",August 2021
+Virginia,9.6,"  419,661",August 2021
+Vermont,9.7,"   28,042",August 2021
+Nebraska,9.6,"   92,903",August 2021
+Wisconsin,10,"  296,810",August 2021
+Louisiana,9,"  200,904",August 2021
+California,7.9,"1,760,531",August 2021
+Montana,10,"   51,306",August 2021
+Washington,9.3,"  391,842",August 2021
+Mississippi,8.5,"  143,284",August 2021
+Texas,7.7,"1,318,098",August 2021
+West Virginia,12.3,"   72,560",August 2021
+North Carolina,8.9,"  395,715",September 2021
+Tennessee,7.7,"  283,095",September 2021
+Ohio,8.7,"  504,950",September 2021
+Michigan,9.3,"  389,162",September 2021
+Utah,6.4,"  134,174",September 2021
+Kansas,8.2,"  122,270",September 2021
+American Samoa,14.8,"    1,289",September 2021
+Arizona,9,"  367,329",September 2021
+Northern Mariana Islands,14.6,"    2,086",September 2021
+Arkansas,8.5,"  125,766",September 2021
+Illinois,7.8,"  564,588",September 2021
+Oregon,9.4,"  170,114",September 2021
+Delaware,9.2,"   51,291",September 2021
+Idaho,8.5,"   75,378",September 2021
+Nevada,8.5,"  130,723",September 2021
+Marshall Islands,4.9,"    1,847",September 2021
+Virgin Islands,7,"    3,681",September 2021
+Florida,8.9,"  744,123",September 2021
+Colorado,9.1,"  205,681",October 2021
+Alaska,14.6,"   27,133",October 2021
+Hawaii,11.3,"   62,888",October 2021
+Wyoming,10.2,"   21,135",October 2021
+South Carolina,8.3,"  207,061",November 2021
+Indiana,9.7,"  243,583",November 2021
+Alabama,7.8,"  170,719",December 2021
+Guam,12.6,"    3,706",May 2022
+Georgia,7.9,"  239,242",June 2022
+Puerto Rico,6.8,"   59,753",June 2022
+Federated States of Micronesia,5.8,"    3,279",December 2022
+Republic of Palau,17.5,       42,August 2092
