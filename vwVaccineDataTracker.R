@@ -116,18 +116,21 @@ finalResult <- tryCatch(
       select(LongName, 
              Doses_Distributed, 
              Doses_Administered,
+             Administered_Dose1_Per_100K,
              Administered_Dose2_Per_100K
       ) %>% 
       arrange(desc(Administered_Dose2_Per_100K)) %>% 
       mutate(
              Doses_Distributed = as.character(Doses_Distributed),
              Doses_Administered = as.character(Doses_Administered),
+             Administered_Dose1_Per_100K = as.character(Administered_Dose1_Per_100K),
              Administered_Dose2_Per_100K = as.character(Administered_Dose2_Per_100K))
     
     cdcWWWTotal <- tibble_row(
       LongName = "U.S. Total",
       Doses_Distributed = format(sum(as.integer(cdcWWWNontotal$Doses_Distributed), na.rm = T), big.mark = ",", scientific = F),
       Doses_Administered = format(sum(as.integer(cdcWWWNontotal$Doses_Administered), na.rm = T), big.mark = ",", scientific = F),
+      Administered_Dose1_Per_100K = format(round((pull(cdcTable[which(cdcTable$Location == "US"), "Administered_Dose1"]) / 331996199L) * 100000), big.mark = ",", scientific = F),
       Administered_Dose2_Per_100K = format(round((pull(cdcTable[which(cdcTable$Location == "US"), "Administered_Dose2"]) / 331996199L) * 100000), big.mark = ",", scientific = F)
     )
     
@@ -137,6 +140,7 @@ finalResult <- tryCatch(
       rename(State = LongName,
              `Total Doses Delivered` = Doses_Distributed,
              `Total Doses Administered` = Doses_Administered,
+             `People with 1 Doses per 100k` = Administered_Dose1_Per_100K,
              `People with 2 Doses per 100k` = Administered_Dose2_Per_100K
              )
     
