@@ -140,7 +140,7 @@ finalResult <- tryCatch(
       rename(State = LongName,
              `Total Doses Delivered` = Doses_Distributed,
              `Total Doses Administered` = Doses_Administered,
-             `People with 1 Doses per 100k` = Administered_Dose1_Per_100K,
+             `People with 1 Dose per 100k` = Administered_Dose1_Per_100K,
              `People with 2 Doses per 100k` = Administered_Dose2_Per_100K
              )
     
