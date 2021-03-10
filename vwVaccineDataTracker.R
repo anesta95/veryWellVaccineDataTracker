@@ -115,7 +115,7 @@ finalResult <- tryCatch(
     #                      "fips_code")
     
 
-    cdcFullTable <- read_csv("cdcFullTable.csv", col_types = "Dccciciiiiiiiiiddidiiidiiiidiiiiiiiiiiiiiiiiiidididiiiiiiiiii")
+    cdcFullTable <- read_csv("./chartData/cdcFullTable.csv", col_types = "Dccciciiiiiiiiiddidiiidiiiidiiiiiiiiiiiiiiiiiidididiiiiiiiiii")
     
     if (unique(cdcTable$Date) == Sys.Date()) {
       cdcFullTableUpdated <- bind_rows(cdcTable, cdcFullTable)
@@ -384,7 +384,7 @@ if (wday(Sys.Date(), label = F) == 2) {
 
 
 Sys.sleep(10)
-if (class(cnd)[2] != "rlang_error") {
+if (class(finalResult)[2] != "rlang_error") {
   shell(cmd = "./pushToGit.ps1", shell = "powershell")
 }
 
