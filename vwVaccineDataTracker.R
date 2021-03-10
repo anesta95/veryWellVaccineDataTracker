@@ -102,7 +102,7 @@ finalResult <- tryCatch(
     #                      "fips_code")
     
 
-    cdcFullTable <- read_csv("cdcFullTable.csv", col_types = "Dccciiiiiiiiiddciiiiiddiiiiiii")
+    cdcFullTable <- read_csv("cdcFullTable.csv", col_types = "Dccciciiiiiiiiiddidiiidiiiidiiiiiiiiiiiiiiiiiidididiiiiiiiiii")
     
     #cdcFullTableUpdated <- cdcFullTable
     cdcFullTableUpdated <- bind_rows(cdcTable, cdcFullTable)
@@ -113,25 +113,31 @@ finalResult <- tryCatch(
     
     cdcWWWNontotal <- cdcTable %>% 
       filter(!(Location %in% c("BP2", "DD2", "IH2", "VA2", "LTC", "US"))) %>% 
+      mutate(Complete_Vaccinations_Per_100K = round(((Administered_Dose2_Recip + Administered_Janssen) / Census2019) * 100000),
+             Administered_Dose1_Per_100K = Administered_Dose1_Pop_Pct * 1000) %>% 
       select(LongName, 
              Doses_Distributed, 
              Doses_Administered,
              Administered_Dose1_Per_100K,
-             Administered_Dose2_Per_100K
+             Complete_Vaccinations_Per_100K
       ) %>% 
-      arrange(desc(Administered_Dose2_Per_100K)) %>% 
+      arrange(desc(Complete_Vaccinations_Per_100K)) %>% 
       mutate(
              Doses_Distributed = as.character(Doses_Distributed),
              Doses_Administered = as.character(Doses_Administered),
              Administered_Dose1_Per_100K = as.character(Administered_Dose1_Per_100K),
-             Administered_Dose2_Per_100K = as.character(Administered_Dose2_Per_100K))
+             Complete_Vaccinations_Per_100K = as.character(Complete_Vaccinations_Per_100K))
     
     cdcWWWTotal <- tibble_row(
       LongName = "U.S. Total",
       Doses_Distributed = format(sum(as.integer(cdcWWWNontotal$Doses_Distributed), na.rm = T), big.mark = ",", scientific = F),
       Doses_Administered = format(sum(as.integer(cdcWWWNontotal$Doses_Administered), na.rm = T), big.mark = ",", scientific = F),
-      Administered_Dose1_Per_100K = format(round((pull(cdcTable[which(cdcTable$Location == "US"), "Administered_Dose1"]) / 331996199L) * 100000), big.mark = ",", scientific = F),
-      Administered_Dose2_Per_100K = format(round((pull(cdcTable[which(cdcTable$Location == "US"), "Administered_Dose2"]) / 331996199L) * 100000), big.mark = ",", scientific = F)
+      Administered_Dose1_Per_100K = format(round((pull(cdcTable[which(cdcTable$Location == "US"), "Administered_Dose1_Pop_Pct"])) * 1000), big.mark = ",", scientific = F),
+      Complete_Vaccinations_Per_100K = format(
+        round(
+          ((pull(cdcTable[which(cdcTable$Location == "US"), "Administered_Dose2_Recip"]) + pull(cdcTable[which(cdcTable$Location == "US"), "Administered_Janssen"])) / 331996199L) * 100000
+          ), big.mark = ",", scientific = F
+        )
     )
     
     
@@ -141,7 +147,7 @@ finalResult <- tryCatch(
              `Total Doses Delivered` = Doses_Distributed,
              `Total Doses Administered` = Doses_Administered,
              `People with 1 Dose per 100k` = Administered_Dose1_Per_100K,
-             `People with 2 Doses per 100k` = Administered_Dose2_Per_100K
+             `People Completely Vaccinated per 100k` = Complete_Vaccinations_Per_100K
              )
     
     
@@ -151,8 +157,9 @@ finalResult <- tryCatch(
     Sys.sleep(5)
     
     cdcMap <- cdcTable %>% 
+      mutate(Complete_Vaccinations = round(Administered_Dose2_Recip + Administered_Janssen)) %>% 
       inner_join(vaccineEligP1All, by = c("Location" = "postal_code")) %>% 
-      mutate(`% of Currently Eligible Vaccinated` = round((Administered_Dose2 / Total_people_to_vaccinate) * 100, digits = 1))%>% 
+      mutate(`% of Currently Eligible Vaccinated` = round((Complete_Vaccinations / Total_people_to_vaccinate) * 100, digits = 1))%>% 
       select(LongName, `% of Currently Eligible Vaccinated`, 
              Total_people_to_vaccinate) %>% 
       rename(
@@ -174,8 +181,8 @@ finalResult <- tryCatch(
       mutate(#`% Population with 2 Vaccines` = (people_with_2_doses_per_100k / 1000),
              `Doses administered in the last week` = Doses_Administered - lead(
                Doses_Administered, n = 59),
-             `1+ Doses adminstered in the last week` = Administered_Dose1 - lead(
-               Administered_Dose1, n = 59)) %>% 
+             `1+ Doses adminstered in the last week` = Administered_Dose1_Recip - lead(
+               Administered_Dose1_Recip, n = 59)) %>% 
       filter(`Doses administered in the last week` != 0) %>% 
       #inner_join(statePops, by = "fips_code") %>% 
       mutate(`70% of population` = .7 * Census2019,
@@ -184,16 +191,17 @@ finalResult <- tryCatch(
                  (
                    (
                      (
-                       (`70% of population` - Administered_Dose1) / 
+                       (`70% of population` - Administered_Dose1_Recip) / 
                `1+ Doses adminstered in the last week`)) * 7) + 28), 
                origin = "1970-01-01") + as.integer(Sys.Date()), format = "%B %Y"),
-             testSort = round(((((`70% of population` - Administered_Dose1) / 
-                                   `1+ Doses adminstered in the last week`)) * 7) + 28)) %>%
+             testSort = round(((((`70% of population` - Administered_Dose1_Recip) / 
+                                   `1+ Doses adminstered in the last week`)) * 7) + 28),
+             Completely_Vaccinated_Pop_Pct = round(((Administered_Dose2_Recip + Administered_Janssen) / Census2019) * 100)) %>%
       arrange(testSort) %>% 
-      select(LongName, Administered_Dose2_Pop_Pct,
+      select(LongName, Completely_Vaccinated_Pop_Pct,
              `Doses administered in the last week`, `Estimated to 70% Pop 2 Doses`) %>% 
       mutate(`Doses administered in the last week` = format(`Doses administered in the last week`, big.mark = ",", scientific = F)) %>% 
-      rename(`% Population with 2 Vaccines` = Administered_Dose2_Pop_Pct,
+      rename(`% Population with 2 Vaccines` = Completely_Vaccinated_Pop_Pct,
              State = LongName)
       
 
@@ -206,8 +214,8 @@ finalResult <- tryCatch(
                                  "Dept of Defense",
                                  "Indian Health Svc",
                                  "Veterans Health", "United States"))) %>%
-        mutate(`1+ Doses adminstered in the last week` = Administered_Dose1 - lead(
-          Administered_Dose1, n = 59)) %>% 
+        mutate(`1+ Doses adminstered in the last week` = Administered_Dose1_Recip - lead(
+          Administered_Dose1_Recip, n = 59)) %>% 
         filter(!is.na(`1+ Doses adminstered in the last week`)) %>% 
         pull(`1+ Doses adminstered in the last week`) %>% 
         sum()
@@ -215,7 +223,11 @@ finalResult <- tryCatch(
 
       areWeThereYetTotal <- tibble_row(
         State = "U.S. Total", 
-        `% Population with 2 Vaccines` = pull(cdcTable[which(cdcTable$Location == "US"), "Administered_Dose2_Pop_Pct"]), #round((sum(cdcTable$people_with_2_doses, na.rm = T) / 328580394L) * 100, 2),
+        `% Population with 2 Vaccines` =
+          round(
+            ((pull(cdcTable[which(cdcTable$Location == "US"), "Administered_Dose2_Recip"]) + pull(cdcTable[which(cdcTable$Location == "US"), "Administered_Janssen"])) / 331996199L) * 100, 1
+          ),
+          #pull(cdcTable[which(cdcTable$Location == "US"), "Administered_Dose2_Pop_Pct"]), #round((sum(cdcTable$people_with_2_doses, na.rm = T) / 328580394L) * 100, 2),
         `Doses administered in the last week` = format(
           sum(
             as.integer(
@@ -228,7 +240,7 @@ finalResult <- tryCatch(
               (
                 (
                   (
-                    (331996199L * .7) - pull(cdcTable[which(cdcTable$Location == "US"), "Administered_Dose1"])) / 
+                    (331996199L * .7) - pull(cdcTable[which(cdcTable$Location == "US"), "Administered_Dose1_Recip"])) / 
                        onePlusVaxLastWeek) * 7) + 28) + as.integer(Sys.Date())), origin = "1970-01-01"
             ), format = "%B %Y")
       )
