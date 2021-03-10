@@ -3,5 +3,6 @@ GmailCredentials.json
 startDockerScraper.ps1
 stopDockerScraper.ps1
 pushToGit.ps1
+gitPullLatestCDC.ps1
 errorLog.txt
 .Rproj.user
