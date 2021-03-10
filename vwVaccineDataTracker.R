@@ -15,6 +15,10 @@ vaccineEligP1All <- read_csv("./referenceData/2021_02_23_vaccineEligibilityDataW
 
 stateFIPS <- read_csv("./referenceData/stateFIPSCodes.csv", col_types = "cci")
 
+Sys.sleep(3)
+
+shell(cmd = "./gitPullLatestCDC.ps1", shell = "powershell")
+
 Sys.sleep(10)
 
 googleSheetWriter <- function(sheetID, dataSet, firstInstance = F) {
