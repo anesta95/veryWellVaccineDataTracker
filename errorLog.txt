@@ -12,3 +12,6 @@ An error occured with the update: Error in curl::curl_fetch_memory(url, handle =
 An error occured with the update: Error in names(cdcTable) <- c("state_territory_federal_entity", "total_doses_delivered", : 'names' attribute [12] must be the same length as the vector [8]
  on 2021-02-23 
 
+An error occured with the update: Error in file(con, "r"): cannot open the connection
+ on 2021-03-09 
+

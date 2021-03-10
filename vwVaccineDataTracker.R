@@ -1,74 +1,87 @@
-library(xml2)
-library(rvest)
-library(httr)
-library(htmltools)
-library(htmlwidgets)
-library(curl)
-library(splashr)
 library(rlang)
 library(lubridate)
 library(janitor)
-library(gmailr)
 library(googledrive)
 library(googlesheets4)
 library(rjson)
+library(magrittr)
 library(tidyverse)
 
 setwd("C:\\Users\\anesta\\Documents\\Verywell_Vaccine_Data_Tracker")
 
-statePops <- read_csv("populationEstimates.csv", col_types = "ciici")
+statePops <- read_csv("./referenceData/populationEstimates.csv", col_types = "ciici")
 
-vaccineEligP1All <- read_csv("vaccineEligibilityData.csv", col_types = "ciiiiiiiiiiiiiici")
+vaccineEligP1All <- read_csv("./referenceData/2021_02_23_vaccineEligibilityDataW1.csv", col_types = "ciiiiiiiiiiiiiici")
 
-stateFIPS <- read_csv("stateFIPSCodes.csv", col_types = "cci")
+stateFIPS <- read_csv("./referenceData/stateFIPSCodes.csv", col_types = "cci")
 
 Sys.sleep(10)
 
-errorEmailorGitPush <- function(cnd) {
-  if (class(cnd)[2] == "rlang_error") {
-    # https://blog.mailtrap.io/send-emails-with-gmail-api/
-    # https://github.com/r-lib/gmailr#setup
-    # https://github.com/jennybc/send-email-with-r#create-a-project-in-google-developers-console
-    # https://support.google.com/cloud/answer/9110914#skip
-    # https://support.google.com/cloud/answer/9110914#mark-internal
-    # https://github.com/r-lib/gmailr
-    # https://console.developers.google.com/apis/credentials?authuser=1&project=vwvaccinedatatrackerproj&supportedpurview=project
-    
-    gm_auth_configure(path = "./GmailCredentials.json")
-    
-     
-    gm_auth(email = "adriannesta@gmail.com", scopes = "send")
-    
-    email <- gm_mime() %>% 
-      gm_to(c("anesta@dotdash.com", "amorelli@dotdash.com")) %>% 
-      gm_from("adriannesta@gmail.com") %>% 
-      gm_subject("Error in updating Vaccine Data Tracker") %>% 
-      gm_text_body(paste("The error that occured in the update was:", class(cnd)[1]))
-    
-    Sys.sleep(5)
-    
-    # Error logging
-    # http://www.seancarney.ca/2020/10/09/error-catching-logging-and-reporting-in-r-with-trycatchlog/
-    
-    gm_send_message(email)
+googleSheetWriter <- function(sheetID, dataSet, firstInstance = F) {
+  rate <- rate_delay(61, max_times = 3)
+  
+  if (firstInstance) {
+    insistently(~write_sheet(ss = sheetID,
+                             data = dataSet,
+                             sheet = as.character(Sys.Date())),
+                rate = rate,
+                quiet = F)
   } else {
-    # pushToGithub
-    # https://stackoverflow.com/questions/5343068/is-there-a-way-to-cache-github-credentials-for-pushing-commits
-    # https://stackoverflow.com/questions/5343068/is-there-a-way-to-cache-github-credentials-for-pushing-commits#:~:text=To%20cache%20your%20GitHub%20password,time%20it%20talks%20to%20GitHub.
-    # https://docs.github.com/en/github/using-git/caching-your-github-credentials-in-git
-    # https://docs.github.com/en/free-pro-team@latest/github/using-git/caching-your-github-credentials-in-git
-    shell(cmd = ".\\pushToGit.ps1", shell = "powershell")
-    
-    
-    
-  } 
+    insistently(~range_write(ss = sheetID,
+                             data = dataSet,
+                             sheet = as.character(Sys.Date()),
+                             range = "F1",
+                             col_names = T),
+                rate = rate,
+                quiet = F)
+  }
 }
+
+# errorEmailorGitPush <- function(cnd) {
+#   if (class(cnd)[2] == "rlang_error") {
+#     # https://blog.mailtrap.io/send-emails-with-gmail-api/
+#     # https://github.com/r-lib/gmailr#setup
+#     # https://github.com/jennybc/send-email-with-r#create-a-project-in-google-developers-console
+#     # https://support.google.com/cloud/answer/9110914#skip
+#     # https://support.google.com/cloud/answer/9110914#mark-internal
+#     # https://github.com/r-lib/gmailr
+#     # https://console.developers.google.com/apis/credentials?authuser=1&project=vwvaccinedatatrackerproj&supportedpurview=project
+#     
+#     gm_auth_configure(path = "./GmailCredentials.json")
+#     
+#      
+#     gm_auth(email = "adriannesta@gmail.com", scopes = "send")
+#     
+#     email <- gm_mime() %>% 
+#       gm_to(c("anesta@dotdash.com", "amorelli@dotdash.com")) %>% 
+#       gm_from("adriannesta@gmail.com") %>% 
+#       gm_subject("Error in updating Vaccine Data Tracker") %>% 
+#       gm_text_body(paste("The error that occured in the update was:", class(cnd)[1]))
+#     
+#     Sys.sleep(5)
+#     
+#     # Error logging
+#     # http://www.seancarney.ca/2020/10/09/error-catching-logging-and-reporting-in-r-with-trycatchlog/
+#     
+#     gm_send_message(email)
+#   } else {
+#     # pushToGithub
+#     # https://stackoverflow.com/questions/5343068/is-there-a-way-to-cache-github-credentials-for-pushing-commits
+#     # https://stackoverflow.com/questions/5343068/is-there-a-way-to-cache-github-credentials-for-pushing-commits#:~:text=To%20cache%20your%20GitHub%20password,time%20it%20talks%20to%20GitHub.
+#     # https://docs.github.com/en/github/using-git/caching-your-github-credentials-in-git
+#     # https://docs.github.com/en/free-pro-team@latest/github/using-git/caching-your-github-credentials-in-git
+#     shell(cmd = "./pushToGit.ps1", shell = "powershell")
+#     
+#     
+#     
+#   } 
+# }
 
 finalResult <- tryCatch(
   {
       
     cdcTable <- fromJSON(file = "https://covid.cdc.gov/covid-data-tracker/COVIDData/getAjaxData?id=vaccination_data") %>% 
-      magrittr::extract2(2) %>%
+      extract2(2) %>%
       map_df(`[`) %>% 
       mutate(Date = base::as.Date(Date)) %>% 
       mutate(LongName = if_else(
@@ -104,10 +117,13 @@ finalResult <- tryCatch(
 
     cdcFullTable <- read_csv("cdcFullTable.csv", col_types = "Dccciciiiiiiiiiddidiiidiiiidiiiiiiiiiiiiiiiiiidididiiiiiiiiii")
     
-    #cdcFullTableUpdated <- cdcFullTable
-    cdcFullTableUpdated <- bind_rows(cdcTable, cdcFullTable)
+    if (unique(cdcTable$Date) == Sys.Date()) {
+      cdcFullTableUpdated <- bind_rows(cdcTable, cdcFullTable)
+    } else {
+      cdcFullTableUpdated <- cdcFullTable
+    }
     
-    write_csv(cdcFullTableUpdated, "cdcFullTable.csv")
+    write_csv(cdcFullTableUpdated, "./chartData/cdcFullTable.csv")
     
     Sys.sleep(5)
     
@@ -151,7 +167,7 @@ finalResult <- tryCatch(
              )
     
     
-    cdcWWWFormatted %>% write_csv("cdcWWWFormatted.csv")
+    cdcWWWFormatted %>% write_csv("./chartData/cdcWWWFormatted.csv")
     
     
     Sys.sleep(5)
@@ -167,7 +183,7 @@ finalResult <- tryCatch(
         `Total Currently Eligible` = Total_people_to_vaccinate
       ) 
     
-    cdcMap %>% write_csv("cdcMap.csv")
+    cdcMap %>% write_csv("./chartData/cdcMap.csv")
     
     Sys.sleep(5)
     
@@ -249,7 +265,7 @@ finalResult <- tryCatch(
       areWeThereYet <- bind_rows(areWeThereYetTotal, areWeThereYetNontotal)
     
     
-    write_csv(areWeThereYet, "areWeThereYet.csv")
+    write_csv(areWeThereYet, "./chartData/areWeThereYet.csv")
     
     
   }, error = function(cond) {
@@ -271,40 +287,44 @@ if (wday(Sys.Date(), label = F) == 2) {
   gs4_auth(token = drive_token())
   
   
-  rate <- rate_delay(61, max_times = 3)
+  # rate <- rate_delay(61, max_times = 3)
+  googleSheetWriter("1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo", cdcWWWFormatted, firstInstance = T)
   
-  writeFirst <- insistently(~write_sheet(ss = "1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo",
-                           data = cdcWWWFormatted,
-                           sheet = as.character(Sys.Date())),
-                           rate = rate,
-                           quiet = F)
+  # writeFirst <- insistently(~write_sheet(ss = "1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo",
+  #                          data = cdcWWWFormatted,
+  #                          sheet = as.character(Sys.Date())),
+  #                          rate = rate,
+  #                          quiet = F)
   
-  writeFirst()
-  
-  Sys.sleep(5)
-  
-  writeSecond <- insistently(~range_write(ss = "1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo",
-                                          data = cdcMap,
-                                          sheet = as.character(Sys.Date()),
-                                          range = "F1",
-                                          col_names = T),
-                             rate = rate,
-                             quiet = F)
-  
-  writeSecond()
+  # writeFirst()
   
   Sys.sleep(5)
   
+  googleSheetWriter("1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo", cdcMap)
   
-  writeThird <- insistently(~range_write(ss = "1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo",
-                                         data = areWeThereYet,
-                                         sheet = as.character(Sys.Date()),
-                                         range = "J1",
-                                         col_names = T),
-                            rate = rate,
-                            quiet = F)
+  # writeSecond <- insistently(~range_write(ss = "1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo",
+  #                                         data = cdcMap,
+  #                                         sheet = as.character(Sys.Date()),
+  #                                         range = "F1",
+  #                                         col_names = T),
+  #                            rate = rate,
+  #                            quiet = F)
+  # 
+  # writeSecond()
   
-  writeThird()
+  Sys.sleep(5)
+  
+  googleSheetWriter("1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo", areWeThereYet)
+  
+  # writeThird <- insistently(~range_write(ss = "1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo",
+  #                                        data = areWeThereYet,
+  #                                        sheet = as.character(Sys.Date()),
+  #                                        range = "J1",
+  #                                        col_names = T),
+  #                           rate = rate,
+  #                           quiet = F)
+  # 
+  # writeThird()
   
   Sys.sleep(5)
   
@@ -348,21 +368,26 @@ if (wday(Sys.Date(), label = F) == 2) {
   
   aWTYRow <- (((as.integer(max(cdcFullTableUpdated$Date)) + 7) - as.integer(base::as.Date("2021-01-25"))) / 7) + 3
   
-  writeFourth <- insistently(~range_write(ss = "1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo",
-                                         data = aWTYFull,
-                                         sheet = "Comparisons",
-                                         range = paste0("K", aWTYRow),
-                                         col_names = F),
-                            rate = rate,
-                            quiet = F)
+  googleSheetWriter("1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo", aWTYFull)
   
-  writeFourth()
+  # writeFourth <- insistently(~range_write(ss = "1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo",
+  #                                        data = aWTYFull,
+  #                                        sheet = "Comparisons",
+  #                                        range = paste0("K", aWTYRow),
+  #                                        col_names = F),
+  #                           rate = rate,
+  #                           quiet = F)
+  # 
+  # writeFourth()
 
 }  
 
 
 Sys.sleep(10)
-errorEmailorGitPush(finalResult)
+if (class(cnd)[2] != "rlang_error") {
+  shell(cmd = "./pushToGit.ps1", shell = "powershell")
+}
+
 
 # http://www.seancarney.ca/2020/10/11/scheduling-r-scripts-to-run-automatically-in-windows/
 ## https://www.windowscentral.com/how-create-and-run-your-first-powershell-script-file-windows-10
