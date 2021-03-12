@@ -121,10 +121,10 @@ finalResult <- tryCatch(
 
     cdcFullTable <- read_csv("./chartData/cdcFullTable.csv", col_types = "Dccciciiiiiiiiiddidiiidiiiidiiiiiiiiiiiiiiiiiidididiiiiiiiiii")
     
-    if (unique(cdcTable$Date) == Sys.Date()) {
-      cdcFullTableUpdated <- bind_rows(cdcTable, cdcFullTable)
-    } else {
+    if (unique(cdcTable$Date) == max(cdcFullTable$Date)) {
       cdcFullTableUpdated <- cdcFullTable
+    } else {
+      cdcFullTableUpdated <- bind_rows(cdcTable, cdcFullTable)
     }
     
     write_csv(cdcFullTableUpdated, "./chartData/cdcFullTable.csv")
