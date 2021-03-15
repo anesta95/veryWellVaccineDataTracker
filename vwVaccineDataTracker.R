@@ -21,7 +21,7 @@ shell(cmd = "./gitPullLatestCDC.ps1", shell = "powershell")
 
 Sys.sleep(10)
 
-googleSheetWriter <- function(sheetID, dataSet, firstInstance = F) {
+googleSheetWriter <- function(sheetID, dataSet, firstInstance = F, range = NA) {
   rate <- rate_delay(61, max_times = 3)
   
   if (firstInstance) {
@@ -34,7 +34,7 @@ googleSheetWriter <- function(sheetID, dataSet, firstInstance = F) {
     insistently(~range_write(ss = sheetID,
                              data = dataSet,
                              sheet = as.character(Sys.Date()),
-                             range = "F1",
+                             range = range,
                              col_names = T),
                 rate = rate,
                 quiet = F)
@@ -83,20 +83,20 @@ googleSheetWriter <- function(sheetID, dataSet, firstInstance = F) {
 
 finalResult <- tryCatch(
   {
-      
-    cdcTable <- fromJSON(file = "https://covid.cdc.gov/covid-data-tracker/COVIDData/getAjaxData?id=vaccination_data") %>% 
+    
+    cdcTable <- fromJSON(file = "https://raw.githubusercontent.com/anesta95/veryWellVaccineDataTracker/main/cdcVaccines.json") %>% 
       extract2(2) %>%
       map_df(`[`) %>% 
       mutate(Date = base::as.Date(Date)) %>% 
       mutate(LongName = if_else(
         LongName == "New York State", "New York", 
         LongName))
-      
-      
-      
+    
+    
+    
     # splash("localhost") %>% 
     #   splashr::render_html("https://covid.cdc.gov/covid-data-tracker/#vaccinations", wait = 5) -> cdcPage
-
+    
     
     # cdcTable <- cdcPage %>% 
     #   html_node(css = "#vaccinations-table") %>% 
@@ -118,8 +118,8 @@ finalResult <- tryCatch(
     #                      "people_with_2_doses_per_100k", "date", "postal_code",	
     #                      "fips_code")
     
-
-    cdcFullTable <- read_csv("./chartData/cdcFullTable.csv", col_types = "Dccciciiiiiiiiiddidiiidiiiidiiiiiiiiiiiiiiiiiidididiiiiiiiiii")
+    
+    cdcFullTable <- read_csv("./chartData/cdcFullTable.csv", col_types = "Dccciciiiiiiiiiddidiiiidiiiiidiiiiiiiiiiiiiiiiidididiiiiiiiiii")
     
     if (unique(cdcTable$Date) == max(cdcFullTable$Date)) {
       cdcFullTableUpdated <- cdcFullTable
@@ -143,10 +143,10 @@ finalResult <- tryCatch(
       ) %>% 
       arrange(desc(Complete_Vaccinations_Per_100K)) %>% 
       mutate(
-             Doses_Distributed = as.character(Doses_Distributed),
-             Doses_Administered = as.character(Doses_Administered),
-             Administered_Dose1_Per_100K = as.character(Administered_Dose1_Per_100K),
-             Complete_Vaccinations_Per_100K = as.character(Complete_Vaccinations_Per_100K))
+        Doses_Distributed = as.character(Doses_Distributed),
+        Doses_Administered = as.character(Doses_Administered),
+        Administered_Dose1_Per_100K = as.character(Administered_Dose1_Per_100K),
+        Complete_Vaccinations_Per_100K = as.character(Complete_Vaccinations_Per_100K))
     
     cdcWWWTotal <- tibble_row(
       LongName = "U.S. Total",
@@ -156,8 +156,8 @@ finalResult <- tryCatch(
       Complete_Vaccinations_Per_100K = format(
         round(
           ((pull(cdcTable[which(cdcTable$Location == "US"), "Administered_Dose2_Recip"]) + pull(cdcTable[which(cdcTable$Location == "US"), "Administered_Janssen"])) / 331996199L) * 100000
-          ), big.mark = ",", scientific = F
-        )
+        ), big.mark = ",", scientific = F
+      )
     )
     
     
@@ -168,7 +168,7 @@ finalResult <- tryCatch(
              `Total Doses Administered` = Doses_Administered,
              `People with 1 Dose per 100k` = Administered_Dose1_Per_100K,
              `People Completely Vaccinated per 100k` = Complete_Vaccinations_Per_100K
-             )
+      )
     
     
     cdcWWWFormatted %>% write_csv("./chartData/cdcWWWFormatted.csv")
@@ -199,12 +199,13 @@ finalResult <- tryCatch(
                                "Indian Health Svc",
                                "Veterans Health", "United States"))) %>%
       mutate(#`% Population with 2 Vaccines` = (people_with_2_doses_per_100k / 1000),
-             `Doses administered in the last week` = Doses_Administered - lead(
-               Doses_Administered, n = 59),
-             `1+ Doses adminstered in the last week` = Administered_Dose1_Recip - lead(
-               Administered_Dose1_Recip, n = 59)) %>% 
+        `Doses administered in the last week` = Doses_Administered - lead(
+          Doses_Administered, n = 59),
+        `1+ Doses adminstered in the last week` = Administered_Dose1_Recip - lead(
+          Administered_Dose1_Recip, n = 59)) %>% 
+      #filter(!is.na(`Doses administered in the last week`)) %>%
       filter(`Doses administered in the last week` != 0) %>% 
-      #inner_join(statePops, by = "fips_code") %>% 
+      inner_join(statePops, by = c("Location" = "postal_code")) %>% 
       mutate(`70% of population` = .7 * Census2019,
              `Estimated to 70% Pop 2 Doses` = strftime(base::as.Date(
                round(
@@ -212,7 +213,7 @@ finalResult <- tryCatch(
                    (
                      (
                        (`70% of population` - Administered_Dose1_Recip) / 
-               `1+ Doses adminstered in the last week`)) * 7) + 28), 
+                         `1+ Doses adminstered in the last week`)) * 7) + 28), 
                origin = "1970-01-01") + as.integer(Sys.Date()), format = "%B %Y"),
              testSort = round(((((`70% of population` - Administered_Dose1_Recip) / 
                                    `1+ Doses adminstered in the last week`)) * 7) + 28),
@@ -221,60 +222,88 @@ finalResult <- tryCatch(
       select(LongName, Completely_Vaccinated_Pop_Pct,
              `Doses administered in the last week`, `Estimated to 70% Pop 2 Doses`) %>% 
       mutate(`Doses administered in the last week` = format(`Doses administered in the last week`, big.mark = ",", scientific = F)) %>% 
-      rename(`% Population with 2 Vaccines` = Completely_Vaccinated_Pop_Pct,
+      rename(`% Population with 2 Vaccines` = Completely_Vaccinated_Pop_Pct, 
              State = LongName)
-      
-
-      
-
-      onePlusVaxLastWeek <- cdcFullTableUpdated %>% 
-        filter(Date %in% c(max(Date), max(Date) - 7)) %>%
-        # filter(LongName == "United States") %>% 
-        filter(!(LongName %in% c("Bureau of Prisons", "Long Term Care",
-                                 "Dept of Defense",
-                                 "Indian Health Svc",
-                                 "Veterans Health", "United States"))) %>%
-        mutate(`1+ Doses adminstered in the last week` = Administered_Dose1_Recip - lead(
-          Administered_Dose1_Recip, n = 59)) %>% 
-        filter(!is.na(`1+ Doses adminstered in the last week`)) %>% 
-        pull(`1+ Doses adminstered in the last week`) %>% 
-        sum()
-      
-
-      areWeThereYetTotal <- tibble_row(
-        State = "U.S. Total", 
-        `% Population with 2 Vaccines` =
-          round(
-            ((pull(cdcTable[which(cdcTable$Location == "US"), "Administered_Dose2_Recip"]) + pull(cdcTable[which(cdcTable$Location == "US"), "Administered_Janssen"])) / 331996199L) * 100, 1
-          ),
-          #pull(cdcTable[which(cdcTable$Location == "US"), "Administered_Dose2_Pop_Pct"]), #round((sum(cdcTable$people_with_2_doses, na.rm = T) / 328580394L) * 100, 2),
-        `Doses administered in the last week` = format(
-          sum(
-            as.integer(
+    
+    
+    
+    
+    onePlusVaxLastWeek <- cdcFullTableUpdated %>% 
+      filter(Date %in% c(max(Date), max(Date) - 7)) %>%
+      # filter(LongName == "United States") %>% 
+      filter(!(LongName %in% c("Bureau of Prisons", "Long Term Care",
+                               "Dept of Defense",
+                               "Indian Health Svc",
+                               "Veterans Health", "United States"))) %>%
+      mutate(`1+ Doses adminstered in the last week` = Administered_Dose1_Recip - lead(
+        Administered_Dose1_Recip, n = 59)) %>% 
+      filter(!is.na(`1+ Doses adminstered in the last week`)) %>% 
+      pull(`1+ Doses adminstered in the last week`) %>% 
+      sum()
+    
+    
+    areWeThereYetTotal <- tibble_row(
+      State = "U.S. Total", 
+      `% Population with 2 Vaccines` =
+        round(
+          ((pull(cdcTable[which(cdcTable$Location == "US"), "Administered_Dose2_Recip"]) + pull(cdcTable[which(cdcTable$Location == "US"), "Administered_Janssen"])) / 331996199L) * 100, 1
+        ),
+      #pull(cdcTable[which(cdcTable$Location == "US"), "Administered_Dose2_Pop_Pct"]), #round((sum(cdcTable$people_with_2_doses, na.rm = T) / 328580394L) * 100, 2),
+      `Doses administered in the last week` = format(
+        sum(
+          as.integer(
             str_remove_all(
               str_trim(areWeThereYetNontotal$`Doses administered in the last week`), ",")), na.rm = T
-            ), big.mark = ",", scientific = F),
-        `Estimated to 70% Pop 2 Doses` = strftime(
-          base::as.Date(
-            (round(
+        ), big.mark = ",", scientific = F),
+      `Estimated to 70% Pop 2 Doses` = strftime(
+        base::as.Date(
+          (round(
+            (
               (
                 (
-                  (
-                    (331996199L * .7) - pull(cdcTable[which(cdcTable$Location == "US"), "Administered_Dose1_Recip"])) / 
-                       onePlusVaxLastWeek) * 7) + 28) + as.integer(Sys.Date())), origin = "1970-01-01"
-            ), format = "%B %Y")
-      )
-      
-      # Prev US Pop Estimate 328580394L
-      areWeThereYet <- bind_rows(areWeThereYetTotal, areWeThereYetNontotal)
+                  (331996199L * .7) - pull(cdcTable[which(cdcTable$Location == "US"), "Administered_Dose1_Recip"])) / 
+                  onePlusVaxLastWeek) * 7) + 28) + as.integer(Sys.Date())), origin = "1970-01-01"
+        ), format = "%B %Y")
+    )
+    
+    # Prev US Pop Estimate 328580394L
+    areWeThereYet <- bind_rows(areWeThereYetTotal, areWeThereYetNontotal)
     
     
     write_csv(areWeThereYet, "./chartData/areWeThereYet.csv")
     
     
+    # supplyProjection <- cdcFullTableUpdated %>% 
+    #   filter(Date %in% c(max(Date), max(Date) - 6)) %>%
+    #   filter(!(LongName %in% c("Bureau of Prisons", "Long Term Care", 
+    #                            "Dept of Defense",
+    #                            "Indian Health Svc",
+    #                            "Veterans Health"))) %>% 
+    #   arrange(desc(Date), LongName) %>% 
+    #   mutate(totalDosesDistrb = ((Distributed_Moderna / 2) + (Distributed_Pfizer / 2) + Distributed_Janssen),
+    #          `Doses delivered in the last week` = totalDosesDistrb - lead(
+    #            totalDosesDistrb, n = 60
+    #          )) %>% 
+    #   filter(`Doses delivered in the last week` != 0) %>% 
+    #   inner_join(statePops, by = c("Location" = "postal_code")) %>%
+    #   mutate(`Estimated to 100% Vaccine Available 18+` = strftime(base::as.Date(
+    #     round(
+    #       (
+    #         (
+    #           (
+    #             (Census2019_18PlusPop_2 - ((Distributed_Moderna / 2) + (Distributed_Pfizer / 2) + Distributed_Janssen)) / 
+    #               `Doses delivered in the last week`)) * 7)), 
+    #     origin = "1970-01-01") + as.integer(Sys.Date()))) %>% 
+    #   select(Date, LongName, Census2019_18PlusPop_2, totalDosesDistrb, `Doses delivered in the last week`,
+    #          `Estimated to 100% Vaccine Available 18+`) %>% 
+    #   rename(State = LongName, `Total Doses Distributed` = totalDosesDistrb, `Total Population` = Census2019_18PlusPop_2) %>% 
+    #   arrange(`Estimated to 100% Vaccine Available 18+`) 
+    #   
+    # write_csv(supplyProjection, "../supplyProjection20210315.csv")
+    
   }, error = function(cond) {
     condFull <- error_cnd(class = "vwDataTrackerError", message = paste("An error occured with the update:", 
-                                cond, "on", Sys.Date(), "\n"
+                                                                        cond, "on", Sys.Date(), "\n"
     ))
     
     write(condFull[["message"]], "./errorLog.txt", append = T)
@@ -304,7 +333,7 @@ if (wday(Sys.Date(), label = F) == 2) {
   
   Sys.sleep(5)
   
-  googleSheetWriter("1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo", cdcMap)
+  googleSheetWriter("1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo", cdcMap, range = "F1")
   
   # writeSecond <- insistently(~range_write(ss = "1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo",
   #                                         data = cdcMap,
@@ -318,7 +347,7 @@ if (wday(Sys.Date(), label = F) == 2) {
   
   Sys.sleep(5)
   
-  googleSheetWriter("1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo", areWeThereYet)
+  googleSheetWriter("1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo", areWeThereYet, range = "J1")
   
   # writeThird <- insistently(~range_write(ss = "1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo",
   #                                        data = areWeThereYet,
@@ -371,19 +400,40 @@ if (wday(Sys.Date(), label = F) == 2) {
     pivot_wider(names_from = State, values_from = `Estimated to 70% Pop 2 Doses`)
   
   aWTYRow <- (((as.integer(max(cdcFullTableUpdated$Date)) + 7) - as.integer(base::as.Date("2021-01-25"))) / 7) + 3
+  Sys.sleep(5)
+  # googleSheetWriter("1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo", aWTYFull, range = paste0("K", aWTYRow))
   
-  googleSheetWriter("1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo", aWTYFull)
+  writeSummary1 <- insistently(~range_write(ss = "1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo",
+                                            data = aWTYFull,
+                                            sheet = "Copy of Comparisons",
+                                            range = paste0("K", aWTYRow),
+                                            col_names = F),
+                               rate = rate,
+                               quiet = F)
   
-  # writeFourth <- insistently(~range_write(ss = "1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo",
-  #                                        data = aWTYFull,
-  #                                        sheet = "Comparisons",
-  #                                        range = paste0("K", aWTYRow),
-  #                                        col_names = F),
-  #                           rate = rate,
-  #                           quiet = F)
-  # 
-  # writeFourth()
-
+  writeSummary1()
+  Sys.sleep(5)
+  pplW2Doses <- cdcTable %>% 
+    filter(!(Location %in% c("BP2", "DD2", "IH2", "VA2", "LTC"))) %>% 
+    mutate(Complete_Vaccinations_Per_100K = round(((Administered_Dose2_Recip + Administered_Janssen) / Census2019) * 100000)) %>% arrange(LongName) %>%  select(Date, LongName, Administered_Dose2_Per_100K) %>% 
+    pivot_wider(names_from = LongName, values_from = Complete_Vaccinations_Per_100K) %>% 
+    arrange(LongName) %>% 
+    select(Date, `United States`, everything())
+  
+  pplW2DosesRow <- (((as.integer(max(cdcFullTableUpdated$Date)) + 7) - as.integer(base::as.Date("2021-01-25"))) / 7) + 66
+  
+  writeSummary2 <- insistently(~range_write(ss = "1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo",
+                                            data = pplW2Doses,
+                                            sheet = "Copy of Comparisons",
+                                            range = paste0("K", pplW2DosesRow),
+                                            col_names = F),
+                               rate = rate,
+                               quiet = F)
+  
+  writeSummary2()
+  
+  
+  
 }  
 
 
@@ -394,7 +444,7 @@ if (class(finalResult)[2] != "rlang_error") {
 
 
 # http://www.seancarney.ca/2020/10/11/scheduling-r-scripts-to-run-automatically-in-windows/
-## https://www.windowscentral.com/how-create-and-run-your-first-powershell-script-file-windows-10
+# https://www.windowscentral.com/how-create-and-run-your-first-powershell-script-file-windows-10
 # https://stackoverflow.com/questions/5343068/is-there-a-way-to-cache-github-credentials-for-pushing-commits#:~:text=To%20cache%20your%20GitHub%20password,time%20it%20talks%20to%20GitHub.
 # https://docs.github.com/en/github/using-git/caching-your-github-credentials-in-git
 
