@@ -273,34 +273,46 @@ finalResult <- tryCatch(
     
     write_csv(areWeThereYet, "./chartData/areWeThereYet.csv")
     
-    
-    # supplyProjection <- cdcFullTableUpdated %>%
-    #   filter(Date %in% c(max(Date), max(Date) - 7)) %>%
-    #   filter(!(LongName %in% c("Bureau of Prisons", "Long Term Care",
-    #                            "Dept of Defense",
-    #                            "Indian Health Svc",
-    #                            "Veterans Health"))) %>%
-    #   arrange(desc(Date), LongName) %>%
-    #   mutate(totalDosesDistrb = ((Distributed_Moderna / 2) + (Distributed_Pfizer / 2) + Distributed_Janssen),
-    #          `Doses delivered in the last week` = totalDosesDistrb - lead(
-    #            totalDosesDistrb, n = 60
-    #          )) %>%
-    #   filter(`Doses delivered in the last week` != 0) %>%
-    #   inner_join(statePops, by = c("Location" = "postal_code")) %>%
-    #   mutate(`Estimated to 100% Vaccine Available 18+` = strftime(base::as.Date(
-    #     round(
-    #       (
-    #         (
-    #           (
-    #             (Census2019_18PlusPop_2 - totalDosesDistrb) /
-    #               `Doses delivered in the last week`)) * 7)),
-    #     origin = "1970-01-01") + as.integer(Sys.Date()))) %>%
-    #   select(Date, LongName, Census2019_18PlusPop_2, totalDosesDistrb, `Doses delivered in the last week`,
-    #          `Estimated to 100% Vaccine Available 18+`) %>%
-    #   rename(State = LongName, `Total Doses Distributed` = totalDosesDistrb, `Total Population` = Census2019_18PlusPop_2) %>%
-    #   arrange(`Estimated to 100% Vaccine Available 18+`)
-    # 
-    # write_csv(supplyProjection, "../supplyProjection20210316.csv")
+    Sys.sleep(5)
+    supplyProjection <- cdcFullTableUpdated %>%
+      filter(Date %in% c(max(Date), max(Date) - 7)) %>%
+      filter(!(LongName %in% c("Bureau of Prisons", "Long Term Care",
+                               "Dept of Defense",
+                               "Indian Health Svc",
+                               "Veterans Health"))) %>%
+      arrange(desc(Date), LongName) %>%
+      mutate(totalDosesDistrb = ((Distributed_Moderna / 2) + (Distributed_Pfizer / 2) + Distributed_Janssen),
+             Complete_Vaccinations_Per_100K = round(((Administered_Dose2_Recip + Administered_Janssen) / Census2019) * 100000),
+             `Doses delivered in the last week` = totalDosesDistrb - lead(
+               totalDosesDistrb, n = 60
+             )) %>%
+      filter(`Doses delivered in the last week` != 0) %>%
+      inner_join(statePops, by = c("Location" = "postal_code")) %>%
+      mutate(`100% Vaccine Availability Est. Date` = strftime(base::as.Date(
+        round(
+          (
+            (
+              (
+                (Census2019_18PlusPop_2 - totalDosesDistrb) /
+                  `Doses delivered in the last week`)) * 7)),
+        origin = "1970-01-01") + as.integer(Sys.Date()))) %>%
+      mutate(`How far behind` = case_when(`100% Vaccine Availability Est. Date` > base::as.Date("2021-05-31") & `100% Vaccine Availability Est. Date` < base::as.Date("2021-06-30") ~ "Less than 1 Month",
+                                          `100% Vaccine Availability Est. Date` >= base::as.Date("2021-06-30") & `100% Vaccine Availability Est. Date` < base::as.Date("2021-07-31") ~ "1-2 Months",
+                                          `100% Vaccine Availability Est. Date` >= base::as.Date("2021-07-31") & `100% Vaccine Availability Est. Date` < base::as.Date("2021-08-31") ~ "2-3 Months",
+                                          `100% Vaccine Availability Est. Date` >= base::as.Date("2021-08-31") & `100% Vaccine Availability Est. Date` < base::as.Date("2021-09-30") ~ "3-4 Months",
+                                          `100% Vaccine Availability Est. Date` >= base::as.Date("2021-09-30") & `100% Vaccine Availability Est. Date` < base::as.Date("2021-10-31") ~ "4-5 Months",
+                                          `100% Vaccine Availability Est. Date` >= base::as.Date("2021-10-31") & `100% Vaccine Availability Est. Date` < base::as.Date("2021-11-30") ~ "5-6 Months",
+                                          `100% Vaccine Availability Est. Date` >= base::as.Date("2021-11-30") & `100% Vaccine Availability Est. Date` < base::as.Date("2022-05-31") ~ "6 Months - 1 Year",
+                                          `100% Vaccine Availability Est. Date` > base::as.Date("2022-05-31") ~ "1 Year+",
+                                          `100% Vaccine Availability Est. Date` < base::as.Date("2021-05-31") ~ "Ahead of schedule")) %>% 
+      select(LongName, Complete_Vaccinations_Per_100K, Census2019_18PlusPop_2, 
+             `How far behind`, `100% Vaccine Availability Est. Date`) %>%
+      rename(State = LongName, 
+             Population = Census2019_18PlusPop_2,
+             `People Vaccinated per 100K` = Complete_Vaccinations_Per_100K) %>%
+      arrange(`100% Vaccine Availability Est. Date`)
+
+    write_csv(supplyProjection, "./chartData/supplyProjection20210316.csv")
     
   }, error = function(cond) {
     condFull <- error_cnd(class = "vwDataTrackerError", message = paste("An error occured with the update:", 

@@ -18,3 +18,6 @@ An error occured with the update: Error in file(con, "r"): cannot open the conne
 An error occured with the update: Error: 'cdcFullTable.csv' does not exist in current working directory ('C:/Users/anesta/Documents/Verywell_Vaccine_Data_Tracker').
  on 2021-03-10 
 
+An error occured with the update: Error in open.connection(file, "wb"): cannot open the connection
+ on 2021-03-16 
+
