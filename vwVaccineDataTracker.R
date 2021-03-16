@@ -312,7 +312,7 @@ finalResult <- tryCatch(
              `People Vaccinated per 100K` = Complete_Vaccinations_Per_100K) %>%
       arrange(`100% Vaccine Availability Est. Date`)
 
-    write_csv(supplyProjection, "./chartData/supplyProjection20210316.csv")
+    write_csv(supplyProjection, "./chartData/supplyProjection.csv")
     
   }, error = function(cond) {
     condFull <- error_cnd(class = "vwDataTrackerError", message = paste("An error occured with the update:", 
