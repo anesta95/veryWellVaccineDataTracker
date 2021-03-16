@@ -296,14 +296,14 @@ finalResult <- tryCatch(
                 (Census2019_18PlusPop_2 - totalDosesDistrb) /
                   `Doses delivered in the last week`)) * 7)),
         origin = "1970-01-01") + as.integer(Sys.Date()))) %>%
-      mutate(`How far behind` = case_when(`100% Vaccine Availability Est. Date` > base::as.Date("2021-05-31") & `100% Vaccine Availability Est. Date` < base::as.Date("2021-06-30") ~ "Less than 1 Month behind",
-                                          `100% Vaccine Availability Est. Date` >= base::as.Date("2021-06-30") & `100% Vaccine Availability Est. Date` < base::as.Date("2021-07-31") ~ "1-2 Months behind",
-                                          `100% Vaccine Availability Est. Date` >= base::as.Date("2021-07-31") & `100% Vaccine Availability Est. Date` < base::as.Date("2021-08-31") ~ "2-3 Months behind",
-                                          `100% Vaccine Availability Est. Date` >= base::as.Date("2021-08-31") & `100% Vaccine Availability Est. Date` < base::as.Date("2021-09-30") ~ "3-4 Months behind",
-                                          `100% Vaccine Availability Est. Date` >= base::as.Date("2021-09-30") & `100% Vaccine Availability Est. Date` < base::as.Date("2021-10-31") ~ "4-5 Months behind",
-                                          `100% Vaccine Availability Est. Date` >= base::as.Date("2021-10-31") & `100% Vaccine Availability Est. Date` < base::as.Date("2021-11-30") ~ "5-6 Months behind",
-                                          `100% Vaccine Availability Est. Date` >= base::as.Date("2021-11-30") & `100% Vaccine Availability Est. Date` < base::as.Date("2022-05-31") ~ "6 Months - 1 Year behind",
-                                          `100% Vaccine Availability Est. Date` > base::as.Date("2022-05-31") ~ "1 Year+",
+      mutate(`How far behind` = case_when(`100% Vaccine Availability Est. Date` > base::as.Date("2021-05-31") & `100% Vaccine Availability Est. Date` < base::as.Date("2021-06-30") ~ "Less than 1 month behind",
+                                          `100% Vaccine Availability Est. Date` >= base::as.Date("2021-06-30") & `100% Vaccine Availability Est. Date` < base::as.Date("2021-07-31") ~ "1-2 months behind",
+                                          `100% Vaccine Availability Est. Date` >= base::as.Date("2021-07-31") & `100% Vaccine Availability Est. Date` < base::as.Date("2021-08-31") ~ "2-3 months behind",
+                                          `100% Vaccine Availability Est. Date` >= base::as.Date("2021-08-31") & `100% Vaccine Availability Est. Date` < base::as.Date("2021-09-30") ~ "3-4 months behind",
+                                          `100% Vaccine Availability Est. Date` >= base::as.Date("2021-09-30") & `100% Vaccine Availability Est. Date` < base::as.Date("2021-10-31") ~ "4-5 months behind",
+                                          `100% Vaccine Availability Est. Date` >= base::as.Date("2021-10-31") & `100% Vaccine Availability Est. Date` < base::as.Date("2021-11-30") ~ "5-6 months behind",
+                                          `100% Vaccine Availability Est. Date` >= base::as.Date("2021-11-30") & `100% Vaccine Availability Est. Date` < base::as.Date("2022-05-31") ~ "6 months - 1 year behind",
+                                          `100% Vaccine Availability Est. Date` > base::as.Date("2022-05-31") ~ "1 year+",
                                           `100% Vaccine Availability Est. Date` < base::as.Date("2021-05-31") ~ "Ahead of schedule")) %>% 
       select(LongName, Complete_Vaccinations_Per_100K, Census2019_18PlusPop_2, 
              `How far behind`, `100% Vaccine Availability Est. Date`) %>%
