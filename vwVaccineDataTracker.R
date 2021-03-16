@@ -21,25 +21,26 @@ shell(cmd = "./gitPullLatestCDC.ps1", shell = "powershell")
 
 Sys.sleep(10)
 
-googleSheetWriter <- function(sheetID, dataSet, firstInstance = F, range = NA) {
-  rate <- rate_delay(61, max_times = 3)
-  
-  if (firstInstance) {
-    insistently(~write_sheet(ss = sheetID,
-                             data = dataSet,
-                             sheet = as.character(Sys.Date())),
-                rate = rate,
-                quiet = F)
-  } else {
-    insistently(~range_write(ss = sheetID,
-                             data = dataSet,
-                             sheet = as.character(Sys.Date()),
-                             range = range,
-                             col_names = T),
-                rate = rate,
-                quiet = F)
-  }
-}
+# https://www.benlcollins.com/formula-examples/dynamic-named-ranges/
+# googleSheetWriter <- function(sheetID, dataSet, firstInstance = F, range = NA) {
+#   rate <- rate_delay(61, max_times = 3)
+#   
+#   if (firstInstance) {
+#     insistently(~write_sheet(ss = sheetID,
+#                              data = dataSet,
+#                              sheet = as.character(Sys.Date())),
+#                 rate = rate,
+#                 quiet = F)
+#   } else {
+#     insistently(~range_write(ss = sheetID,
+#                              data = dataSet,
+#                              sheet = as.character(Sys.Date()),
+#                              range = range,
+#                              col_names = T),
+#                 rate = rate,
+#                 quiet = F)
+#   }
+# }
 
 # errorEmailorGitPush <- function(cnd) {
 #   if (class(cnd)[2] == "rlang_error") {
@@ -320,44 +321,45 @@ if (wday(Sys.Date(), label = F) == 2) {
   gs4_auth(token = drive_token())
   
   
-  # rate <- rate_delay(61, max_times = 3)
-  googleSheetWriter("1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo", cdcWWWFormatted, firstInstance = T)
+  rate <- rate_delay(61, max_times = 3)
+  # googleSheetWriter("1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo", cdcWWWFormatted, firstInstance = T)
+  # googleSheetWriter(sheetID = "1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo", dataSet = cdcWWWFormatted,
+  #                   firstInstance = T)
   
-  # writeFirst <- insistently(~write_sheet(ss = "1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo",
-  #                          data = cdcWWWFormatted,
-  #                          sheet = as.character(Sys.Date())),
-  #                          rate = rate,
-  #                          quiet = F)
-  
-  # writeFirst()
-  
-  Sys.sleep(5)
-  
-  googleSheetWriter("1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo", cdcMap, range = "F1")
-  
-  # writeSecond <- insistently(~range_write(ss = "1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo",
-  #                                         data = cdcMap,
-  #                                         sheet = as.character(Sys.Date()),
-  #                                         range = "F1",
-  #                                         col_names = T),
-  #                            rate = rate,
-  #                            quiet = F)
-  # 
-  # writeSecond()
+  writeFirst <- insistently(~write_sheet(ss = "1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo",
+                            data = cdcWWWFormatted,
+                            sheet = as.character(Sys.Date())),
+                            rate = rate,
+                            quiet = F)
+
+  writeFirst()
   
   Sys.sleep(5)
   
-  googleSheetWriter("1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo", areWeThereYet, range = "J1")
+  # googleSheetWriter("1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo", cdcMap, range = "F1")
   
-  # writeThird <- insistently(~range_write(ss = "1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo",
-  #                                        data = areWeThereYet,
-  #                                        sheet = as.character(Sys.Date()),
-  #                                        range = "J1",
-  #                                        col_names = T),
-  #                           rate = rate,
-  #                           quiet = F)
-  # 
-  # writeThird()
+   writeSecond <- insistently(~range_write(ss = "1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo",
+                                           data = cdcMap,
+                                           sheet = as.character(Sys.Date()),
+                                           range = "F1",
+                                           col_names = T),
+                              rate = rate,
+                              quiet = F)
+   
+  writeSecond()
+  Sys.sleep(5)
+  
+  # googleSheetWriter("1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo", areWeThereYet, range = "J1")
+  
+   writeThird <- insistently(~range_write(ss = "1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo",
+                                          data = areWeThereYet,
+                                          sheet = as.character(Sys.Date()),
+                                          range = "J1",
+                                          col_names = T),
+                             rate = rate,
+                             quiet = F)
+   
+  writeThird()
   
   Sys.sleep(5)
   
@@ -367,8 +369,8 @@ if (wday(Sys.Date(), label = F) == 2) {
                              "Dept of Defense",
                              "Indian Health Svc",
                              "Veterans Health", "United States"))) %>%
-    mutate(`1+ Doses adminstered in the last week` = Administered_Dose1 - lead(
-      Administered_Dose1, n = 59)) %>% 
+    mutate(`1+ Doses adminstered in the last week` = Administered_Dose1_Recip - lead(
+      Administered_Dose1_Recip, n = 59)) %>% 
     filter(`1+ Doses adminstered in the last week` != 0) %>% 
     mutate(`70% of population` = .7 * Census2019,
            `Estimated to 70% Pop 2 Doses` = base::as.Date(
@@ -376,7 +378,7 @@ if (wday(Sys.Date(), label = F) == 2) {
                (
                  (
                    (
-                     (`70% of population` - Administered_Dose1) / 
+                     (`70% of population` - Administered_Dose1_Recip) / 
                        `1+ Doses adminstered in the last week`)) * 7) + 28), 
              origin = "1970-01-01") + as.integer(Sys.Date())) %>%
     arrange(LongName) %>% 
@@ -391,7 +393,7 @@ if (wday(Sys.Date(), label = F) == 2) {
           (
             (
               (
-                (331996199L * .7) - pull(cdcTable[which(cdcTable$Location == "US"), "Administered_Dose1"])) / 
+                (331996199L * .7) - pull(cdcTable[which(cdcTable$Location == "US"), "Administered_Dose1_Recip"])) / 
                 onePlusVaxLastWeek) * 7) + 28) + as.integer(Sys.Date())), origin = "1970-01-01"
       )
   )
@@ -406,7 +408,7 @@ if (wday(Sys.Date(), label = F) == 2) {
   writeSummary1 <- insistently(~range_write(ss = "1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo",
                                             data = aWTYFull,
                                             sheet = "Copy of Comparisons",
-                                            range = paste0("K", aWTYRow),
+                                            range = paste0("D", aWTYRow),
                                             col_names = F),
                                rate = rate,
                                quiet = F)
@@ -415,17 +417,19 @@ if (wday(Sys.Date(), label = F) == 2) {
   Sys.sleep(5)
   pplW2Doses <- cdcTable %>% 
     filter(!(Location %in% c("BP2", "DD2", "IH2", "VA2", "LTC"))) %>% 
-    mutate(Complete_Vaccinations_Per_100K = round(((Administered_Dose2_Recip + Administered_Janssen) / Census2019) * 100000)) %>% arrange(LongName) %>%  select(Date, LongName, Administered_Dose2_Per_100K) %>% 
-    pivot_wider(names_from = LongName, values_from = Complete_Vaccinations_Per_100K) %>% 
+    mutate(Complete_Vaccinations_Per_100K = round(((Administered_Dose2_Recip + Administered_Janssen) / Census2019) * 100000)) %>% 
     arrange(LongName) %>% 
-    select(Date, `United States`, everything())
+    select(Date, LongName, Complete_Vaccinations_Per_100K) %>% 
+    pivot_wider(names_from = LongName, values_from = Complete_Vaccinations_Per_100K) %>% 
+    select(`United States`, everything()) %>% 
+    select(-Date)
   
   pplW2DosesRow <- (((as.integer(max(cdcFullTableUpdated$Date)) + 7) - as.integer(base::as.Date("2021-01-25"))) / 7) + 66
   
   writeSummary2 <- insistently(~range_write(ss = "1m3tOPe_Z85sVsBqNV_ob3OCZtiw3gnyftIk0iKpTwlo",
                                             data = pplW2Doses,
                                             sheet = "Copy of Comparisons",
-                                            range = paste0("K", pplW2DosesRow),
+                                            range = paste0("D", pplW2DosesRow),
                                             col_names = F),
                                rate = rate,
                                quiet = F)
