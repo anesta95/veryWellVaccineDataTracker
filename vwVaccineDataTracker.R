@@ -274,33 +274,33 @@ finalResult <- tryCatch(
     write_csv(areWeThereYet, "./chartData/areWeThereYet.csv")
     
     
-    # supplyProjection <- cdcFullTableUpdated %>% 
-    #   filter(Date %in% c(max(Date), max(Date) - 6)) %>%
-    #   filter(!(LongName %in% c("Bureau of Prisons", "Long Term Care", 
+    # supplyProjection <- cdcFullTableUpdated %>%
+    #   filter(Date %in% c(max(Date), max(Date) - 7)) %>%
+    #   filter(!(LongName %in% c("Bureau of Prisons", "Long Term Care",
     #                            "Dept of Defense",
     #                            "Indian Health Svc",
-    #                            "Veterans Health"))) %>% 
-    #   arrange(desc(Date), LongName) %>% 
+    #                            "Veterans Health"))) %>%
+    #   arrange(desc(Date), LongName) %>%
     #   mutate(totalDosesDistrb = ((Distributed_Moderna / 2) + (Distributed_Pfizer / 2) + Distributed_Janssen),
     #          `Doses delivered in the last week` = totalDosesDistrb - lead(
     #            totalDosesDistrb, n = 60
-    #          )) %>% 
-    #   filter(`Doses delivered in the last week` != 0) %>% 
+    #          )) %>%
+    #   filter(`Doses delivered in the last week` != 0) %>%
     #   inner_join(statePops, by = c("Location" = "postal_code")) %>%
     #   mutate(`Estimated to 100% Vaccine Available 18+` = strftime(base::as.Date(
     #     round(
     #       (
     #         (
     #           (
-    #             (Census2019_18PlusPop_2 - ((Distributed_Moderna / 2) + (Distributed_Pfizer / 2) + Distributed_Janssen)) / 
-    #               `Doses delivered in the last week`)) * 7)), 
-    #     origin = "1970-01-01") + as.integer(Sys.Date()))) %>% 
+    #             (Census2019_18PlusPop_2 - totalDosesDistrb) /
+    #               `Doses delivered in the last week`)) * 7)),
+    #     origin = "1970-01-01") + as.integer(Sys.Date()))) %>%
     #   select(Date, LongName, Census2019_18PlusPop_2, totalDosesDistrb, `Doses delivered in the last week`,
-    #          `Estimated to 100% Vaccine Available 18+`) %>% 
-    #   rename(State = LongName, `Total Doses Distributed` = totalDosesDistrb, `Total Population` = Census2019_18PlusPop_2) %>% 
-    #   arrange(`Estimated to 100% Vaccine Available 18+`) 
-    #   
-    # write_csv(supplyProjection, "../supplyProjection20210315.csv")
+    #          `Estimated to 100% Vaccine Available 18+`) %>%
+    #   rename(State = LongName, `Total Doses Distributed` = totalDosesDistrb, `Total Population` = Census2019_18PlusPop_2) %>%
+    #   arrange(`Estimated to 100% Vaccine Available 18+`)
+    # 
+    # write_csv(supplyProjection, "../supplyProjection20210316.csv")
     
   }, error = function(cond) {
     condFull <- error_cnd(class = "vwDataTrackerError", message = paste("An error occured with the update:", 
