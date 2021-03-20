@@ -6,7 +6,7 @@ on:
   push:
   workflow_dispatch:
   schedule:
-    - cron: '1,16,31,46 16-18 * * *'
+    - cron: '30 14,17 * * *'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
