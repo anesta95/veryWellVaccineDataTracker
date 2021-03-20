@@ -4,12 +4,12 @@ name: run_vwVaccineData_latest
 
 on:
   schedule:
-    - cron: '15,30,45 12-18 * * *'
+    - cron: '28 16,17,18 * * *'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job
-  latest_cdc_vaccine_update:
+  run_thingy:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     # retrieve secrets from github
