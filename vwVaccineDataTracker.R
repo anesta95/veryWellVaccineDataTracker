@@ -7,7 +7,7 @@ library(rjson)
 library(magrittr)
 library(tidyverse)
 
-setwd("C:\\Users\\anesta\\Documents\\Verywell_Vaccine_Data_Tracker")
+# setwd("C:\\Users\\anesta\\Documents\\Verywell_Vaccine_Data_Tracker")
 
 statePops <- read_csv("./referenceData/populationEstimates.csv", col_types = "ciici")
 
@@ -17,7 +17,7 @@ stateFIPS <- read_csv("./referenceData/stateFIPSCodes.csv", col_types = "cci")
 
 Sys.sleep(3)
 
-shell(cmd = "./gitPullLatestCDC.ps1", shell = "powershell")
+# shell(cmd = "./gitPullLatestCDC.ps1", shell = "powershell")
 
 Sys.sleep(10)
 
@@ -453,10 +453,10 @@ if (wday(Sys.Date(), label = F) == 2) {
 }  
 
 
-Sys.sleep(10)
-if (class(finalResult)[2] != "rlang_error") {
-  shell(cmd = "./pushToGit.ps1", shell = "powershell")
-}
+# Sys.sleep(10)
+# if (class(finalResult)[2] != "rlang_error") {
+#   shell(cmd = "./pushToGit.ps1", shell = "powershell")
+# }
 
 
 # http://www.seancarney.ca/2020/10/11/scheduling-r-scripts-to-run-automatically-in-windows/
