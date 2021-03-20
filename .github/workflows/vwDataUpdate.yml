@@ -38,4 +38,11 @@ jobs:
       # install c++ dependencies and install necessary packages
       - run: R -e 'renv::restore()'
       # execute Rscript
-      - run: Rscript vwVaccineDataTracker.R
+      - run: |-
+          Rscript vwVaccineDataTracker.R
+          git config user.name "Automated"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          timestamp=$(date -u)
+          git commit -m "Latest Verywell update: ${timestamp}" || exit 0
+          git push
