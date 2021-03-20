@@ -4,7 +4,7 @@ name: run_vwVaccineData_latest
 
 on:
   schedule:
-    - cron: '28 16,17,18 * * *'
+    - cron: '55 16,17,18 * * *'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
