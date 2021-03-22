@@ -5,7 +5,7 @@ name: vwChartDataUpdate
 on:
   workflow_dispatch:
   schedule:
-    - cron: '10 19,22 * * *'
+    - cron: '21 19,22 * * *'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
