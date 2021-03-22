@@ -21,3 +21,6 @@ An error occured with the update: Error: 'cdcFullTable.csv' does not exist in cu
 An error occured with the update: Error in open.connection(file, "wb"): cannot open the connection
  on 2021-03-16 
 
+An error occured with the update: Error in str_remove_all(str_trim(areWeThereYetNontotal$`Doses administered in the last week`), : could not find function "str_remove_all"
+ on 2021-03-22 
+
