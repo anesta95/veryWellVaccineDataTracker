@@ -327,7 +327,7 @@ finalResult <- tryCatch(
 
 # shell(cmd = ".\\stopDockerScraper.ps1", shell = "powershell", wait = F)
 Sys.sleep(5)
-if (wday(Sys.Date(), label = F) == 2) {
+if (wday(unique(cdcTable$Date), label = F) == 2 & max(cdcFullTable$Date) < unique(cdcTable$Date)) {
   
   drive_auth(email = "anesta@dotdash.com")
   gs4_auth(token = drive_token())
