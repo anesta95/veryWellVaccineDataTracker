@@ -5,7 +5,7 @@ name: vwChartDataUpdate
 on:
   workflow_dispatch:
   schedule:
-    - cron: '55 18,21 * * *'
+    - cron: '05 19,22 * * *'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -25,18 +25,18 @@ jobs:
         with:
           r-version: '4.0.4'
       # install renv package
-      - run: R -e 'install.packages("rlang", "lubridate", "janitor", "rjson", "magrittr", "tidyverse")'
+      - run: R -e 'install.packages("renv")'
       # set up cache
-      # - name: Cache packages
-      #   uses: actions/cache@v1
-      #   with:
-      #      path: ${{ env.RENV_PATHS_ROOT }}
-      #      key: ${{ runner.os }}-renv-${{ hashFiles('**/renv.lock') }}
-      #      restore-keys: |-
-      #         ${{ runner.os }}-renv-
+      - name: Cache packages
+        uses: actions/cache@v1
+        with:
+           path: ${{ env.RENV_PATHS_ROOT }}
+           key: ${{ runner.os }}-renv-${{ hashFiles('**/renv.lock') }}
+           restore-keys: |-
+              ${{ runner.os }}-renv-
       #- run: sudo apt install -y --no-install-recommends libcurl4-openssl-dev
       # install c++ dependencies and install necessary packages
-      #- run: R -e 'renv::restore()'
+      - run: R -e 'renv::restore()'
       # execute Rscript
       - run: |-
           Rscript vwVaccineDataTracker.R
