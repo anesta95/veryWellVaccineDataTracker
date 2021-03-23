@@ -1,12 +1,11 @@
 library(rlang)
-library(lubridate)
-library(janitor)
 library(rjson)
 library(magrittr)
 library(readr)
 library(purrr)
 library(dplyr)
 library(tibble)
+library(stringr)
 
 # setwd("C:\\Users\\anesta\\Documents\\Verywell_Vaccine_Data_Tracker")
 
