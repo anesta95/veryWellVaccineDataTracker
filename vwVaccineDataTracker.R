@@ -179,13 +179,13 @@ finalResult <- tryCatch(
     
     cdcMap <- cdcTable %>% 
       mutate(Complete_Vaccinations = round(Administered_Dose2_Recip + Administered_Janssen)) %>% 
-      inner_join(vaccineEligP1All, by = c("Location" = "postal_code")) %>% 
-      mutate(`% of Currently Eligible Vaccinated` = round((Complete_Vaccinations / Total_people_to_vaccinate) * 100, digits = 1))%>% 
+      inner_join(statePops, by = c("Location" = "postal_code")) %>% 
+      mutate(`% of Currently Eligible Vaccinated` = round((Complete_Vaccinations / Census2019_18PlusPop_2) * 100, digits = 1))%>% 
       select(LongName, `% of Currently Eligible Vaccinated`, 
-             Total_people_to_vaccinate) %>% 
+             Census2019_18PlusPop_2) %>% 
       rename(
         ID = LongName,
-        `Total Currently Eligible` = Total_people_to_vaccinate
+        `Total Currently Eligible` = Census2019_18PlusPop_2
       ) 
     
     cdcMap %>% write_csv("./chartData/cdcMap.csv")
@@ -223,7 +223,7 @@ finalResult <- tryCatch(
       select(LongName, Completely_Vaccinated_Pop_Pct,
              `Doses administered in the last week`, `Estimated to 70% Pop 2 Doses`) %>% 
       mutate(`Doses administered in the last week` = format(`Doses administered in the last week`, big.mark = ",", scientific = F)) %>% 
-      rename(`% Population with 2 Vaccines` = Completely_Vaccinated_Pop_Pct, 
+      rename(`% Population Fully Immunized` = Completely_Vaccinated_Pop_Pct, 
              State = LongName)
     
     
