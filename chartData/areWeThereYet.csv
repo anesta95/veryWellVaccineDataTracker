@@ -1,54 +1,54 @@
-State,% Population with 2 Vaccines,Doses administered in the last week,Estimated to 70% Pop 2 Doses,% Population Fully Immunized
-U.S. Total,16.1,"19,282,231",July 2021,NA
-New Mexico,NA,"  140,689",June 2021,23
-Connecticut,NA,"  247,700",June 2021,20
-Virginia,NA,"  588,082",June 2021,17
-Massachusetts,NA,"  469,703",June 2021,19
-New Jersey,NA,"  656,131",June 2021,18
-Delaware,NA,"   64,290",June 2021,16
-Maine,NA,"   88,296",June 2021,19
-District of Columbia,NA,"   49,703",June 2021,13
-South Dakota,NA,"   60,503",June 2021,22
-Wisconsin,NA,"  390,523",June 2021,18
-California,NA,"2,573,052",July 2021,16
-Illinois,NA,"  746,994",July 2021,16
-Maryland,NA,"  379,612",July 2021,17
-Pennsylvania,NA,"  796,783",July 2021,16
-Colorado,NA,"  334,881",July 2021,17
-Vermont,NA,"   40,336",July 2021,18
-Minnesota,NA,"  348,408",July 2021,18
-New York,NA,"1,328,258",July 2021,16
-Kansas,NA,"  180,304",July 2021,16
-Ohio,NA,"  719,403",July 2021,17
-Arizona,NA,"  428,822",July 2021,17
-Iowa,NA,"  191,344",July 2021,19
-Hawaii,NA,"   70,986",July 2021,19
-Washington,NA,"  468,227",July 2021,18
-Florida,NA,"1,154,651",July 2021,15
-Nebraska,NA,"  112,058",July 2021,18
-North Dakota,NA,"   50,340",July 2021,20
-Georgia,NA,"  505,201",July 2021,12
-Kentucky,NA,"  261,162",July 2021,17
-Michigan,NA,"  552,219",July 2021,17
-South Carolina,NA,"  276,326",July 2021,15
-Montana,NA,"   57,226",July 2021,18
-Rhode Island,NA,"   72,708",July 2021,21
-Oklahoma,NA,"  212,821",July 2021,17
-Oregon,NA,"  214,648",July 2021,16
-Nevada,NA,"  164,568",July 2021,16
-West Virginia,NA,"   96,679",July 2021,19
-Utah,NA,"  171,416",August 2021,11
-North Carolina,NA,"  517,246",August 2021,16
-Puerto Rico,NA,"  159,788",August 2021,12
-Tennessee,NA,"  350,304",August 2021,13
-Arkansas,NA,"  146,693",August 2021,14
-Texas,NA,"1,512,142",August 2021,13
-Idaho,NA,"   84,011",August 2021,16
-Alabama,NA,"  188,196",August 2021,13
-Indiana,NA,"  296,827",August 2021,16
-Alaska,NA,"   27,784",August 2021,22
-Wyoming,NA,"   26,792",August 2021,18
-Louisiana,NA,"  224,463",August 2021,16
-Missouri,NA,"  288,656",September 2021,15
-Mississippi,NA,"  132,650",September 2021,15
-New Hampshire,NA,"   61,626",September 2021,17
+State,% Population Fully Immunized,Doses administered in the last week,Estimated to 70% Pop 2 Doses
+U.S. Total,16.1,"19,282,231",July 2021
+New Mexico,23,"  140,689",June 2021
+Connecticut,20,"  247,700",June 2021
+Virginia,17,"  588,082",June 2021
+Massachusetts,19,"  469,703",June 2021
+New Jersey,18,"  656,131",June 2021
+Delaware,16,"   64,290",June 2021
+Maine,19,"   88,296",June 2021
+District of Columbia,13,"   49,703",June 2021
+South Dakota,22,"   60,503",June 2021
+Wisconsin,18,"  390,523",June 2021
+California,16,"2,573,052",July 2021
+Illinois,16,"  746,994",July 2021
+Maryland,17,"  379,612",July 2021
+Pennsylvania,16,"  796,783",July 2021
+Colorado,17,"  334,881",July 2021
+Vermont,18,"   40,336",July 2021
+Minnesota,18,"  348,408",July 2021
+New York,16,"1,328,258",July 2021
+Kansas,16,"  180,304",July 2021
+Ohio,17,"  719,403",July 2021
+Arizona,17,"  428,822",July 2021
+Iowa,19,"  191,344",July 2021
+Hawaii,19,"   70,986",July 2021
+Washington,18,"  468,227",July 2021
+Florida,15,"1,154,651",July 2021
+Nebraska,18,"  112,058",July 2021
+North Dakota,20,"   50,340",July 2021
+Georgia,12,"  505,201",July 2021
+Kentucky,17,"  261,162",July 2021
+Michigan,17,"  552,219",July 2021
+South Carolina,15,"  276,326",July 2021
+Montana,18,"   57,226",July 2021
+Rhode Island,21,"   72,708",July 2021
+Oklahoma,17,"  212,821",July 2021
+Oregon,16,"  214,648",July 2021
+Nevada,16,"  164,568",July 2021
+West Virginia,19,"   96,679",July 2021
+Utah,11,"  171,416",August 2021
+North Carolina,16,"  517,246",August 2021
+Puerto Rico,12,"  159,788",August 2021
+Tennessee,13,"  350,304",August 2021
+Arkansas,14,"  146,693",August 2021
+Texas,13,"1,512,142",August 2021
+Idaho,16,"   84,011",August 2021
+Alabama,13,"  188,196",August 2021
+Indiana,16,"  296,827",August 2021
+Alaska,22,"   27,784",August 2021
+Wyoming,18,"   26,792",August 2021
+Louisiana,16,"  224,463",August 2021
+Missouri,15,"  288,656",September 2021
+Mississippi,15,"  132,650",September 2021
+New Hampshire,17,"   61,626",September 2021
