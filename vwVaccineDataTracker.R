@@ -245,7 +245,7 @@ finalResult <- tryCatch(
     
     areWeThereYetTotal <- tibble_row(
       State = "U.S. Total", 
-      `% Population with 2 Vaccines` =
+      `% Population Fully Immunized` =
         round(
           ((pull(cdcTable[which(cdcTable$Location == "US"), "Administered_Dose2_Recip"]) + pull(cdcTable[which(cdcTable$Location == "US"), "Administered_Janssen"])) / 331996199L) * 100, 1
         ),
@@ -304,7 +304,7 @@ finalResult <- tryCatch(
                                           `100% Vaccine Availability Est. Date` >= base::as.Date("2021-10-31") & `100% Vaccine Availability Est. Date` < base::as.Date("2021-11-30") ~ "5-6 months behind",
                                           `100% Vaccine Availability Est. Date` >= base::as.Date("2021-11-30") & `100% Vaccine Availability Est. Date` < base::as.Date("2022-05-31") ~ "6 months - 1 year behind",
                                           `100% Vaccine Availability Est. Date` > base::as.Date("2022-05-31") ~ "1 year+",
-                                          `100% Vaccine Availability Est. Date` < base::as.Date("2021-05-31") ~ "Ahead of schedule")) %>% 
+                                          `100% Vaccine Availability Est. Date` <= base::as.Date("2021-05-31") ~ "Ahead of schedule")) %>% 
       select(LongName, Complete_Vaccinations_Per_100K, Census2019_18PlusPop_2, 
              `How far behind`, `100% Vaccine Availability Est. Date`) %>%
       rename(State = LongName, 
