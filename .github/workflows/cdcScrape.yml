@@ -21,4 +21,8 @@ jobs:
         git add -A
         timestamp=$(date -u)
         git commit -m "Latest data: ${timestamp}" || exit 0
-        git push
+#       git push
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+        with: 
+          github_token: ${{ secrets.PAT }} 
