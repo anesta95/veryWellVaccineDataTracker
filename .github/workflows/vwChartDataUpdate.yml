@@ -5,6 +5,7 @@ name: vwChartDataUpdate
 on:
   # schedule:
   #   - cron: '30 18,21 * * *'
+  workflow_dispatch:
   push:
     branches:
       - main
