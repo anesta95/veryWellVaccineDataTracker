@@ -1,5 +1,5 @@
 State,% Population Fully Immunized,Doses administered in the last week,Estimated to 70% Pop 2 Doses
-U.S. Total,27.5,"19,933,867",July 2021
+U.S. Total,27.5,"19,933,867",August 2021
 Hawaii,32,"  206,659",June 2021
 Massachusetts,32,"  571,382",June 2021
 Connecticut,34,"  285,672",June 2021
@@ -7,8 +7,8 @@ Rhode Island,33,"   73,345",June 2021
 Vermont,34,"   50,293",June 2021
 Maine,35,"  100,689",June 2021
 District of Columbia,25,"   57,699",June 2021
-New Jersey,32,"  644,337",June 2021
-Pennsylvania,29,"  989,795",June 2021
+New Jersey,32,"  644,337",July 2021
+Pennsylvania,29,"  989,795",July 2021
 Maryland,31,"  472,553",July 2021
 California,27,"2,679,431",July 2021
 Washington,29,"  529,738",July 2021
@@ -22,7 +22,7 @@ Virginia,29,"  600,671",July 2021
 Oregon,27,"  268,685",July 2021
 Minnesota,31,"  343,602",July 2021
 Wisconsin,32,"  437,827",July 2021
-Michigan,28,"  632,850",July 2021
+Michigan,28,"  632,850",August 2021
 Florida,26,"1,294,235",August 2021
 Puerto Rico,22,"  187,437",August 2021
 Utah,22,"  188,747",August 2021
@@ -30,7 +30,7 @@ Iowa,30,"  173,754",August 2021
 Arizona,26,"  383,612",August 2021
 Missouri,25,"  323,672",August 2021
 Kansas,29,"  150,331",August 2021
-Nevada,26,"  148,170",August 2021
+Nevada,26,"  148,170",September 2021
 Nebraska,30,"   83,440",September 2021
 North Carolina,27,"  525,704",September 2021
 Texas,24,"1,375,744",September 2021
