@@ -20,10 +20,10 @@ jobs:
         RENV_PATHS_ROOT: ~/.local/share/renv
     #
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      # Checks-out your repository
       - uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.PAT }}
+        # with:
+        #   token: ${{ secrets.PAT }}
 
       - name: setup-r
         uses: r-lib/actions/setup-r@v1
