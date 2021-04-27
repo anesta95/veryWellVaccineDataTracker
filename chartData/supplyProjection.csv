@@ -1,53 +1,53 @@
 State,People Vaccinated per 100K,Population,How far behind,100% Vaccine Availability Est. Date
-District of Columbia,27353,577581,Ahead of schedule,2021-05-20
-Rhode Island,34691,854866,Ahead of schedule,2021-05-20
-Massachusetts,34032,5539703,Ahead of schedule,2021-05-30
-Connecticut,36428,2837847,Less than 1 month behind,2021-06-03
-Vermont,35695,509984,Less than 1 month behind,2021-06-03
-Maryland,31997,4710993,Less than 1 month behind,2021-06-08
-California,28806,30617582,Less than 1 month behind,2021-06-11
-Pennsylvania,30174,10167376,Less than 1 month behind,2021-06-11
-Oklahoma,28695,3004733,Less than 1 month behind,2021-06-12
-Delaware,30305,770192,Less than 1 month behind,2021-06-13
-New Hampshire,29394,1104458,Less than 1 month behind,2021-06-13
-New Jersey,33844,6943612,Less than 1 month behind,2021-06-13
-Maine,36293,1095370,Less than 1 month behind,2021-06-14
-North Carolina,27575,8187369,Less than 1 month behind,2021-06-14
-Virginia,30785,6674671,Less than 1 month behind,2021-06-16
-Washington,30595,5951832,Less than 1 month behind,2021-06-16
-Illinois,28920,9853946,Less than 1 month behind,2021-06-17
-Michigan,30002,7842924,Less than 1 month behind,2021-06-17
-South Dakota,34927,667558,Less than 1 month behind,2021-06-17
-Florida,27526,17247808,Less than 1 month behind,2021-06-18
-Hawaii,33790,1116004,Less than 1 month behind,2021-06-20
-Puerto Rico,22741,2620963,Less than 1 month behind,2021-06-20
-Texas,25337,21596071,Less than 1 month behind,2021-06-20
-Kansas,30094,2213064,Less than 1 month behind,2021-06-21
-New York,32229,15425262,Less than 1 month behind,2021-06-21
-Colorado,30337,4499217,Less than 1 month behind,2021-06-23
-Wisconsin,33567,4555837,Less than 1 month behind,2021-06-23
-Arizona,27676,5638481,Less than 1 month behind,2021-06-24
-Nebraska,31205,1458334,Less than 1 month behind,2021-06-24
-Minnesota,32543,4336475,Less than 1 month behind,2021-06-25
-Oregon,28823,3351175,Less than 1 month behind,2021-06-25
-Arkansas,24265,2317649,Less than 1 month behind,2021-06-26
-South Carolina,25735,4037531,Less than 1 month behind,2021-06-26
-Ohio,30603,9111081,Less than 1 month behind,2021-06-28
-Georgia,22523,8113542,Less than 1 month behind,2021-06-29
-Kentucky,30626,3464802,1-2 months behind,2021-06-30
-New Mexico,35730,1620991,1-2 months behind,2021-07-02
-Montana,30585,840190,1-2 months behind,2021-07-06
-Utah,22108,2274774,1-2 months behind,2021-07-06
-Indiana,25292,5164245,1-2 months behind,2021-07-10
-Iowa,32034,2428229,1-2 months behind,2021-07-12
-Missouri,26086,4766843,1-2 months behind,2021-07-12
-West Virginia,28936,1432580,1-2 months behind,2021-07-13
-Alabama,21720,3814879,1-2 months behind,2021-07-16
-Idaho,25962,1338864,1-2 months behind,2021-07-16
-Nevada,26579,2387517,1-2 months behind,2021-07-16
-North Dakota,32353,581891,2-3 months behind,2021-08-02
-Mississippi,22360,2277566,2-3 months behind,2021-08-09
-Tennessee,23274,5319123,2-3 months behind,2021-08-22
-Alaska,34167,551562,4-5 months behind,2021-10-08
-Louisiana,25997,3561164,6 months - 1 year behind,2021-12-13
-Wyoming,26982,445025,6 months - 1 year behind,2022-04-19
+District of Columbia,27733,577581,Ahead of schedule,2021-05-30
+Massachusetts,34445,5539703,Ahead of schedule,2021-05-31
+Maine,37448,1095370,Less than 1 month behind,2021-06-03
+Rhode Island,34980,854866,Less than 1 month behind,2021-06-04
+California,29068,30617582,Less than 1 month behind,2021-06-05
+Connecticut,36642,2837847,Less than 1 month behind,2021-06-05
+Vermont,36084,509984,Less than 1 month behind,2021-06-06
+North Carolina,27814,8187369,Less than 1 month behind,2021-06-09
+Delaware,30617,770192,Less than 1 month behind,2021-06-10
+Michigan,30152,7842924,Less than 1 month behind,2021-06-10
+Hawaii,34101,1116004,Less than 1 month behind,2021-06-11
+Maryland,32468,4710993,Less than 1 month behind,2021-06-11
+Pennsylvania,30449,10167376,Less than 1 month behind,2021-06-12
+Washington,30813,5951832,Less than 1 month behind,2021-06-12
+New Jersey,34319,6943612,Less than 1 month behind,2021-06-14
+Virginia,31152,6674671,Less than 1 month behind,2021-06-14
+Illinois,29081,9853946,Less than 1 month behind,2021-06-17
+South Dakota,34995,667558,Less than 1 month behind,2021-06-17
+Oregon,29155,3351175,Less than 1 month behind,2021-06-19
+Puerto Rico,22889,2620963,Less than 1 month behind,2021-06-19
+Utah,22620,2274774,Less than 1 month behind,2021-06-19
+Colorado,30731,4499217,Less than 1 month behind,2021-06-22
+New Hampshire,29415,1104458,Less than 1 month behind,2021-06-22
+Texas,25587,21596071,Less than 1 month behind,2021-06-22
+Kansas,30175,2213064,Less than 1 month behind,2021-06-23
+Nevada,26676,2387517,Less than 1 month behind,2021-06-23
+New York,32614,15425262,Less than 1 month behind,2021-06-23
+Arizona,27926,5638481,Less than 1 month behind,2021-06-25
+Nebraska,31213,1458334,Less than 1 month behind,2021-06-25
+Wisconsin,33691,4555837,Less than 1 month behind,2021-06-27
+Arkansas,24325,2317649,Less than 1 month behind,2021-06-28
+Georgia,22839,8113542,Less than 1 month behind,2021-06-29
+Florida,27712,17247808,1-2 months behind,2021-06-30
+Minnesota,32641,4336475,1-2 months behind,2021-07-02
+Ohio,30899,9111081,1-2 months behind,2021-07-03
+New Mexico,35798,1620991,1-2 months behind,2021-07-06
+Indiana,25428,5164245,1-2 months behind,2021-07-07
+Kentucky,30716,3464802,1-2 months behind,2021-07-09
+South Carolina,26384,4037531,1-2 months behind,2021-07-09
+Oklahoma,28786,3004733,1-2 months behind,2021-07-12
+Montana,30662,840190,1-2 months behind,2021-07-15
+Iowa,32282,2428229,1-2 months behind,2021-07-16
+Missouri,26180,4766843,1-2 months behind,2021-07-16
+Alabama,21988,3814879,2-3 months behind,2021-07-31
+Mississippi,23073,2277566,2-3 months behind,2021-08-18
+Idaho,26036,1338864,2-3 months behind,2021-08-21
+North Dakota,32356,581891,2-3 months behind,2021-08-26
+Tennessee,23360,5319123,2-3 months behind,2021-08-30
+Alaska,34237,551562,3-4 months behind,2021-09-12
+West Virginia,29069,1432580,4-5 months behind,2021-10-15
+Louisiana,26069,3561164,6 months - 1 year behind,2022-03-15
+Wyoming,26988,445025,6 months - 1 year behind,2022-05-27
