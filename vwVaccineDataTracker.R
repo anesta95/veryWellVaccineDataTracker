@@ -6,6 +6,7 @@ library(purrr)
 library(dplyr)
 library(tibble)
 library(stringr)
+library(zoo)
 
 # setwd("C:\\Users\\anesta\\Documents\\Verywell_Vaccine_Data_Tracker")
 
@@ -314,6 +315,20 @@ finalResult <- tryCatch(
 
     write_csv(supplyProjection, "./chartData/supplyProjection.csv")
     
+    Sys.sleep(5)
+    
+    firstVsSecondGrowth <- cdcFullTableUpdated %>% 
+      filter(Location == "US") %>% 
+      select(Date, Administered_Dose1_Recip, Administered_Dose2_Recip) %>% 
+      mutate(dtdDose1Growth = Administered_Dose1_Recip - lead(Administered_Dose1_Recip, n = 1),
+             dtdDose2Growth = Administered_Dose2_Recip - lead(Administered_Dose2_Recip, n = 1),
+             `First Dose Daily Avg` = rollmean(dtdDose1Growth, k = 7, fill = NA, align = "left"),
+             `Second Dose Daily Avg` = rollmean(dtdDose2Growth, k = 7, fill = NA, align = "left")) %>% 
+      select(Date, `First Dose Daily Avg`, `Second Dose Daily Avg`) %>% 
+      filter(!is.na(`First Dose Daily Avg`))
+    
+    write_csv(firstVsSecondGrowth, "./chartData/firstVsSecondGrowth.csv")
+              
   }, error = function(cond) {
     condFull <- error_cnd(class = "vwDataTrackerError", message = paste("An error occured with the update:", 
                                                                         cond, "on", Sys.Date(), "\n"
