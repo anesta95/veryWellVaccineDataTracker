@@ -18,9 +18,9 @@ Indiana,42.3,5164245
 Kansas,47.9,2213064
 Kentucky,46.7,3464802
 Louisiana,38.6,3561164
-Massachusetts,58.1,5539703
+Massachusetts,58,5539703
 Maryland,54.4,4710993
-Maine,60,1095370
+Maine,59.7,1095370
 Michigan,49.1,7842924
 Minnesota,54.1,4336475
 Missouri,41.6,4766843
@@ -29,7 +29,7 @@ Montana,46.3,840190
 North Carolina,43.7,8187369
 North Dakota,46.6,581891
 Nebraska,51.8,1458334
-New Hampshire,68.5,1104458
+New Hampshire,43.7,1104458
 New Jersey,56.5,6943612
 New Mexico,57.3,1620991
 Nevada,43.7,2387517
@@ -46,7 +46,7 @@ Tennessee,38.3,5319123
 Texas,43.5,21596071
 Utah,41,2274774
 Virginia,51.6,6674671
-Vermont,58.1,509984
+Vermont,57.6,509984
 Washington,51.3,5951832
 Wisconsin,53.4,4555837
 West Virginia,41,1432580
