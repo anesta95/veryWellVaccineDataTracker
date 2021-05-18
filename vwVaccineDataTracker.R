@@ -121,7 +121,7 @@ finalResult <- tryCatch(
     #                      "fips_code")
     
     
-    cdcFullTable <- read_csv("./chartData/cdcFullTable.csv", col_types = "Dccciciiiiiiiiiddidiiiidiiiiidiiiiiiiiiiiiiiiiidididiiiiiiiiii")
+    cdcFullTable <- read_csv("./chartData/cdcFullTable.csv", col_types = "Dccciciiiiiiiiiddidiiiidiiiiidiiiiiiiiiiiiiiiiidididiiiiiiiiiidiiiiiiiii")
     
     if (unique(cdcTable$Date) == max(cdcFullTable$Date)) {
       cdcFullTableUpdated <- cdcFullTable
