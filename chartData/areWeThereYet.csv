@@ -1,8 +1,8 @@
 State,% Population Fully Immunized,Doses administered in the last week,Estimated to 70% Pop 2 Doses
 U.S. Total,37.8,"12,539,580",September 2021
 Vermont,49,"   41,959",June 2021
-Hawaii,45,"   97,218",June 2021
-New Hampshire,38,"  115,647",June 2021
+Hawaii,45,"   97,218",July 2021
+New Hampshire,38,"  115,647",July 2021
 Massachusetts,48,"  371,321",July 2021
 Connecticut,49,"  186,166",July 2021
 Maine,50,"   67,096",July 2021
@@ -26,7 +26,7 @@ Florida,36,"  791,552",October 2021
 Michigan,39,"  366,229",October 2021
 Texas,33,"1,052,667",October 2021
 Wisconsin,42,"  180,496",October 2021
-Utah,30,"  111,253",October 2021
+Utah,30,"  111,253",November 2021
 Iowa,41,"  101,846",November 2021
 Arizona,34,"  192,489",November 2021
 Alaska,38,"   13,561",November 2021
@@ -40,7 +40,7 @@ West Virginia,33,"   32,062",December 2021
 South Dakota,41,"   17,095",December 2021
 Nebraska,40,"   47,042",December 2021
 North Carolina,34,"  249,998",December 2021
-Missouri,33,"  152,769",December 2021
+Missouri,33,"  152,769",January 2022
 Kansas,37,"   55,316",January 2022
 South Carolina,32,"  107,549",February 2022
 Arkansas,30,"   61,755",March 2022
