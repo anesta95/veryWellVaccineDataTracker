@@ -119,9 +119,9 @@ finalResult <- tryCatch(
     #                      "people_with_1_doses_per_100k", "people_with_2_doses", 
     #                      "people_with_2_doses_per_100k", "date", "postal_code",	
     #                      "fips_code")
+    # col_types = "Dccciciiiiiiiiiddidiiiidiiiiidiiiiiiiiiiiiiiiiidididiiiiiiiiiidiiiiiiiii"
     
-    
-    cdcFullTable <- read_csv("./chartData/cdcFullTable.csv", col_types = "Dccciciiiiiiiiiddidiiiidiiiiidiiiiiiiiiiiiiiiiidididiiiiiiiiiidiiiiiiiii")
+    cdcFullTable <- read_csv("./chartData/cdcFullTable.csv")
     
     if (unique(cdcTable$Date) == max(cdcFullTable$Date)) {
       cdcFullTableUpdated <- cdcFullTable
@@ -181,12 +181,12 @@ finalResult <- tryCatch(
     cdcMap <- cdcTable %>% 
       mutate(Complete_Vaccinations = round(Administered_Dose2_Recip + Administered_Janssen)) %>% 
       inner_join(statePops, by = c("Location" = "postal_code")) %>% 
-      mutate(`% of Currently Eligible Vaccinated` = round((Complete_Vaccinations / Census2019_18PlusPop_2) * 100, digits = 1))%>% 
+      mutate(`% of Currently Eligible Vaccinated` = round((Complete_Vaccinations / Census2019_12PlusPop) * 100, digits = 1))%>% 
       select(LongName, `% of Currently Eligible Vaccinated`, 
-             Census2019_18PlusPop_2) %>% 
+             Census2019_12PlusPop) %>% 
       rename(
         ID = LongName,
-        `Total Currently Eligible` = Census2019_18PlusPop_2
+        `Total Currently Eligible` = Census2019_12PlusPop
       ) 
     
     cdcMap %>% write_csv("./chartData/cdcMap.csv")
