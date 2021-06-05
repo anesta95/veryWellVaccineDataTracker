@@ -1,54 +1,54 @@
 State,% Population Fully Immunized,Doses administered in the last week,Estimated to 70% Pop 2 Doses
-U.S. Total,41.4,"6,974,323",November 2021
-Vermont,57," 25,717",June 2021
-Hawaii,48," 24,920",July 2021
-Massachusetts,55,"238,722",July 2021
-Maine,56," 31,711",August 2021
-New Jersey,50,"248,943",August 2021
-Connecticut,54," 78,613",August 2021
-Rhode Island,52," 26,959",August 2021
-Washington,48,"302,781",August 2021
-Pennsylvania,45,"365,463",August 2021
-Illinois,40,"330,923",September 2021
-California,44,"951,356",September 2021
-Maryland,49,"152,848",September 2021
-New York,48,"529,597",September 2021
-Puerto Rico,38,"105,657",September 2021
-Oregon,46,"130,442",September 2021
-Colorado,46,"137,733",September 2021
-Delaware,44," 23,783",October 2021
-New Mexico,48," 35,331",October 2021
-Virginia,46,"193,276",October 2021
-District of Columbia,46," 13,981",October 2021
-New Hampshire,50," 28,504",October 2021
-Florida,40,"450,091",November 2021
-Minnesota,47,"101,140",November 2021
-Georgia,33,"371,996",November 2021
-Nebraska,43," 37,244",December 2021
-Nevada,37," 56,938",December 2021
-Wisconsin,45," 88,850",December 2021
-Texas,36,"567,898",December 2021
-Michigan,43,"162,152",January 2022
-Arizona,36,"109,736",January 2022
-Kentucky,39," 64,337",January 2022
-Ohio,41,"175,926",February 2022
-Iowa,44," 46,260",February 2022
-Alaska,40,"  8,527",February 2022
-Kansas,39," 38,484",February 2022
-West Virginia,34," 20,172",March 2022
-Indiana,36,"103,019",April 2022
-South Carolina,35," 87,361",May 2022
-South Dakota,43,"  7,678",May 2022
-Missouri,35," 71,182",May 2022
-Arkansas,32," 36,770",June 2022
-North Carolina,36,"115,682",June 2022
-North Dakota,37,"  7,425",July 2022
-Tennessee,32," 80,942",July 2022
-Utah,33," 28,988",August 2022
-Louisiana,32," 54,346",August 2022
-Montana,38,"  7,156",September 2022
-Oklahoma,34," 35,651",September 2022
-Wyoming,32,"  5,170",September 2022
-Idaho,33," 18,633",September 2022
-Mississippi,28," 21,347",April 2023
-Alabama,29," 15,962",April 2025
+U.S. Total,41.6,"6,514,711",November 2021
+Vermont,58,"   25,954",June 2021
+Massachusetts,55,"  220,368",July 2021
+Hawaii,48,"   20,524",July 2021
+Maine,56,"   29,765",August 2021
+Connecticut,54,"   62,356",August 2021
+Rhode Island,53,"   27,189",August 2021
+New Jersey,50,"  192,453",August 2021
+Pennsylvania,45,"  353,093",September 2021
+California,44,"1,063,879",September 2021
+Puerto Rico,39,"  117,746",September 2021
+Washington,48,"  190,488",September 2021
+New York,48,"  489,368",September 2021
+Maryland,49,"  132,339",September 2021
+Illinois,41,"  257,452",October 2021
+New Hampshire,50,"   34,682",October 2021
+Oregon,47,"  124,693",October 2021
+Virginia,46,"  176,871",October 2021
+Colorado,46,"  110,119",October 2021
+District of Columbia,46,"   12,546",October 2021
+New Mexico,48,"   27,067",November 2021
+Delaware,44,"   17,082",November 2021
+Florida,40,"  458,248",November 2021
+Georgia,33,"  371,448",November 2021
+Minnesota,47,"   95,770",November 2021
+Texas,36,"  535,126",January 2022
+Arizona,37,"  113,830",January 2022
+Nevada,37,"   45,312",January 2022
+Utah,33,"   55,748",January 2022
+Ohio,41,"  175,592",February 2022
+Iowa,44,"   44,487",February 2022
+Wisconsin,45,"   64,941",February 2022
+Michigan,43,"  121,581",March 2022
+Alaska,40,"    8,571",March 2022
+Nebraska,43,"   21,767",March 2022
+Kentucky,39,"   49,544",March 2022
+Indiana,36,"  101,512",April 2022
+South Carolina,35,"   88,121",April 2022
+Kansas,39,"   26,265",June 2022
+Arkansas,32,"   34,569",June 2022
+North Carolina,37,"  106,829",July 2022
+Tennessee,32,"   82,068",July 2022
+West Virginia,34,"   13,936",July 2022
+South Dakota,43,"    5,948",August 2022
+Missouri,35,"   56,008",August 2022
+Louisiana,32,"   54,954",August 2022
+Idaho,33,"   17,907",October 2022
+Oklahoma,34,"   31,098",November 2022
+North Dakota,37,"    5,298",November 2022
+Wyoming,32,"    3,970",January 2023
+Montana,38,"    4,713",April 2023
+Mississippi,28,"   21,125",April 2023
+Alabama,29,"   12,391",March 2026
