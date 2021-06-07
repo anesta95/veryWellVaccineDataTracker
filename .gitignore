@@ -6,3 +6,4 @@ pushToGit.ps1
 gitPullLatestCDC.ps1
 errorLog.txt
 .Rproj.user
+.DS_Store
