@@ -1,61 +1,54 @@
 State,% Population Fully Immunized,Doses administered in the last week,Estimated to 70% Pop 2 Doses
-U.S. Total,42.1,"-192,919,054",July 2021
-South Dakota,43,"      10,349",February 2021
-South Carolina,35,"    -172,623",April 2021
-Oklahoma,34,"    -779,376",June 2021
-Idaho,33,"    -895,590",June 2021
-Arizona,37,"  -3,019,904",June 2021
-Kentucky,39,"  -2,423,709",July 2021
-Minnesota,47,"  -2,037,645",July 2021
-Arkansas,32,"  -2,741,162",July 2021
-Louisiana,32,"  -5,213,429",July 2021
-Colorado,47,"  -4,162,753",July 2021
-North Dakota,37,"    -764,711",July 2021
-Mississippi,28,"  -9,888,125",July 2021
-Montana,39,"  -4,233,327",July 2021
-Rhode Island,53,"  -1,891,047",July 2021
-Wisconsin,46," -17,411,066",July 2021
-Alaska,40," -19,049,316",July 2021
-District of Columbia,47,"  -2,844,827",July 2021
-Hawaii,48,"    -979,053",July 2021
-Indiana,36,"-290,671,867",July 2021
-Massachusetts,56,"   8,317,896",July 2021
-New Hampshire,51,"  -4,052,110",July 2021
-Vermont,59,"    -517,843",July 2021
-Wyoming,32,"  -7,645,654",July 2021
-Connecticut,55,"   3,339,671",July 2021
-New Jersey,50,"   6,626,606",July 2021
-New Mexico,49,"   2,140,994",July 2021
-Washington,49,"   7,846,263",July 2021
-California,45,"  26,953,289",July 2021
-Delaware,45,"  -6,883,393",July 2021
-Illinois,41,"  11,765,219",July 2021
-Maine,56,"     568,550",July 2021
-New York,49,"  19,987,122",July 2021
-Oregon,47,"   4,146,175",July 2021
-Pennsylvania,45,"  10,411,959",July 2021
-Iowa,45,"   2,869,546",July 2021
-Maryland,50,"   3,287,466",July 2021
-Nebraska,43,"   1,651,549",July 2021
-Puerto Rico,39,"   2,203,090",July 2021
-Florida,40,"  15,166,072",July 2021
-Utah,33,"   2,574,852",July 2021
-North Carolina,37,"   6,506,247",July 2021
-Virginia,47,"   2,943,320",July 2021
-Georgia,33,"   6,268,694",July 2021
-Nevada,38,"   1,402,502",July 2021
-Missouri,35,"   3,061,453",July 2021
-Michigan,43,"   3,427,348",July 2021
-Ohio,41,"   4,128,066",July 2021
-West Virginia,35,"     722,662",July 2021
-Alabama,29,"   1,555,454",July 2021
-Tennessee,32,"   2,073,892",July 2021
-Texas,37,"   4,749,430",July 2021
-Kansas,39,"      26,302",May 2022
-NA,NA,"  14,992,730",NA
-NA,NA,"     704,824",NA
-NA,NA,"   1,201,496",NA
-NA,NA,"  -2,297,935",NA
-NA,NA,"   7,871,669",NA
-NA,NA,"   4,934,463",NA
-NA,NA,"   1,220,191",NA
+U.S. Total,42.3,"7,453,838",November 2021
+Vermont,60,"   23,935",June 2021
+Massachusetts,56,"  270,810",July 2021
+Hawaii,49,"   20,699",July 2021
+Maine,57,"   42,213",August 2021
+Connecticut,55,"   95,964",August 2021
+New Jersey,51,"  269,334",August 2021
+Rhode Island,54,"   30,342",August 2021
+Pennsylvania,46,"  392,990",August 2021
+Washington,49,"  264,832",September 2021
+California,45,"1,160,528",September 2021
+Puerto Rico,39,"  105,307",September 2021
+New York,49,"  522,962",September 2021
+Maryland,50,"  161,159",September 2021
+Virginia,47,"  228,505",September 2021
+New Hampshire,52,"   51,509",September 2021
+Illinois,41,"  279,648",October 2021
+Colorado,47,"  155,228",October 2021
+Oregon,48,"  130,956",October 2021
+District of Columbia,47,"   14,669",October 2021
+New Mexico,49,"   36,315",October 2021
+Delaware,45,"   22,953",October 2021
+Florida,41,"  480,007",November 2021
+Georgia,34,"  321,305",November 2021
+Minnesota,47,"  106,142",November 2021
+Nevada,38,"   57,445",December 2021
+Wisconsin,46,"  101,832",December 2021
+Texas,37,"  597,246",January 2022
+Arizona,37,"  127,637",January 2022
+Montana,40,"   25,255",January 2022
+Kentucky,39,"   69,525",February 2022
+Michigan,43,"  172,583",February 2022
+Nebraska,43,"   31,031",February 2022
+Ohio,41,"  196,383",February 2022
+Utah,34,"   57,153",February 2022
+Alaska,40,"   10,675",March 2022
+Kansas,39,"   39,444",March 2022
+Iowa,45,"   48,106",March 2022
+South Dakota,43,"    9,682",April 2022
+Indiana,37,"  109,429",April 2022
+South Carolina,35,"   97,155",April 2022
+Wyoming,33,"    7,556",May 2022
+Mississippi,28,"   43,687",May 2022
+Missouri,35,"   79,527",May 2022
+West Virginia,35,"   19,017",June 2022
+Arkansas,32,"   35,851",July 2022
+North Carolina,37,"  125,825",July 2022
+Louisiana,32,"   56,067",August 2022
+Oklahoma,34,"   37,101",September 2022
+North Dakota,37,"    6,512",September 2022
+Tennessee,32,"   71,467",October 2022
+Idaho,33,"   17,778",November 2022
+Alabama,29,"   14,557",August 2025
