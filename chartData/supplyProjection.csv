@@ -1,53 +1,53 @@
 State,People Vaccinated per 100K,Population,How far behind,100% Vaccine Availability Est. Date
-Maryland,50728,4710993,1-2 months behind,2021-07-12
-District of Columbia,47526,577581,1-2 months behind,2021-07-13
-Massachusetts,57125,5539703,2-3 months behind,2021-08-05
-Hawaii,49039,1116004,2-3 months behind,2021-08-13
-Rhode Island,54176,854866,2-3 months behind,2021-08-13
-Vermont,59995,509984,2-3 months behind,2021-08-15
-New Jersey,51542,6943612,2-3 months behind,2021-08-24
-Washington,49600,5951832,3-4 months behind,2021-09-03
-New Hampshire,52768,1104458,3-4 months behind,2021-09-08
-Delaware,45414,770192,4-5 months behind,2021-10-04
-Maine,57300,1095370,4-5 months behind,2021-10-04
-Virginia,47639,6674671,4-5 months behind,2021-10-08
-New York,49580,15425262,4-5 months behind,2021-10-18
-Connecticut,56095,2837847,4-5 months behind,2021-10-25
-Oregon,48367,3351175,4-5 months behind,2021-10-25
-California,45661,30617582,5-6 months behind,2021-11-08
-Iowa,45333,2428229,5-6 months behind,2021-11-18
-Texas,37527,21596071,5-6 months behind,2021-11-18
-Pennsylvania,46050,10167376,6 months - 1 year behind,2021-12-02
-Minnesota,47891,4336475,6 months - 1 year behind,2021-12-12
-Alaska,40843,551562,6 months - 1 year behind,2021-12-14
-Colorado,47778,4499217,6 months - 1 year behind,2021-12-19
-Florida,41105,17247808,6 months - 1 year behind,2021-12-23
-Illinois,41750,9853946,6 months - 1 year behind,2022-01-18
-Utah,34094,2274774,6 months - 1 year behind,2022-01-23
-Michigan,43769,7842924,6 months - 1 year behind,2022-01-25
-Nebraska,43763,1458334,6 months - 1 year behind,2022-01-25
-South Dakota,43436,667558,6 months - 1 year behind,2022-02-20
-Kansas,39575,2213064,6 months - 1 year behind,2022-03-08
-Nevada,38499,2387517,6 months - 1 year behind,2022-03-11
-North Dakota,37683,581891,6 months - 1 year behind,2022-03-18
-Indiana,36939,5164245,6 months - 1 year behind,2022-03-30
-Georgia,33849,8113542,6 months - 1 year behind,2022-04-27
-Puerto Rico,39837,2620963,6 months - 1 year behind,2022-05-16
-Arizona,37518,5638481,6 months - 1 year behind,2022-05-17
-North Carolina,37277,8187369,6 months - 1 year behind,2022-05-29
-Ohio,41815,9111081,6 months - 1 year behind,2022-05-29
-Idaho,33752,1338864,6 months - 1 year behind,2022-05-30
-Alabama,29912,3814879,1 year+,2022-06-06
-South Carolina,35379,4037531,1 year+,2022-06-25
-West Virginia,35086,1432580,1 year+,2022-07-11
-New Mexico,49503,1620991,1 year+,2022-08-27
-Kentucky,39842,3464802,1 year+,2022-08-29
-Missouri,35558,4766843,1 year+,2022-09-01
-Tennessee,32754,5319123,1 year+,2022-10-24
-Wisconsin,46163,4555837,1 year+,2022-11-05
-Oklahoma,34539,3004733,1 year+,2022-12-04
-Louisiana,32359,3561164,1 year+,2023-03-22
-Arkansas,32198,2317649,1 year+,2023-04-26
-Mississippi,28089,2277566,1 year+,2023-06-19
-Montana,40284,840190,1 year+,2023-07-30
-Wyoming,32740,445025,1 year+,2029-05-09
+Maryland,51216,4710993,1-2 months behind,2021-07-25
+Hawaii,49071,1116004,2-3 months behind,2021-08-12
+Massachusetts,57431,5539703,3-4 months behind,2021-09-05
+New Jersey,52016,6943612,3-4 months behind,2021-09-23
+Oregon,48840,3351175,4-5 months behind,2021-10-04
+New Hampshire,53020,1104458,4-5 months behind,2021-10-06
+Vermont,60702,509984,4-5 months behind,2021-10-08
+Washington,50037,5951832,4-5 months behind,2021-10-12
+Maine,57741,1095370,5-6 months behind,2021-11-01
+District of Columbia,47732,577581,5-6 months behind,2021-11-19
+Delaware,45753,770192,5-6 months behind,2021-11-25
+New York,49880,15425262,5-6 months behind,2021-11-25
+Virginia,47926,6674671,5-6 months behind,2021-11-27
+Nebraska,43974,1458334,6 months - 1 year behind,2022-01-02
+Connecticut,56554,2837847,6 months - 1 year behind,2022-01-05
+Minnesota,48235,4336475,6 months - 1 year behind,2022-01-26
+Iowa,45576,2428229,6 months - 1 year behind,2022-02-02
+Texas,37871,21596071,6 months - 1 year behind,2022-02-06
+Pennsylvania,46406,10167376,6 months - 1 year behind,2022-02-25
+California,46132,30617582,6 months - 1 year behind,2022-03-04
+Rhode Island,54598,854866,6 months - 1 year behind,2022-03-16
+Colorado,48035,4499217,6 months - 1 year behind,2022-03-17
+Florida,41493,17247808,6 months - 1 year behind,2022-03-23
+Alaska,41029,551562,6 months - 1 year behind,2022-04-12
+Nevada,38806,2387517,6 months - 1 year behind,2022-05-24
+Idaho,33891,1338864,6 months - 1 year behind,2022-05-26
+Indiana,37188,5164245,1 year+,2022-06-22
+Illinois,42032,9853946,1 year+,2022-06-27
+Michigan,44052,7842924,1 year+,2022-07-21
+South Dakota,43678,667558,1 year+,2022-08-16
+North Dakota,37828,581891,1 year+,2022-08-29
+Arizona,37784,5638481,1 year+,2022-09-05
+Alabama,30242,3814879,1 year+,2022-09-12
+Ohio,42051,9111081,1 year+,2022-09-21
+North Carolina,37440,8187369,1 year+,2022-10-12
+Puerto Rico,40198,2620963,1 year+,2022-10-12
+New Mexico,49637,1620991,1 year+,2022-10-27
+South Carolina,35597,4037531,1 year+,2022-12-04
+Kansas,39748,2213064,1 year+,2022-12-26
+Utah,34298,2274774,1 year+,2023-01-23
+Georgia,33861,8113542,1 year+,2023-02-16
+West Virginia,35277,1432580,1 year+,2023-02-24
+Kentucky,40159,3464802,1 year+,2023-06-20
+Tennessee,32921,5319123,1 year+,2023-06-27
+Louisiana,32515,3561164,1 year+,2023-07-03
+Wisconsin,46288,4555837,1 year+,2023-09-18
+Missouri,35811,4766843,1 year+,2023-12-18
+Arkansas,32323,2317649,1 year+,2024-07-02
+Oklahoma,34687,3004733,1 year+,2025-11-11
+Montana,40490,840190,1 year+,2025-11-23
+Wyoming,32975,445025,1 year+,2026-01-05
+Mississippi,28096,2277566,1 year+,2026-02-26
