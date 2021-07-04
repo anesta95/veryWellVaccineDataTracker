@@ -201,3 +201,7 @@ An error occured with the update: Error in fromJSON(file = "https://raw.githubus
 
  on 2021-07-01 
 
+An error occured with the update: Error in fromJSON(file = "https://raw.githubusercontent.com/anesta95/veryWellVaccineDataTracker/main/cdcVaccines.json"): no data to parse
+
+ on 2021-07-04 
+
