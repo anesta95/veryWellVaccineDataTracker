@@ -18,6 +18,13 @@ stateFIPS <- read_csv("./referenceData/stateFIPSCodes.csv", col_types = "cci")
 
 Sys.sleep(3)
 
+safe_extract <- function(l, wut) {
+  res <- l[wut]
+  null_here <- map_lgl(res, is.null)
+  res[null_here] <- NA
+  res
+}
+
 # shell(cmd = "./gitPullLatestCDC.ps1", shell = "powershell")
 
 Sys.sleep(10)
@@ -328,6 +335,18 @@ finalResult <- tryCatch(
       filter(!is.na(`First Dose Daily Avg`))
     
     write_csv(firstVsSecondGrowth, "./chartData/firstVsSecondGrowth.csv")
+    
+    
+    # CDC by county map
+    
+    cdcVaxByCounty <- fromJSON(file = "https://covid.cdc.gov/covid-data-tracker/COVIDData/getAjaxData?id=vaccination_county_condensed_data") %>% 
+      extract2("vaccination_county_condensed_data") %>%   
+      map_df(safe_extract) %>% 
+      select(Date, FIPS, StateName, StateAbbr, County, Series_Complete_Pop_Pct,
+             Administered_Dose1_Pop_Pct) %>% 
+      filter(FIPS != "UNK")
+    
+    write_csv(cdcVaxByCounty, "./chartData/cdcVaxByCounty.csv")
               
   }, error = function(cond) {
     condFull <- error_cnd(class = "vwDataTrackerError", message = paste("An error occured with the update:", 
