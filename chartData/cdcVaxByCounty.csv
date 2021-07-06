@@ -1,4 +1,4 @@
-Date,FIPS,StateName,StateAbbr,County,Series_Complete_Pop_Pct,Administered_Dose1_Pop_Pct
+Date,ID,StateName,StateAbbr,County,Series_Complete_Pop_Pct,Administered_Dose1_Pop_Pct
 2021-07-06,01001,Alabama,AL ,Autauga County,25,32.4
 2021-07-06,01003,Alabama,AL ,Baldwin County,30.5,38.6
 2021-07-06,01005,Alabama,AL ,Barbour County,26,32.8
