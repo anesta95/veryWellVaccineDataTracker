@@ -345,7 +345,8 @@ finalResult <- tryCatch(
       select(Date, FIPS, StateName, StateAbbr, County, Series_Complete_Pop_Pct,
              Administered_Dose1_Pop_Pct) %>% 
       filter(FIPS != "UNK") %>% 
-      rename(ID = FIPS)
+      mutate(StateAbbr = str_trim(StateAbbr)) %>% 
+      rename(`FIPS-Code` = FIPS)
     
     write_csv(cdcVaxByCounty, "./chartData/cdcVaxByCounty.csv")
               
