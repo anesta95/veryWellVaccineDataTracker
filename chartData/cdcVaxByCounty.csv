@@ -80,7 +80,6 @@ Date,FIPS-Code,StateName,StateAbbr,County,Series_Complete_Pop_Pct,Administered_D
 2021-07-06,02122,Alaska,AK,Kenai Peninsula Borough,36.3,39.4
 2021-07-06,02130,Alaska,AK,Ketchikan Gateway Borough,51.5,55.7
 2021-07-06,02150,Alaska,AK,Kodiak Island Borough,49.6,54.2
-2021-07-06,02158,Alaska,AK,Kusilvak Census Area,NA,NA
 2021-07-06,02164,Alaska,AK,Lake and Peninsula Borough,47,54.1
 2021-07-06,02170,Alaska,AK,Matanuska-Susitna Borough,27.4,30.4
 2021-07-06,02180,Alaska,AK,Nome CA,56.5,59.1
@@ -185,7 +184,6 @@ Date,FIPS-Code,StateName,StateAbbr,County,Series_Complete_Pop_Pct,Administered_D
 2021-07-06,05147,Arkansas,AR,Woodruff County,37.4,42.2
 2021-07-06,05149,Arkansas,AR,Yell County,29.8,32.6
 2021-07-06,06001,California,CA,Alameda County,62.4,69.9
-2021-07-06,06003,California,CA,Alpine County,NA,NA
 2021-07-06,06005,California,CA,Amador County,38,54.7
 2021-07-06,06007,California,CA,Butte County,38.6,43.9
 2021-07-06,06009,California,CA,Calaveras County,37.8,52.3
@@ -197,7 +195,6 @@ Date,FIPS-Code,StateName,StateAbbr,County,Series_Complete_Pop_Pct,Administered_D
 2021-07-06,06021,California,CA,Glenn County,37,42.6
 2021-07-06,06023,California,CA,Humboldt County,48.7,54.9
 2021-07-06,06025,California,CA,Imperial County,52.3,66
-2021-07-06,06027,California,CA,Inyo County,NA,NA
 2021-07-06,06029,California,CA,Kern County,33.4,39.5
 2021-07-06,06031,California,CA,Kings County,27.8,35.1
 2021-07-06,06033,California,CA,Lake County,41.7,47.2
@@ -205,17 +202,13 @@ Date,FIPS-Code,StateName,StateAbbr,County,Series_Complete_Pop_Pct,Administered_D
 2021-07-06,06037,California,CA,Los Angeles County,51,59
 2021-07-06,06039,California,CA,Madera County,35.9,43
 2021-07-06,06041,California,CA,Marin County,71.7,78.7
-2021-07-06,06043,California,CA,Mariposa County,NA,NA
 2021-07-06,06045,California,CA,Mendocino County,49.4,56.2
 2021-07-06,06047,California,CA,Merced County,29.8,41.2
-2021-07-06,06049,California,CA,Modoc County,NA,NA
-2021-07-06,06051,California,CA,Mono County,NA,NA
 2021-07-06,06053,California,CA,Monterey County,49.4,58.2
 2021-07-06,06055,California,CA,Napa County,59.7,68.6
 2021-07-06,06057,California,CA,Nevada County,47.4,54.7
 2021-07-06,06059,California,CA,Orange County,52.8,60.4
 2021-07-06,06061,California,CA,Placer County,49.7,55.2
-2021-07-06,06063,California,CA,Plumas County,NA,NA
 2021-07-06,06065,California,CA,Riverside County,39.8,46.1
 2021-07-06,06067,California,CA,Sacramento County,47.1,53.6
 2021-07-06,06069,California,CA,San Benito County,44.2,51.4
@@ -229,14 +222,12 @@ Date,FIPS-Code,StateName,StateAbbr,County,Series_Complete_Pop_Pct,Administered_D
 2021-07-06,06085,California,CA,Santa Clara County,66.6,73.8
 2021-07-06,06087,California,CA,Santa Cruz County,58.9,68.7
 2021-07-06,06089,California,CA,Shasta County,34,41.4
-2021-07-06,06091,California,CA,Sierra County,NA,NA
 2021-07-06,06093,California,CA,Siskiyou County,40,45.9
 2021-07-06,06095,California,CA,Solano County,47,58.4
 2021-07-06,06097,California,CA,Sonoma County,59.3,67.1
 2021-07-06,06099,California,CA,Stanislaus County,34,52.7
 2021-07-06,06101,California,CA,Sutter County,39.4,46.5
 2021-07-06,06103,California,CA,Tehama County,27.4,32
-2021-07-06,06105,California,CA,Trinity County,NA,NA
 2021-07-06,06107,California,CA,Tulare County,33.7,39.6
 2021-07-06,06109,California,CA,Tuolumne County,41.9,51.6
 2021-07-06,06111,California,CA,Ventura County,53.3,60.8
@@ -544,11 +535,6 @@ Date,FIPS-Code,StateName,StateAbbr,County,Series_Complete_Pop_Pct,Administered_D
 2021-07-06,13317,Georgia,GA,Wilkes County,10.1,NA
 2021-07-06,13319,Georgia,GA,Wilkinson County,12.9,14.4
 2021-07-06,13321,Georgia,GA,Worth County,9.1,NA
-2021-07-06,15001,Hawaii,HI,Hawaii County,NA,NA
-2021-07-06,15003,Hawaii,HI,Honolulu County,NA,NA
-2021-07-06,15005,Hawaii,HI,Kalawao County,NA,NA
-2021-07-06,15007,Hawaii,HI,Kauai County,NA,NA
-2021-07-06,15009,Hawaii,HI,Maui County,NA,NA
 2021-07-06,16001,Idaho,ID,Ada County,45,48.6
 2021-07-06,16003,Idaho,ID,Adams County,32.5,35.4
 2021-07-06,16005,Idaho,ID,Bannock County,35.7,39.4
@@ -2599,260 +2585,6 @@ Date,FIPS-Code,StateName,StateAbbr,County,Series_Complete_Pop_Pct,Administered_D
 2021-07-06,47185,Tennessee,TN,White County,30.4,33.6
 2021-07-06,47187,Tennessee,TN,Williamson County,49.2,53.6
 2021-07-06,47189,Tennessee,TN,Wilson County,36.8,40.6
-2021-07-06,48001,Texas,TX,Anderson County,NA,NA
-2021-07-06,48003,Texas,TX,Andrews County,NA,NA
-2021-07-06,48005,Texas,TX,Angelina County,NA,NA
-2021-07-06,48007,Texas,TX,Aransas County,NA,NA
-2021-07-06,48009,Texas,TX,Archer County,NA,NA
-2021-07-06,48011,Texas,TX,Armstrong County,NA,NA
-2021-07-06,48013,Texas,TX,Atascosa County,NA,NA
-2021-07-06,48015,Texas,TX,Austin County,NA,NA
-2021-07-06,48017,Texas,TX,Bailey County,NA,NA
-2021-07-06,48019,Texas,TX,Bandera County,NA,NA
-2021-07-06,48021,Texas,TX,Bastrop County,NA,NA
-2021-07-06,48023,Texas,TX,Baylor County,NA,NA
-2021-07-06,48025,Texas,TX,Bee County,NA,NA
-2021-07-06,48027,Texas,TX,Bell County,NA,NA
-2021-07-06,48029,Texas,TX,Bexar County,NA,NA
-2021-07-06,48031,Texas,TX,Blanco County,NA,NA
-2021-07-06,48033,Texas,TX,Borden County,NA,NA
-2021-07-06,48035,Texas,TX,Bosque County,NA,NA
-2021-07-06,48037,Texas,TX,Bowie County,NA,NA
-2021-07-06,48039,Texas,TX,Brazoria County,NA,NA
-2021-07-06,48041,Texas,TX,Brazos County,NA,NA
-2021-07-06,48043,Texas,TX,Brewster County,NA,NA
-2021-07-06,48045,Texas,TX,Briscoe County,NA,NA
-2021-07-06,48047,Texas,TX,Brooks County,NA,NA
-2021-07-06,48049,Texas,TX,Brown County,NA,NA
-2021-07-06,48051,Texas,TX,Burleson County,NA,NA
-2021-07-06,48053,Texas,TX,Burnet County,NA,NA
-2021-07-06,48055,Texas,TX,Caldwell County,NA,NA
-2021-07-06,48057,Texas,TX,Calhoun County,NA,NA
-2021-07-06,48059,Texas,TX,Callahan County,NA,NA
-2021-07-06,48061,Texas,TX,Cameron County,NA,NA
-2021-07-06,48063,Texas,TX,Camp County,NA,NA
-2021-07-06,48065,Texas,TX,Carson County,NA,NA
-2021-07-06,48067,Texas,TX,Cass County,NA,NA
-2021-07-06,48069,Texas,TX,Castro County,NA,NA
-2021-07-06,48071,Texas,TX,Chambers County,NA,NA
-2021-07-06,48073,Texas,TX,Cherokee County,NA,NA
-2021-07-06,48075,Texas,TX,Childress County,NA,NA
-2021-07-06,48077,Texas,TX,Clay County,NA,NA
-2021-07-06,48079,Texas,TX,Cochran County,NA,NA
-2021-07-06,48081,Texas,TX,Coke County,NA,NA
-2021-07-06,48083,Texas,TX,Coleman County,NA,NA
-2021-07-06,48085,Texas,TX,Collin County,NA,NA
-2021-07-06,48087,Texas,TX,Collingsworth County,NA,NA
-2021-07-06,48089,Texas,TX,Colorado County,NA,NA
-2021-07-06,48091,Texas,TX,Comal County,NA,NA
-2021-07-06,48093,Texas,TX,Comanche County,NA,NA
-2021-07-06,48095,Texas,TX,Concho County,NA,NA
-2021-07-06,48097,Texas,TX,Cooke County,NA,NA
-2021-07-06,48099,Texas,TX,Coryell County,NA,NA
-2021-07-06,48101,Texas,TX,Cottle County,NA,NA
-2021-07-06,48103,Texas,TX,Crane County,NA,NA
-2021-07-06,48105,Texas,TX,Crockett County,NA,NA
-2021-07-06,48107,Texas,TX,Crosby County,NA,NA
-2021-07-06,48109,Texas,TX,Culberson County,NA,NA
-2021-07-06,48111,Texas,TX,Dallam County,NA,NA
-2021-07-06,48113,Texas,TX,Dallas County,NA,NA
-2021-07-06,48115,Texas,TX,Dawson County,NA,NA
-2021-07-06,48117,Texas,TX,Deaf Smith County,NA,NA
-2021-07-06,48119,Texas,TX,Delta County,NA,NA
-2021-07-06,48121,Texas,TX,Denton County,NA,NA
-2021-07-06,48123,Texas,TX,DeWitt County,NA,NA
-2021-07-06,48125,Texas,TX,Dickens County,NA,NA
-2021-07-06,48127,Texas,TX,Dimmit County,NA,NA
-2021-07-06,48129,Texas,TX,Donley County,NA,NA
-2021-07-06,48131,Texas,TX,Duval County,NA,NA
-2021-07-06,48133,Texas,TX,Eastland County,NA,NA
-2021-07-06,48135,Texas,TX,Ector County,NA,NA
-2021-07-06,48137,Texas,TX,Edwards County,NA,NA
-2021-07-06,48141,Texas,TX,El Paso County,NA,NA
-2021-07-06,48139,Texas,TX,Ellis County,NA,NA
-2021-07-06,48143,Texas,TX,Erath County,NA,NA
-2021-07-06,48145,Texas,TX,Falls County,NA,NA
-2021-07-06,48147,Texas,TX,Fannin County,NA,NA
-2021-07-06,48149,Texas,TX,Fayette County,NA,NA
-2021-07-06,48151,Texas,TX,Fisher County,NA,NA
-2021-07-06,48153,Texas,TX,Floyd County,NA,NA
-2021-07-06,48155,Texas,TX,Foard County,NA,NA
-2021-07-06,48157,Texas,TX,Fort Bend County,NA,NA
-2021-07-06,48159,Texas,TX,Franklin County,NA,NA
-2021-07-06,48161,Texas,TX,Freestone County,NA,NA
-2021-07-06,48163,Texas,TX,Frio County,NA,NA
-2021-07-06,48165,Texas,TX,Gaines County,NA,NA
-2021-07-06,48167,Texas,TX,Galveston County,NA,NA
-2021-07-06,48169,Texas,TX,Garza County,NA,NA
-2021-07-06,48171,Texas,TX,Gillespie County,NA,NA
-2021-07-06,48173,Texas,TX,Glasscock County,NA,NA
-2021-07-06,48175,Texas,TX,Goliad County,NA,NA
-2021-07-06,48177,Texas,TX,Gonzales County,NA,NA
-2021-07-06,48179,Texas,TX,Gray County,NA,NA
-2021-07-06,48181,Texas,TX,Grayson County,NA,NA
-2021-07-06,48183,Texas,TX,Gregg County,NA,NA
-2021-07-06,48185,Texas,TX,Grimes County,NA,NA
-2021-07-06,48187,Texas,TX,Guadalupe County,NA,NA
-2021-07-06,48189,Texas,TX,Hale County,NA,NA
-2021-07-06,48191,Texas,TX,Hall County,NA,NA
-2021-07-06,48193,Texas,TX,Hamilton County,NA,NA
-2021-07-06,48195,Texas,TX,Hansford County,NA,NA
-2021-07-06,48197,Texas,TX,Hardeman County,NA,NA
-2021-07-06,48199,Texas,TX,Hardin County,NA,NA
-2021-07-06,48201,Texas,TX,Harris County,NA,NA
-2021-07-06,48203,Texas,TX,Harrison County,NA,NA
-2021-07-06,48205,Texas,TX,Hartley County,NA,NA
-2021-07-06,48207,Texas,TX,Haskell County,NA,NA
-2021-07-06,48209,Texas,TX,Hays County,NA,NA
-2021-07-06,48211,Texas,TX,Hemphill County,NA,NA
-2021-07-06,48213,Texas,TX,Henderson County,NA,NA
-2021-07-06,48215,Texas,TX,Hidalgo County,NA,NA
-2021-07-06,48217,Texas,TX,Hill County,NA,NA
-2021-07-06,48219,Texas,TX,Hockley County,NA,NA
-2021-07-06,48221,Texas,TX,Hood County,NA,NA
-2021-07-06,48223,Texas,TX,Hopkins County,NA,NA
-2021-07-06,48225,Texas,TX,Houston County,NA,NA
-2021-07-06,48227,Texas,TX,Howard County,NA,NA
-2021-07-06,48229,Texas,TX,Hudspeth County,NA,NA
-2021-07-06,48231,Texas,TX,Hunt County,NA,NA
-2021-07-06,48233,Texas,TX,Hutchinson County,NA,NA
-2021-07-06,48235,Texas,TX,Irion County,NA,NA
-2021-07-06,48237,Texas,TX,Jack County,NA,NA
-2021-07-06,48239,Texas,TX,Jackson County,NA,NA
-2021-07-06,48241,Texas,TX,Jasper County,NA,NA
-2021-07-06,48243,Texas,TX,Jeff Davis County,NA,NA
-2021-07-06,48245,Texas,TX,Jefferson County,NA,NA
-2021-07-06,48247,Texas,TX,Jim Hogg County,NA,NA
-2021-07-06,48249,Texas,TX,Jim Wells County,NA,NA
-2021-07-06,48251,Texas,TX,Johnson County,NA,NA
-2021-07-06,48253,Texas,TX,Jones County,NA,NA
-2021-07-06,48255,Texas,TX,Karnes County,NA,NA
-2021-07-06,48257,Texas,TX,Kaufman County,NA,NA
-2021-07-06,48259,Texas,TX,Kendall County,NA,NA
-2021-07-06,48261,Texas,TX,Kenedy County,NA,NA
-2021-07-06,48263,Texas,TX,Kent County,NA,NA
-2021-07-06,48265,Texas,TX,Kerr County,NA,NA
-2021-07-06,48267,Texas,TX,Kimble County,NA,NA
-2021-07-06,48269,Texas,TX,King County,NA,NA
-2021-07-06,48271,Texas,TX,Kinney County,NA,NA
-2021-07-06,48273,Texas,TX,Kleberg County,NA,NA
-2021-07-06,48275,Texas,TX,Knox County,NA,NA
-2021-07-06,48283,Texas,TX,La Salle County,NA,NA
-2021-07-06,48277,Texas,TX,Lamar County,NA,NA
-2021-07-06,48279,Texas,TX,Lamb County,NA,NA
-2021-07-06,48281,Texas,TX,Lampasas County,NA,NA
-2021-07-06,48285,Texas,TX,Lavaca County,NA,NA
-2021-07-06,48287,Texas,TX,Lee County,NA,NA
-2021-07-06,48289,Texas,TX,Leon County,NA,NA
-2021-07-06,48291,Texas,TX,Liberty County,NA,NA
-2021-07-06,48293,Texas,TX,Limestone County,NA,NA
-2021-07-06,48295,Texas,TX,Lipscomb County,NA,NA
-2021-07-06,48297,Texas,TX,Live Oak County,NA,NA
-2021-07-06,48299,Texas,TX,Llano County,NA,NA
-2021-07-06,48301,Texas,TX,Loving County,NA,NA
-2021-07-06,48303,Texas,TX,Lubbock County,NA,NA
-2021-07-06,48305,Texas,TX,Lynn County,NA,NA
-2021-07-06,48313,Texas,TX,Madison County,NA,NA
-2021-07-06,48315,Texas,TX,Marion County,NA,NA
-2021-07-06,48317,Texas,TX,Martin County,NA,NA
-2021-07-06,48319,Texas,TX,Mason County,NA,NA
-2021-07-06,48321,Texas,TX,Matagorda County,NA,NA
-2021-07-06,48323,Texas,TX,Maverick County,NA,NA
-2021-07-06,48307,Texas,TX,McCulloch County,NA,NA
-2021-07-06,48309,Texas,TX,McLennan County,NA,NA
-2021-07-06,48311,Texas,TX,McMullen County,NA,NA
-2021-07-06,48325,Texas,TX,Medina County,NA,NA
-2021-07-06,48327,Texas,TX,Menard County,NA,NA
-2021-07-06,48329,Texas,TX,Midland County,NA,NA
-2021-07-06,48331,Texas,TX,Milam County,NA,NA
-2021-07-06,48333,Texas,TX,Mills County,NA,NA
-2021-07-06,48335,Texas,TX,Mitchell County,NA,NA
-2021-07-06,48337,Texas,TX,Montague County,NA,NA
-2021-07-06,48339,Texas,TX,Montgomery County,NA,NA
-2021-07-06,48341,Texas,TX,Moore County,NA,NA
-2021-07-06,48343,Texas,TX,Morris County,NA,NA
-2021-07-06,48345,Texas,TX,Motley County,NA,NA
-2021-07-06,48347,Texas,TX,Nacogdoches County,NA,NA
-2021-07-06,48349,Texas,TX,Navarro County,NA,NA
-2021-07-06,48351,Texas,TX,Newton County,NA,NA
-2021-07-06,48353,Texas,TX,Nolan County,NA,NA
-2021-07-06,48355,Texas,TX,Nueces County,NA,NA
-2021-07-06,48357,Texas,TX,Ochiltree County,NA,NA
-2021-07-06,48359,Texas,TX,Oldham County,NA,NA
-2021-07-06,48361,Texas,TX,Orange County,NA,NA
-2021-07-06,48363,Texas,TX,Palo Pinto County,NA,NA
-2021-07-06,48365,Texas,TX,Panola County,NA,NA
-2021-07-06,48367,Texas,TX,Parker County,NA,NA
-2021-07-06,48369,Texas,TX,Parmer County,NA,NA
-2021-07-06,48371,Texas,TX,Pecos County,NA,NA
-2021-07-06,48373,Texas,TX,Polk County,NA,NA
-2021-07-06,48375,Texas,TX,Potter County,NA,NA
-2021-07-06,48377,Texas,TX,Presidio County,NA,NA
-2021-07-06,48379,Texas,TX,Rains County,NA,NA
-2021-07-06,48381,Texas,TX,Randall County,NA,NA
-2021-07-06,48383,Texas,TX,Reagan County,NA,NA
-2021-07-06,48385,Texas,TX,Real County,NA,NA
-2021-07-06,48387,Texas,TX,Red River County,NA,NA
-2021-07-06,48389,Texas,TX,Reeves County,NA,NA
-2021-07-06,48391,Texas,TX,Refugio County,NA,NA
-2021-07-06,48393,Texas,TX,Roberts County,NA,NA
-2021-07-06,48395,Texas,TX,Robertson County,NA,NA
-2021-07-06,48397,Texas,TX,Rockwall County,NA,NA
-2021-07-06,48399,Texas,TX,Runnels County,NA,NA
-2021-07-06,48401,Texas,TX,Rusk County,NA,NA
-2021-07-06,48403,Texas,TX,Sabine County,NA,NA
-2021-07-06,48405,Texas,TX,San Augustine County,NA,NA
-2021-07-06,48407,Texas,TX,San Jacinto County,NA,NA
-2021-07-06,48409,Texas,TX,San Patricio County,NA,NA
-2021-07-06,48411,Texas,TX,San Saba County,NA,NA
-2021-07-06,48413,Texas,TX,Schleicher County,NA,NA
-2021-07-06,48415,Texas,TX,Scurry County,NA,NA
-2021-07-06,48417,Texas,TX,Shackelford County,NA,NA
-2021-07-06,48419,Texas,TX,Shelby County,NA,NA
-2021-07-06,48421,Texas,TX,Sherman County,NA,NA
-2021-07-06,48423,Texas,TX,Smith County,NA,NA
-2021-07-06,48425,Texas,TX,Somervell County,NA,NA
-2021-07-06,48427,Texas,TX,Starr County,NA,NA
-2021-07-06,48429,Texas,TX,Stephens County,NA,NA
-2021-07-06,48431,Texas,TX,Sterling County,NA,NA
-2021-07-06,48433,Texas,TX,Stonewall County,NA,NA
-2021-07-06,48435,Texas,TX,Sutton County,NA,NA
-2021-07-06,48437,Texas,TX,Swisher County,NA,NA
-2021-07-06,48439,Texas,TX,Tarrant County,NA,NA
-2021-07-06,48441,Texas,TX,Taylor County,NA,NA
-2021-07-06,48443,Texas,TX,Terrell County,NA,NA
-2021-07-06,48445,Texas,TX,Terry County,NA,NA
-2021-07-06,48447,Texas,TX,Throckmorton County,NA,NA
-2021-07-06,48449,Texas,TX,Titus County,NA,NA
-2021-07-06,48451,Texas,TX,Tom Green County,NA,NA
-2021-07-06,48453,Texas,TX,Travis County,NA,NA
-2021-07-06,48455,Texas,TX,Trinity County,NA,NA
-2021-07-06,48457,Texas,TX,Tyler County,NA,NA
-2021-07-06,48459,Texas,TX,Upshur County,NA,NA
-2021-07-06,48461,Texas,TX,Upton County,NA,NA
-2021-07-06,48463,Texas,TX,Uvalde County,NA,NA
-2021-07-06,48465,Texas,TX,Val Verde County,NA,NA
-2021-07-06,48467,Texas,TX,Van Zandt County,NA,NA
-2021-07-06,48469,Texas,TX,Victoria County,NA,NA
-2021-07-06,48471,Texas,TX,Walker County,NA,NA
-2021-07-06,48473,Texas,TX,Waller County,NA,NA
-2021-07-06,48475,Texas,TX,Ward County,NA,NA
-2021-07-06,48477,Texas,TX,Washington County,NA,NA
-2021-07-06,48479,Texas,TX,Webb County,NA,NA
-2021-07-06,48481,Texas,TX,Wharton County,NA,NA
-2021-07-06,48483,Texas,TX,Wheeler County,NA,NA
-2021-07-06,48485,Texas,TX,Wichita County,NA,NA
-2021-07-06,48487,Texas,TX,Wilbarger County,NA,NA
-2021-07-06,48489,Texas,TX,Willacy County,NA,NA
-2021-07-06,48491,Texas,TX,Williamson County,NA,NA
-2021-07-06,48493,Texas,TX,Wilson County,NA,NA
-2021-07-06,48495,Texas,TX,Winkler County,NA,NA
-2021-07-06,48497,Texas,TX,Wise County,NA,NA
-2021-07-06,48499,Texas,TX,Wood County,NA,NA
-2021-07-06,48501,Texas,TX,Yoakum County,NA,NA
-2021-07-06,48503,Texas,TX,Young County,NA,NA
-2021-07-06,48505,Texas,TX,Zapata County,NA,NA
-2021-07-06,48507,Texas,TX,Zavala County,NA,NA
 2021-07-06,49001,Utah,UT,Beaver County,25.4,33.4
 2021-07-06,49003,Utah,UT,Box Elder County,28.9,37.9
 2021-07-06,49005,Utah,UT,Cache County,33.1,45.1
@@ -2913,7 +2645,6 @@ Date,FIPS-Code,StateName,StateAbbr,County,Series_Complete_Pop_Pct,Administered_D
 2021-07-06,51025,Virginia,VA,Brunswick County,26.9,34.9
 2021-07-06,51027,Virginia,VA,Buchanan County,27.4,30.7
 2021-07-06,51029,Virginia,VA,Buckingham County,8.3,9.6
-2021-07-06,51530,Virginia,VA,Buena Vista City,NA,NA
 2021-07-06,51031,Virginia,VA,Campbell County,13.8,15.7
 2021-07-06,51033,Virginia,VA,Caroline County,8.7,9.7
 2021-07-06,51035,Virginia,VA,Carroll County,7.4,8.8
@@ -2924,7 +2655,6 @@ Date,FIPS-Code,StateName,StateAbbr,County,Series_Complete_Pop_Pct,Administered_D
 2021-07-06,51041,Virginia,VA,Chesterfield County,25.6,29
 2021-07-06,51043,Virginia,VA,Clarke County,42.2,47.4
 2021-07-06,51570,Virginia,VA,Colonial Heights City,0.7,0.8
-2021-07-06,51580,Virginia,VA,Covington City,NA,NA
 2021-07-06,51045,Virginia,VA,Craig County,1.5,2.5
 2021-07-06,51047,Virginia,VA,Culpeper County,10.2,11.4
 2021-07-06,51049,Virginia,VA,Cumberland County,5.5,6.4
@@ -2939,7 +2669,6 @@ Date,FIPS-Code,StateName,StateAbbr,County,Series_Complete_Pop_Pct,Administered_D
 2021-07-06,51061,Virginia,VA,Fauquier County,30.8,34.6
 2021-07-06,51063,Virginia,VA,Floyd County,4,5.1
 2021-07-06,51065,Virginia,VA,Fluvanna County,37.4,42.3
-2021-07-06,51620,Virginia,VA,Franklin City,NA,NA
 2021-07-06,51067,Virginia,VA,Franklin County,21.2,24.4
 2021-07-06,51069,Virginia,VA,Frederick County,15.9,19
 2021-07-06,51630,Virginia,VA,Fredericksburg City,4.1,4.6
@@ -2957,7 +2686,6 @@ Date,FIPS-Code,StateName,StateAbbr,County,Series_Complete_Pop_Pct,Administered_D
 2021-07-06,51087,Virginia,VA,Henrico County,19.1,21.5
 2021-07-06,51089,Virginia,VA,Henry County,13,15
 2021-07-06,51091,Virginia,VA,Highland County,48.4,51.2
-2021-07-06,51670,Virginia,VA,Hopewell City,NA,NA
 2021-07-06,51093,Virginia,VA,Isle of Wight County,13.9,16.3
 2021-07-06,51095,Virginia,VA,James City County,6.7,7.9
 2021-07-06,51097,Virginia,VA,King and Queen County,24.1,26.9
@@ -2965,7 +2693,6 @@ Date,FIPS-Code,StateName,StateAbbr,County,Series_Complete_Pop_Pct,Administered_D
 2021-07-06,51101,Virginia,VA,King William County,27.5,30.4
 2021-07-06,51103,Virginia,VA,Lancaster County,31.5,34.5
 2021-07-06,51105,Virginia,VA,Lee County,32.7,38.5
-2021-07-06,51678,Virginia,VA,Lexington City,NA,NA
 2021-07-06,51107,Virginia,VA,Loudoun County,42.7,48
 2021-07-06,51109,Virginia,VA,Louisa County,2.6,3.1
 2021-07-06,51111,Virginia,VA,Lunenburg County,29.6,32.9
@@ -2984,14 +2711,12 @@ Date,FIPS-Code,StateName,StateAbbr,County,Series_Complete_Pop_Pct,Administered_D
 2021-07-06,51710,Virginia,VA,Norfolk City,35.2,40.1
 2021-07-06,51131,Virginia,VA,Northampton County,44.8,49.1
 2021-07-06,51133,Virginia,VA,Northumberland County,21.7,23.4
-2021-07-06,51720,Virginia,VA,Norton City,NA,NA
 2021-07-06,51135,Virginia,VA,Nottoway County,14,15.6
 2021-07-06,51137,Virginia,VA,Orange County,5,5.5
 2021-07-06,51139,Virginia,VA,Page County,9.7,10.8
 2021-07-06,51141,Virginia,VA,Patrick County,21.8,24.5
 2021-07-06,51730,Virginia,VA,Petersburg City,2,2.2
 2021-07-06,51143,Virginia,VA,Pittsylvania County,18,20.6
-2021-07-06,51735,Virginia,VA,Poquoson City,NA,NA
 2021-07-06,51740,Virginia,VA,Portsmouth City,57.8,63.2
 2021-07-06,51145,Virginia,VA,Powhatan County,1.5,1.8
 2021-07-06,51147,Virginia,VA,Prince Edward County,2.3,2.8
