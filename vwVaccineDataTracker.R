@@ -7,8 +7,7 @@ library(dplyr)
 library(tibble)
 library(stringr)
 library(zoo)
-
-# setwd("C:\\Users\\anesta\\Documents\\Verywell_Vaccine_Data_Tracker")
+library(tidyr)
 
 statePops <- read_csv("./referenceData/populationEstimates.csv", col_types = "ciici")
 
@@ -25,7 +24,6 @@ safe_extract <- function(l, wut) {
   res
 }
 
-# shell(cmd = "./gitPullLatestCDC.ps1", shell = "powershell")
 
 Sys.sleep(10)
 
@@ -349,6 +347,48 @@ finalResult <- tryCatch(
       rename(`FIPS-Code` = FIPS)
     
     write_csv(cdcVaxByCounty, "./chartData/cdcVaxByCounty.csv")
+    
+    # Vaccines by age
+    cdcVaxByAgeHist <- read_csv("./chartData/cdcFullVaxByAge.csv",
+                                col_types = "Dddddddd")
+    
+    cdcVaxByAge <- read_csv(file = "https://data.cdc.gov/resource/km4m-vcsb.csv",
+                            col_types = "Tciddidddd") %>% 
+      mutate(date = base::as.Date(date))
+    
+    if(max(cdcVaxByAge$date, na.rm = T) > max(cdcVaxByAgeHist$Date, na.rm = T)) {
+      cdcVaxByAge %>% 
+        filter(date > max(cdcVaxByAge$date, na.rm = T)) %>%
+        select(date, demographic_category, series_complete_yes) %>% 
+        filter(demographic_category %in% c("Ages_12-15_yrs",
+                                           "Ages_16-17_yrs",
+                                           "Ages_18_24_yrs",
+                                           "Ages_25-39_yrs",
+                                           "Ages_40-49_yrs",
+                                           "Ages_50-64_yrs",
+                                           "Ages_65-74_yrs",
+                                           "Ages_75+_yrs")) %>% 
+        arrange(demographic_category, desc(date)) %>% 
+        group_by(demographic_category) %>% 
+        mutate(dailyDiff = series_complete_yes - lead(series_complete_yes)) %>% 
+        ungroup() %>% 
+        filter(!is.na(dailyDiff)) %>% 
+        group_by(date) %>% 
+        mutate(dailyDoses = sum(dailyDiff)) %>% 
+        ungroup() %>% 
+        mutate(ageProp = (dailyDiff / dailyDoses) * 100) %>% 
+        select(date, demographic_category, ageProp) %>% 
+        pivot_wider(id_cols = date, names_from = demographic_category, values_from = ageProp) %>% 
+        rename_with(~str_extract(.x, "\\d{2}[-\\+]\\d*"), .cols = 2:8) %>% 
+        rename(Date = date) -> cdcVaxByAgeNewest
+      
+      cdcVaxByAgeUpdated <- bind_rows(cdcVaxByAgeHist, cdcVaxByAgeNewest)
+      
+      write_csv(cdcVaxByAgeUpdated, "./chartData/cdcFullVaxByAge.csv")
+        
+    }
+    
+    
               
   }, error = function(cond) {
     condFull <- error_cnd(class = "vwDataTrackerError", message = paste("An error occured with the update:", 
@@ -360,11 +400,6 @@ finalResult <- tryCatch(
     return(condFull)
   }
 )
-
-# Sys.sleep(10)
-# if (class(finalResult)[2] != "rlang_error") {
-#   shell(cmd = "./pushToGit.ps1", shell = "powershell")
-# }
 
 
 # http://www.seancarney.ca/2020/10/11/scheduling-r-scripts-to-run-automatically-in-windows/
