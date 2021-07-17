@@ -234,3 +234,8 @@ An error occured with the update: Error: Can't subset columns that don't exist.
 ℹ There are only 1 column.
  on 2021-07-16 
 
+An error occured with the update: Error: Can't subset columns that don't exist.
+✖ Locations 2, 3, 4, 5, 6, etc. don't exist.
+ℹ There are only 1 column.
+ on 2021-07-17 
+
